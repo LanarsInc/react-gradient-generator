@@ -1,0 +1,127 @@
+@use 'variables' as *;
+
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin clickable-element {
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  border: none;
+}
+
+@mixin chess-board {
+  background-image:
+          linear-gradient(45deg, darken($border-color, 10%) 25%, transparent 25%),
+          linear-gradient(-45deg, darken($border-color, 10%) 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, darken($border-color, 10%) 75%),
+          linear-gradient(-45deg, transparent 75%, darken($border-color, 10%) 75%);
+  background-size: 10px 10px;
+  background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
+}
+
+@mixin oval-button ($inverse: false, $width: null, $height: 52px) {
+  @include clickable-element;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: $font-main-semi-bold;
+  text-transform: capitalize;
+  color: $white;
+  background: $primary-color;
+  border-radius: 300px;
+  padding: 0 30px;
+  transition: 300ms;
+
+  @if $width {
+    width: $width;
+  }
+
+  @if $height {
+    height: $height;
+  }
+
+  @if $inverse {
+    color: $primary-color;
+    background: $secondary-color;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    color: $primary-disabled-text;
+    background: $primary-disabled;
+
+    @if $inverse {
+      color: $secondary-disabled-text;
+      background: $secondary-disabled;
+    }
+  }
+
+  &:hover {
+    background: $primary-hover;
+
+    @if $inverse {
+      background: $secondary-hover;
+    }
+  }
+
+  &:active {
+    background: $primary-active;
+
+    @if $inverse {
+      background: $secondary-active;
+    }
+  }
+}
+
+@mixin oval-button-danger ($width: null, $height: 52px) {
+  @include oval-button ($inverse: false, $width: $width, $height: $height);
+  background: $danger-color;
+
+  &:hover {
+    background: $danger-hover;
+  }
+
+  &:active {
+    background: $danger-active;
+  }
+
+  &:disabled {
+    background: $danger-disabled;
+  }
+}
+
+@mixin oval-input ($width: null, $height: 52px) {
+  padding: 16px 24px;
+  font-size: 16px;
+  font-family: $font-main-semi-bold;
+  line-height: 20px;
+  color: $main-text-color;
+  background: $white;
+  border: 2px solid $border-color;
+  border-radius: 300px;
+  outline: none;
+
+  &::placeholder {
+    color: $placeholder-color;
+  }
+
+  @if $width {
+    width: $width;
+  }
+
+  @if $height {
+    height: $height;
+  }
+
+  &:focus {
+    border: 2px solid $primary-color;
+  }
+}
