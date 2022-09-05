@@ -1,0 +1,103 @@
+@use './../../../styles/abstracts' as *;
+
+
+.gradient-type-and-angle {
+  width: 591px;
+  height: 161px;
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  background: $white;
+  border: 2px solid $border-color;
+  border-radius: 30px;
+}
+
+.gradient-type {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &__buttons-container {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__btn {
+    @include oval-button(true, 110px);
+
+    &.active {
+      @include oval-button(false, 110px);
+    }
+  }
+}
+
+.gradient-angle-linear,
+.gradient-angle-radial {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.gradient-angle-linear {
+
+  &__content {
+    width: 178px;
+    display: flex;
+    gap: 26px;
+  }
+
+  &__circle {
+    @include clickable-element;
+    @include flex-center;
+    width: 62px;
+    height: 62px;
+    position: relative;
+  }
+
+  &__dot {
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: $primary-color;
+  }
+
+  &__input {
+   @include oval-input(90px);
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+.gradient-angle-radial {
+
+  &__content {
+    width: 178px;
+  }
+
+  &__circle {
+    @include clickable-element;
+    position: relative;
+    width: 62px;
+    height: 62px;
+    outline: 2px solid $secondary-border;
+    border-radius: 12px;
+  }
+
+  &__dot {
+    @include clickable-element;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: $primary-color;
+  }
+}
