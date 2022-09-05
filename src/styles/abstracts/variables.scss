@@ -1,0 +1,55 @@
+@import 'fonts';
+
+// colors
+$primary-color: #7134f2;
+$primary-hover: #864ffa;
+$primary-active: #622bd4;
+$primary-disabled: #d3beff;
+$primary-disabled-text: #a984f9;
+
+$secondary-color: #f1ebfe;
+$secondary-hover: #f7f3ff;
+$secondary-active: #eae0ff;
+$secondary-disabled: #f1ebfe;
+$secondary-disabled-text: #c7adff;
+$secondary-border: #d4bfff;
+
+$danger-color: #fceff0;
+$danger-hover: #fef7f7;
+$danger-active: #ffe0e3;
+$danger-disabled: #fceff0;
+$danger-disabled-text: #f3acb2;
+
+$dark-blue-100: #1a1a33;
+$dark-blue-80: #2a2941;
+$dark-blue-60: #343250;
+$dark-blue-border: #514d7d;
+
+$title-color: #9134d7;
+$light-purple-color: #a981ff;
+$pale-purple-color: #7c78a9;
+$main-text-color: #2b223e;
+$white: #ffffff;
+$light-grey: #f8f8f8;
+$placeholder-color: #e9edf2;
+$border-color: #eef0f3;
+$success-color: #32d9ab;
+
+// values
+$gradient-preview-width: 451;
+$gradient-preview-height: 52;
+
+// fonts
+$font-main-regular: 'Quicksand-Regular';
+$font-main-semi-bold: 'Quicksand-SemiBold';
+$font-main-bold: 'Quicksand-Bold';
+
+$font-code-regular: 'SourceCodePro-Regular';
+$font-code-semi-bold: 'SourceCodePro-SemiBold';
+
+//other
+$shadow: -2px 2px 8px rgba(111, 120, 129, 0.16);
+
+:export {
+  gradientPreviewWidth: $gradient-preview-width,
+};
