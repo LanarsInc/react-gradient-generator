@@ -67,6 +67,7 @@
   &__slider {
     @include clickable-element;
     -webkit-appearance: none;
+    -moz-appearance: none;
     margin: 0;
     width: 337px;
     height: 24px;
@@ -77,6 +78,22 @@
     &::-webkit-slider-thumb {
       @include clickable-element;
       -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      background-color: var(--slider-thumb-color, black);
+      border: 3px solid $white;
+      border-radius: 50%;
+      box-shadow: $shadow;
+
+      &:hover {
+        outline: 2px solid darken($border-color, 10%);
+      }
+    }
+
+    &::-moz-range-thumb {
+      @include clickable-element;
+      -moz-appearance: none;
       appearance: none;
       width: 24px;
       height: 24px;
