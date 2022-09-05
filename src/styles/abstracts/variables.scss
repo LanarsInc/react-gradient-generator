@@ -50,6 +50,12 @@ $font-code-semi-bold: 'SourceCodePro-SemiBold';
 //other
 $shadow: -2px 2px 8px rgba(111, 120, 129, 0.16);
 
+$break-points: (
+  small: 600px,
+  media: 992px,
+  large: 1350px,
+);
+
 :export {
   gradientPreviewWidth: $gradient-preview-width,
 };

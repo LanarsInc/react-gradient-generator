@@ -1,5 +1,14 @@
 @use 'variables' as *;
+@use 'sass:map';
 
+
+@mixin mq($key) {
+  $size: map.get($break-points, $key);
+
+  @media (min-width: $size) {
+    @content;
+  }
+}
 
 @mixin flex-center {
   display: flex;

@@ -10,8 +10,14 @@
   background: $light-grey;
 
   &__main {
+    @include mq(large) {
+      flex-direction: row;
+    }
+
     display: flex;
     justify-content: center;
+    align-self: center;
+    flex-direction: column;
     gap: 24px;
   }
 
