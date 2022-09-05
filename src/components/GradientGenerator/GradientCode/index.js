@@ -8,7 +8,7 @@ const linesNumber = 6;
 const GradientCode = ({ gradient, addNewMessage }) => {
 
   const handleCopyGradientCode = () => {
-    navigator.clipboard.writeText(gradient);
+    navigator.clipboard.writeText(`background: ${gradient};`);
     addNewMessage({
       text: 'CSS code has been copied',
       lifeTime: 3000,
