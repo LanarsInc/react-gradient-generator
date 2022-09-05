@@ -24,9 +24,12 @@ const GradientPreview = ({
               className={classnames('gradient-preview-pallet', {
                 'active': pallet.id === activePaletteId,
               })}
-              style={{ background: pallet.color }}
               onClick={() => setActivePalette(pallet)}
             >
+              <div
+                className='gradient-preview-pallet__inner'
+                style={{ background: pallet.color }}
+              />
               <div
                 className={classnames('gradient-preview-pallet__delete-btn', {
                   'canDelete': palettes.length > 2,

@@ -84,10 +84,9 @@
       background-color: var(--slider-thumb-color, black);
       border: 3px solid $white;
       border-radius: 50%;
-      box-shadow: $shadow;
 
       &:hover {
-        outline: 2px solid darken($border-color, 10%);
+        box-shadow: $shadow, 0 0 0 2px $border-color;
       }
     }
 
