@@ -1,0 +1,104 @@
+@use './../../../styles/abstracts' as *;
+
+
+.gradient-active-color {
+  width: 591px;
+  height: 189px;
+  background: $white;
+  padding: 24px 32px 32px 32px;
+  border-left: 2px solid $border-color;
+  border-right: 2px solid $border-color;
+  border-bottom: 2px solid $border-color;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+
+  .gradient-generator__subheader {
+    margin-bottom: 16px;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-column-gap: 24px;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+
+  &__label {
+    @include clickable-element;
+    display: flex;
+    align-items: end;
+    width: 92px;
+    height: 92px;
+    border: 2px solid $border-color;
+    border-radius: 16px;
+  }
+
+  &__picker {
+    visibility: hidden;
+  }
+
+  &__inputs-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__input {
+    @include oval-input(126px);
+
+    &:last-child {
+      @include oval-input(90px);
+    }
+  }
+
+  &__slider-container {
+    @include chess-board;
+    @include flex-center;
+    width: 335px;
+    height: 28px;
+    border: 2px solid $border-color;
+    border-radius: 20px;
+  }
+
+  &__slider {
+    @include clickable-element;
+    -webkit-appearance: none;
+    margin: 0;
+    width: 337px;
+    height: 24px;
+    border-radius: 20px;
+    appearance: none;
+    outline: none;
+
+    &::-webkit-slider-thumb {
+      @include clickable-element;
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      background-color: var(--slider-thumb-color, black);
+      border: 3px solid $white;
+      border-radius: 50%;
+      box-shadow: $shadow;
+
+      &:hover {
+        outline: 2px solid darken($border-color, 10%);
+      }
+    }
+  }
+
+  &__delete-btn {
+    @include oval-button-danger(52px, 88px);
+    padding: 0;
+
+    &:disabled {
+      .gradient-active-color__delete-icon path {
+        fill: $danger-disabled-text;
+      }
+    }
+  }
+}
