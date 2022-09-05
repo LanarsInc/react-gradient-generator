@@ -27,13 +27,14 @@ export const hex2rgb = (hex) => {
   const validHEXInput = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
   if (!validHEXInput) {
-    return { r: 255, g: 255, b: 255};
+    return { r: 255, g: 255, b: 255, a: 1};
   }
 
   return {
     r: parseInt(validHEXInput[1], 16),
     g: parseInt(validHEXInput[2], 16),
     b: parseInt(validHEXInput[3], 16),
+    a: 1,
   };
 };
 
@@ -52,4 +53,10 @@ export const rgb2hex = (color) => {
   });
 
   return isAlpha ? `#${hexArray.slice(0, -1).join('')}` : `#${hexArray.join('')}`;
+};
+
+export const allowOnlyNumbers = (event) => {
+  if (!/^(\d|.{2,})$/.test(event.key)) {
+    event.preventDefault();
+  }
 };
