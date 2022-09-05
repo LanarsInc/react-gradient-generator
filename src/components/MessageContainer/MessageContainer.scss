@@ -1,0 +1,12 @@
+
+.message-container {
+  position: fixed;
+  top: 34px;
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  gap: 10px;
+}
+
