@@ -1,0 +1,71 @@
+@use './../../../styles/abstracts' as *;
+
+
+.gradient-code {
+  height: 361px;
+  display: grid;
+  grid-template-rows: minmax(216px, 1fr) 84px;
+  background-color: $dark-blue-60;
+  border: 2px solid $dark-blue-border;
+  border-radius: 30px;
+  overflow: hidden;
+
+  &__top {
+    display: grid;
+    grid-template-columns: 42px auto;
+    grid-template-rows: auto 1fr;
+    background: $dark-blue-100;
+    border-bottom: 2px solid $dark-blue-border;
+  }
+
+  &__bottom {
+    @include flex-center;
+  }
+
+  &__copy-btn {
+    @include oval-button(false, 200px);
+  }
+}
+
+.gradient-code-lines {
+  grid-area: 1 / 1 / span 2 / span 1;
+  width: 42px;
+  padding: 89px 0 24px;
+  background: $dark-blue-60;
+}
+
+.gradient-code-line {
+  margin: 0;
+  font-size: 16px;
+  line-height: 25px;
+  font-family: $font-code-regular;
+  text-align: center;
+  color: $pale-purple-color;
+}
+
+.gradient-code-label {
+  @include flex-center;
+  width: 101px;
+  height: 57px;
+  grid-area: 1 / 2 / span 1 / span 1;
+  color: $white;
+  font-size: 20px;
+  font-family: $font-main-bold;
+  line-height: 25px;
+  background: $dark-blue-80;
+  border-top-right-radius: 20px;
+}
+
+.gradient-code-preview {
+  grid-area: 2 / 2 / span 1 / span 1;
+  padding: 32px;
+  font-size: 16px;
+  font-family: $font-code-semi-bold;
+  line-height: 25px;
+  color: $white;
+  background: $dark-blue-80;
+
+  &__key {
+    color: $light-purple-color;
+  }
+}
