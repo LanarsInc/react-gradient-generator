@@ -1,0 +1,38 @@
+@use './../../../styles/abstracts' as *;
+
+
+.gradient-header {
+  width: 100%;
+  height: 84px;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px 0 42px;
+  background: $white;
+  border: 2px solid $border-color;
+  border-radius: 40px;
+
+  & > div {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    grid-column-gap: 12px;
+  }
+
+  &__icon {
+    border-radius: 10px;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 24px;
+    font-family: $font-main-bold;
+    color: $title-color;
+    line-height: 30px;
+  }
+
+  &__reset-btn {
+    @include oval-button(true, 110px);
+  }
+}
