@@ -1,0 +1,29 @@
+@use './../../../styles/abstracts' as *;
+
+
+.gradient-range-settings {
+  width: 591px;
+  height: 120px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: 24px;
+  background: $white;
+  padding: 32px 32px 36px 32px;
+  border: 2px solid $border-color;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+
+  &__slider-container {
+    position: relative;
+    width: $gradient-preview-width + px;
+    height: $gradient-preview-height + px;
+    border: 2px solid $border-color;
+    border-radius: 40px;
+  }
+
+  &__swap-btn {
+    @include oval-button(true, 52px);
+    padding: 0;
+    border-radius: 50%;
+  }
+}

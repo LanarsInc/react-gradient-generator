@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
-import variables from '../../../styles/variables.module.scss';
+import variables from '../../../../styles/abstracts/variables.scss';
+import { rgb2hex } from '../../../../shared/utils';
 
 import './MultiThumbSlider.scss';
 
@@ -10,9 +10,9 @@ import './MultiThumbSlider.scss';
 const MultiThumbSlider = ({
   maxColorsCount,
   palettes,
-  focusPalette,
+  activePalette,
   setPalettes,
-  handleSliderThumbClick,
+  setActivePalette,
 }) => {
 
   const sliderContainerRef = useRef(null);
@@ -22,30 +22,30 @@ const MultiThumbSlider = ({
 
     sliders.forEach((slider) => {
       slider.oninput = handleRangeChange;
-      slider.oninput();
     });
-  }, [palettes.length]);
+  }, [palettes]);
 
   const handleRangeChange = () => {
     const sliders = sliderContainerRef.current.querySelectorAll('.multi-thumb-slider__input');
 
-    const newArray = Array.from(sliders).map((element) => ({
-      id: element.dataset.id,
-      position: element.value,
-      color: element.dataset.color,
-    }));
+    const newPalettesArray = Array.from(sliders)
+      .map((element) => ({
+        id: element.dataset.id,
+        position: element.value,
+        color: element.dataset.color,
+      }));
 
-    setPalettes(newArray);
+    setPalettes(newPalettesArray);
   };
 
   const handleAddNewSlider = (e) => {
     const mousePosition = e.nativeEvent.offsetX;
-    const positionForInput = mousePosition * 100 / variables.gradientPreviewWidth;
+    const positionForInput = Math.round(mousePosition * 100 / variables.gradientPreviewWidth);
 
     if (e.target === sliderContainerRef.current) {
       setPalettes((prevState) => ([
         ...prevState,
-        {id: uuidv4(), color: 'rgb(0, 0, 0)', position: positionForInput},
+        {id: uuidv4(), color: 'rgba(0, 0, 0, 1)', position: positionForInput},
       ]));
     }
   };
@@ -62,14 +62,14 @@ const MultiThumbSlider = ({
         <input
           key={palette.id}
           className={classnames('multi-thumb-slider__input', {
-            'active': focusPalette?.id === palette.id,
+            'active': activePalette?.id === palette.id,
           })}
-          style={{'--gradient-thumb-color': palette.color}}
-          onClick={() => handleSliderThumbClick(palette)}
-          readOnly
+          style={{'--gradient-thumb-color': rgb2hex(palette.color)}}
+          onClick={() => setActivePalette(palette)}
           data-color={palette.color}
           data-id={palette.id}
           value={palette.position}
+          readOnly
           min='0'
           max='100'
           step='1'
@@ -78,14 +78,6 @@ const MultiThumbSlider = ({
       )}
     </div>
   );
-};
-
-MultiThumbSlider.propTypes = {
-  maxColorsCount: PropTypes.number.isRequired,
-  palettes: PropTypes.arrayOf(PropTypes.object),
-  focusPalette: PropTypes.object,
-  setPalettes: PropTypes.func.isRequired,
-  handleSliderThumbClick: PropTypes.func.isRequired,
 };
 
 export default MultiThumbSlider;
