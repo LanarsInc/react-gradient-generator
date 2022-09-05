@@ -1,0 +1,37 @@
+@use './../../styles/abstracts' as *;
+
+
+.gradient-generator {
+  height: 100%;
+  padding: 20px 80px 42px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background: $light-grey;
+
+  &__main {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  &__subheader {
+    margin: 0;
+    font-size: 20px;
+    font-family: $font-main-bold;
+    line-height: 25px;
+    color: $main-text-color;
+  }
+}
+
+.gradient-generator-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &__top {
+    height: 311px;
+  }
+}
+
+
