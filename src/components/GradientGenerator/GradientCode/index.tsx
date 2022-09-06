@@ -7,7 +7,7 @@ const linesNumber = 6;
 
 interface GradientCodeProps {
   gradient: string;
-  addNewMessage: (newMessage: Partial<IGeneralMessage>) => void;
+  addNewMessage: (newMessage: Omit<IGeneralMessage, 'id'>) => void;
 }
 
 const GradientCode:React.FC<GradientCodeProps> = ({ gradient, addNewMessage }) => {

@@ -23,7 +23,7 @@ import {
 import './GradientGenerator.scss';
 
 interface GradientGeneratorProps {
-  addNewMessage: (newMessage: Partial<IGeneralMessage>) => void;
+  addNewMessage: (newMessage: Omit<IGeneralMessage, 'id'>) => void;
 }
 
 const GradientGenerator:React.FC<GradientGeneratorProps> = ({ addNewMessage }) => {

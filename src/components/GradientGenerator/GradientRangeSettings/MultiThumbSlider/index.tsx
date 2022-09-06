@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
+// @ts-ignore
 import variables from '../../../../styles/abstracts/variables.scss';
 import { rgb2hex } from '../../../../shared/utils';
 import { IPalette } from '../../../../shared/types/interfaces';
