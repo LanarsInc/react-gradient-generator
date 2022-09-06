@@ -4,6 +4,7 @@ import {
   hex2rgb,
   rgb2hex,
 } from '../../../shared/utils';
+// @ts-ignore
 import { ReactComponent as DeleteIcon } from './../../../assets/svg/ic_delete.svg';
 import { IPalette } from '../../../shared/types/interfaces';
 import { KeyNumberValue } from '../../../shared/types';
@@ -23,9 +24,10 @@ const GradientActivePalette:React.FC<GradientActivePaletteProps> = ({
   handleGradientColorChange,
   handleDeletePalette,
 }) => {
-
   const [hexColor, setHexColor] = useState<string>('#000000');
-  const [rgbObject, setRgbObject] = useState<KeyNumberValue>({r: 255, g: 255, b: 255, a: 1});
+  const [rgbObject, setRgbObject] = useState<KeyNumberValue>({
+    red: 255, green: 255, blue: 255, alpha: 1
+  });
   const [colorOpacity, setColorOpacity] = useState<number>(100);
   const [colorOpacityInput, setColorOpacityInput] = useState<string>('100%');
 
@@ -35,9 +37,9 @@ const GradientActivePalette:React.FC<GradientActivePaletteProps> = ({
     const alpha = parseFloat(activePalette?.color.split(',')[3] as string);
 
     setHexColor(colorInHex);
-    setRgbObject(colorInRGB)
+    setRgbObject(colorInRGB);
     setColorOpacity(Math.round(alpha * 100));
-    setColorOpacityInput(Math.round(alpha * 100) + '%');
+    setColorOpacityInput(`${Math.round(alpha * 100)}%`);
   }, [activePalette?.color]);
 
   const handleChangeColorInput = (value) => {
@@ -61,10 +63,10 @@ const GradientActivePalette:React.FC<GradientActivePaletteProps> = ({
   };
 
   const handleChangeColorOpacityViaSlider = (value) => {
-    const { r, g, b } = rgbObject;
+    const { red, green, blue } = rgbObject;
 
     setColorOpacity(Number(value));
-    handleGradientColorChange(`rgba(${r}, ${g}, ${b}, ${value / 100})`, true);
+    handleGradientColorChange(`rgba(${red}, ${green}, ${blue}, ${value / 100})`, true);
   };
 
   const handleChangeColorOpacityViaInput = (value) => {
@@ -72,15 +74,15 @@ const GradientActivePalette:React.FC<GradientActivePaletteProps> = ({
   };
 
   const handleBlurColorOpacityInput = (value) => {
-    const { r, g, b } = rgbObject;
+    const { red, green, blue } = rgbObject;
     let opacity = !value ? 0 : parseInt(value);
 
     if (opacity > 100) {
       opacity = 100;
     }
 
-    setColorOpacityInput(opacity + '%');
-    handleGradientColorChange(`rgba(${r}, ${g}, ${b}, ${opacity / 100})`, true);
+    setColorOpacityInput(`${opacity}%`);
+    handleGradientColorChange(`rgba(${red}, ${green}, ${blue}, ${opacity / 100})`, true);
   };
 
   const handleKeyDownColorOpacityInput = (event) => {
@@ -91,70 +93,67 @@ const GradientActivePalette:React.FC<GradientActivePaletteProps> = ({
     allowOnlyNumbers(event);
   };
 
-  const { r, g, b } = rgbObject;
+  const { red, green, blue } = rgbObject;
 
   return (
-    <div className='gradient-active-color'>
-      <h3 className='gradient-generator__subheader'>Color</h3>
+    <div className="gradient-active-color">
+      <h3 className="gradient-generator__subheader">Color</h3>
 
-      <div className='gradient-active-color__content'>
+      <div className="gradient-active-color__content">
         <label
-          htmlFor='palette'
-          className='gradient-active-color__label'
-          style={{background: activePalette?.color}}
+          htmlFor="palette"
+          className="gradient-active-color__label"
+          style={{ background: activePalette?.color }}
         >
           <input
-            id='palette'
-            className='gradient-active-color__picker'
-            type='color'
-            value={rgb2hex(activePalette?.color)}
-            onInput={(event) => handleGradientColorChange(event.target.value)}
-          />
+            id="palette"
+            className="gradient-active-color__picker"
+            type="color"
+            value={ rgb2hex(activePalette?.color) }
+            onChange={ (event) => handleGradientColorChange(event.target.value) } />
         </label>
 
         <div>
-          <div className='gradient-active-color__inputs-container'>
+          <div className="gradient-active-color__inputs-container">
             <input
-              className='gradient-active-color__input'
-              placeholder='Color'
-              value={hexColor}
-              onChange={(event) => handleChangeColorInput(event.target.value)}
-              onBlur={handleBlurColorInput}
-              onKeyDown={handleKeyDownColorInput}
-            />
+              className="gradient-active-color__input"
+              placeholder="Color"
+              value={ hexColor }
+              onChange={ (event) => handleChangeColorInput(event.target.value) }
+              onBlur={ handleBlurColorInput }
+              onKeyDown={ handleKeyDownColorInput } />
 
             <input
-              className='gradient-active-color__input'
-              value={colorOpacityInput || ''}
-              onChange={(event) => handleChangeColorOpacityViaInput(event.target.value)}
-              onBlur={(event) => handleBlurColorOpacityInput(event.target.value)}
-              onKeyDown={handleKeyDownColorOpacityInput}
-            />
+              className="gradient-active-color__input"
+              value={ colorOpacityInput || '' }
+              onChange={ (event) => handleChangeColorOpacityViaInput(event.target.value) }
+              onBlur={ (event) => handleBlurColorOpacityInput(event.target.value) }
+              onKeyDown={ handleKeyDownColorOpacityInput } />
           </div>
 
-          <div className='gradient-active-color__slider-container'>
+          <div className="gradient-active-color__slider-container">
             <input
-              id='myRange'
-              className='gradient-active-color__slider'
-              type='range'
-              min='0'
-              max='100'
+              id="myRange"
+              className="gradient-active-color__slider"
+              type="range"
+              min="0"
+              max="100"
               style={{
+                // @ts-ignore
                 '--slider-thumb-color': rgb2hex(activePalette?.color),
-                background: `linear-gradient(to right, rgba(${r}, ${g}, ${b}, 0), rgba(${r}, ${g}, ${b}, 1))`,
+                background: `linear-gradient(to right, rgba(${red}, ${green}, ${blue}, 0), rgba(${red}, ${green}, ${blue}, 1))`,
               }}
-              value={colorOpacity}
-              onChange={(event) => handleChangeColorOpacityViaSlider(event.target.value)}
-            />
+              value={ colorOpacity }
+              onChange={ (event) => handleChangeColorOpacityViaSlider(event.target.value) } />
           </div>
         </div>
 
         <button
-          className='gradient-active-color__delete-btn'
-          disabled={!canDeletePalette}
-          onClick={() => handleDeletePalette(activePalette.id)}
+          className="gradient-active-color__delete-btn"
+          disabled={ !canDeletePalette }
+          onClick={ () => handleDeletePalette(activePalette.id) }
         >
-          <DeleteIcon className='gradient-active-color__delete-icon' />
+          <DeleteIcon className="gradient-active-color__delete-icon" />
         </button>
       </div>
     </div>

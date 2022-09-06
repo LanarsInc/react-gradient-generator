@@ -27,7 +27,6 @@ interface GradientGeneratorProps {
 }
 
 const GradientGenerator:React.FC<GradientGeneratorProps> = ({ addNewMessage }) => {
-
   const [gradient, setGradient] = useState<string>('');
   const [palettes, setPalettes] = useState<IPalette[]>([]);
   const [activePalette, setActivePalette] = useState<IPalette | null>(null);
@@ -56,6 +55,7 @@ const GradientGenerator:React.FC<GradientGeneratorProps> = ({ addNewMessage }) =
   };
 
   const createGradientBackground = () => {
+    // @ts-ignore
     const sortedPallets = [...palettes].sort((paletteA, paletteB) => paletteA.position - paletteB.position);
     const colorsAndPositionsString = sortedPallets.map((palette) => `${palette.color} ${palette.position}%`).join(', ');
     const result = `${gradientType}-gradient(${gradientPosition}, ${colorsAndPositionsString})`;
@@ -69,15 +69,15 @@ const GradientGenerator:React.FC<GradientGeneratorProps> = ({ addNewMessage }) =
 
   const handleGradientColorChange = (color, isRGBA) => {
     const clonePalettes = [...palettes];
-    const neededPalette = clonePalettes.find((palette) => palette.id === activePalette.id);
+    const neededPalette = clonePalettes.find((palette) => palette.id === activePalette?.id);
 
     if (isRGBA) {
       neededPalette.color = color;
     } else {
       const rgbColor = hex2rgb(color);
-      const { r, g, b, a } = rgbColor;
+      const { red, green, blue, alpha } = rgbColor;
 
-      neededPalette.color = `rgba(${r}, ${g}, ${b}, ${a})`;
+      neededPalette.color = `rgba(${red}, ${green}, ${blue}, ${alpha})`;
     }
 
     setActivePalette(neededPalette);
@@ -85,6 +85,7 @@ const GradientGenerator:React.FC<GradientGeneratorProps> = ({ addNewMessage }) =
   };
 
   const handleSwapColors = () => {
+    // @ts-ignore
     const sortedPallets = [...palettes].sort((paletteA, paletteB) => paletteA.position - paletteB.position);
     const reversePositions = sortedPallets.map((palette) => palette.position).reverse();
     const swappedPalettes = sortedPallets
@@ -92,6 +93,7 @@ const GradientGenerator:React.FC<GradientGeneratorProps> = ({ addNewMessage }) =
         ...palette,
         position: reversePositions[paletteIndex],
       }))
+      // @ts-ignore
       .sort((paletteA, paletteB) => paletteA.position - paletteB.position);
 
     setPalettes(swappedPalettes);
@@ -115,56 +117,51 @@ const GradientGenerator:React.FC<GradientGeneratorProps> = ({ addNewMessage }) =
   };
 
   return (
-    <div className='gradient-generator'>
+    <div className="gradient-generator">
 
-      <GradientHeader resetGradient={resetGradient} />
+      <GradientHeader resetGradient={ resetGradient } />
 
-      <div className='gradient-generator__main'>
+      <div className="gradient-generator__main">
         <GradientPreview
-          palettes={[...palettes]}
-          activePaletteId={activePalette?.id}
-          gradient={gradient}
-          setActivePalette={setActivePalette}
-          handleDeletePalette={handleDeletePalette}
-        />
+          palettes={ [...palettes] }
+          activePaletteId={ activePalette?.id }
+          gradient={ gradient }
+          setActivePalette={ setActivePalette }
+          handleDeletePalette={ handleDeletePalette } />
 
-        <div className='gradient-generator-settings'>
-          <div className='gradient-generator-settings__top'>
+        <div className="gradient-generator-settings">
+          <div className="gradient-generator-settings__top">
             <GradientRangeSettings
-              gradient={gradient}
-              maxColorsCount={maxColorsCount}
-              palettes={palettes}
-              activePalette={activePalette}
-              setPalettes={setPalettes}
-              setActivePalette={setActivePalette}
-              handleSwapColors={handleSwapColors}
-            />
+              gradient={ gradient }
+              maxColorsCount={ maxColorsCount }
+              palettes={ palettes }
+              activePalette={ activePalette }
+              setPalettes={ setPalettes }
+              setActivePalette={ setActivePalette }
+              handleSwapColors={ handleSwapColors } />
 
-            {activePalette &&
-              <GradientActivePalette
-                activePalette={activePalette}
-                canDeletePalette={palettes.length > 2}
-                handleGradientColorChange={handleGradientColorChange}
-                handleDeletePalette={handleDeletePalette}
-              />
+            { activePalette
+              && <GradientActivePalette
+                activePalette={ activePalette }
+                canDeletePalette={ palettes.length > 2 }
+                handleGradientColorChange={ handleGradientColorChange }
+                handleDeletePalette={ handleDeletePalette } />
             }
           </div>
 
           <GradientTypeAndAngle
-            gradientType={gradientType}
-            gradientPosition={gradientPosition}
-            handleGradientTypeChange={handleGradientTypeChange}
-            setGradientPosition={setGradientPosition}
-          />
+            gradientType={ gradientType }
+            gradientPosition={ gradientPosition }
+            handleGradientTypeChange={ handleGradientTypeChange }
+            setGradientPosition={ setGradientPosition } />
         </div>
       </div>
 
       <GradientCode
-        gradient={gradient}
-        addNewMessage={addNewMessage}
-      />
+        gradient={ gradient }
+        addNewMessage={ addNewMessage } />
     </div>
   );
-}
+};
 
 export default GradientGenerator;

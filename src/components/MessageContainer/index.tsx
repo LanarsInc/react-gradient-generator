@@ -10,21 +10,16 @@ interface MessageContainerProps {
   handleRemoveMessage: (id: string) => void;
 }
 
-const MessageContainer:React.FC<MessageContainerProps> = ({ messages, handleRemoveMessage }) => {
-  return ReactDom.createPortal(
-    <div className='message-container'>
-      {messages.map((message) =>
-        <MessageBox
-          key={message.id}
-          id={message.id}
-          text={message.text}
-          lifeTime={message.lifeTime}
-          onClose={handleRemoveMessage}
-        />
-      )}
-    </div>,
+const MessageContainer:React.FC<MessageContainerProps> = ({ messages, handleRemoveMessage }) => ReactDom.createPortal(
+  <div className="message-container">
+    { messages.map((message) => (<MessageBox
+      key={ message.id }
+      id={ message.id }
+      text={ message.text }
+      lifeTime={ message.lifeTime }
+      onClose={ handleRemoveMessage } />)) }
+  </div>,
     document.getElementById('portal')!
-  );
-};
+);
 
 export default MessageContainer;

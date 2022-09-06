@@ -31,7 +31,7 @@
   &__label {
     @include clickable-element;
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     width: 92px;
     height: 92px;
     border: 2px solid $border-color;

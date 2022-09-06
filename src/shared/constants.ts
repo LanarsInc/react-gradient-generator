@@ -1,4 +1,3 @@
-
 export const GRADIENT_TYPES = {
   LINEAR: 'linear',
   RADIAL: 'radial',

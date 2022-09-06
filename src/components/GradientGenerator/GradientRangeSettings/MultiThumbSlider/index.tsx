@@ -22,7 +22,6 @@ const MultiThumbSlider:React.FC<MultiThumbSliderProps> = ({
   setPalettes,
   setActivePalette,
 }) => {
-
   const sliderContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -46,44 +45,40 @@ const MultiThumbSlider:React.FC<MultiThumbSliderProps> = ({
     setPalettes(newPalettesArray);
   };
 
-  const handleAddNewSlider = (e) => {
-    const mousePosition = e.nativeEvent.offsetX;
+  const handleAddNewSlider = (event) => {
+    const mousePosition = event.nativeEvent.offsetX;
     const positionForInput = Math.round(mousePosition * 100 / variables.gradientPreviewWidth);
 
-    if (e.target === sliderContainerRef.current) {
+    if (event.target === sliderContainerRef.current) {
       setPalettes((prevState: IPalette[]) => ([
         ...prevState,
-        {id: uuidv4(), color: 'rgba(0, 0, 0, 1)', position: positionForInput},
+        {
+          id: uuidv4(), color: 'rgba(0, 0, 0, 1)', position: positionForInput
+        },
       ]));
     }
   };
 
   return (
     <div
-      ref={sliderContainerRef}
-      className={classnames('multi-thumb-slider', {
-        'limit': palettes.length >= maxColorsCount,
-      })}
-      onClick={handleAddNewSlider}
+      ref={ sliderContainerRef }
+      className={ classnames('multi-thumb-slider', { limit: palettes.length >= maxColorsCount }) }
+      onClick={ handleAddNewSlider }
     >
-      {palettes.map((palette) =>
-        <input
-          key={palette.id}
-          className={classnames('multi-thumb-slider__input', {
-            'active': activePalette?.id === palette.id,
-          })}
-          style={{'--gradient-thumb-color': rgb2hex(palette.color)}}
-          onClick={() => setActivePalette(palette)}
-          data-color={palette.color}
-          data-id={palette.id}
-          value={palette.position}
-          readOnly
-          min='0'
-          max='100'
-          step='1'
-          type='range'
-        />
-      )}
+      { palettes.map((palette) => (<input
+        key={ palette.id }
+        className={ classnames('multi-thumb-slider__input', { active: activePalette?.id === palette.id }) }
+        // @ts-ignore
+        style={{ '--gradient-thumb-color': rgb2hex(palette.color) }}
+        onClick={ () => setActivePalette(palette) }
+        data-color={ palette.color }
+        data-id={ palette.id }
+        value={ palette.position }
+        readOnly
+        min="0"
+        max="100"
+        step="1"
+        type="range" />)) }
     </div>
   );
 };

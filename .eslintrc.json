@@ -1,0 +1,169 @@
+{
+  "extends": [
+    ".eslintrc.vanilla.json"
+  ],
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "@typescript-eslint"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "requireConfigFile": false,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/prefer-es6-class": [
+      1,
+      "always"
+    ],
+    "react/prefer-stateless-function": [
+      2,
+      {
+        "ignorePureComponents": true
+      }
+    ],
+    "react/jsx-pascal-case": [
+      1,
+      {
+        "allowAllCaps": true
+      }
+    ],
+    "react/jsx-closing-bracket-location": [
+      1,
+      {
+        "nonEmpty": "tag-aligned",
+        "selfClosing": "after-props"
+      }
+    ],
+    "react/jsx-closing-tag-location": "error",
+    "jsx-quotes": [
+      "error",
+      "prefer-double"
+    ],
+    "no-multi-spaces": [
+      "error",
+      {
+        "ignoreEOLComments": false
+      }
+    ],
+    "react/jsx-tag-spacing": [
+      "error",
+      {
+        "closingSlash": "never",
+        "beforeSelfClosing": "always",
+        "afterOpening": "never",
+        "beforeClosing": "never"
+      }
+    ],
+    "react/jsx-curly-spacing": [
+      2,
+      {
+        "when": "always",
+        "attributes": {
+          "allowMultiline": false
+        },
+        "children": true,
+        "spacing": {
+          "objectLiterals": "never"
+        }
+      }
+    ],
+    "react/jsx-boolean-value": [
+      1,
+      "never"
+    ],
+    "jsx-a11y/alt-text": [
+      1,
+      {
+        "elements": [
+          "img"
+        ],
+        "img": [
+          "Image"
+        ]
+      }
+    ],
+    "jsx-a11y/img-redundant-alt": [
+      2,
+      {
+        "components": [
+          "Image"
+        ],
+        "words": [
+          "Photo",
+          "Picture",
+          "Image"
+        ]
+      }
+    ],
+    "jsx-a11y/aria-role": [
+      2,
+      {
+        "ignoreNonDOM": true
+      }
+    ],
+    "react/no-string-refs": [
+      1,
+      {
+        "noTemplateLiterals": false
+      }
+    ],
+    "react/jsx-wrap-multilines": [
+      2,
+      {
+        "declaration": "parens",
+        "assignment": "parens",
+        "return": "parens",
+        "arrow": "parens",
+        "condition": "ignore",
+        "logical": "ignore",
+        "prop": "ignore"
+      }
+    ],
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": true
+      }
+    ],
+    "react/no-is-mounted": 2,
+    "react/jsx-no-bind": [
+      1,
+      {
+        "ignoreDOMComponents": false,
+        "ignoreRefs": false,
+        "allowArrowFunctions": true,
+        "allowFunctions": false,
+        "allowBind": true
+      }
+    ],
+    "react/require-render-return": 1,
+    "react/sort-comp": [
+      1,
+      {
+        "order": [
+          "static-methods",
+          "instance-variables",
+          "constructor",
+          "getChildContext",
+          "componentDidMount",
+          "shouldComponentUpdate",
+          "componentDidUpdate",
+          "componentWillUnmount",
+          "/^on.+$/",
+          "getters",
+          "everything-else",
+          "render"
+        ]
+      }
+    ]
+  }
+}

@@ -9,7 +9,7 @@
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "exclude": ["node_modules", "src/assets/*"]
+    "exclude": ["node_modules"]
   },
   "include": [
     "./src/"

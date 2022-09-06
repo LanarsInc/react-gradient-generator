@@ -1,12 +1,14 @@
 import { IPalette } from './types/interfaces';
 import { KeyNumberValue } from './types';
 
-type splitGradientStringReturnValue = [string, string, Partial<IPalette>[]];
+type splitGradientStringReturnValue = [string, string, Omit<IPalette, 'id'>[]];
 
 export const splitGradientString = (gradientString: string): splitGradientStringReturnValue => {
-  const regex = new RegExp(/,(?![^(]*\))(?![^"']*["'](?:[^"']*["'][^"']*["'])*[^"']*$)/,'gi');
+  const regex = new RegExp(/,(?![^(]*\))(?![^"']*["'](?:[^"']*["'][^"']*["'])*[^"']*$)/, 'gi');
+  // eslint-disable-next-line prefer-destructuring
   const gradientType = gradientString.substring(0, gradientString.indexOf('(')).split('-')[0];
   const secondPartOfGradient = gradientString.substring(gradientString.indexOf('(') + 1, gradientString.lastIndexOf(')')).split(regex);
+  // eslint-disable-next-line prefer-destructuring
   let gradientAnglePoint = secondPartOfGradient[0];
   const isDefaultAngle = !gradientAnglePoint.includes('rgb');
 
@@ -31,36 +33,40 @@ export const hex2rgb = (hex: string): KeyNumberValue => {
   const validHEXInput = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 
   if (!validHEXInput) {
-    return { r: 255, g: 255, b: 255, a: 1};
+    return {
+      red: 255,
+      green: 255,
+      blue: 255,
+      alpha: 1,
+    };
   }
 
   return {
-    r: parseInt(validHEXInput[1], 16),
-    g: parseInt(validHEXInput[2], 16),
-    b: parseInt(validHEXInput[3], 16),
-    a: 1,
+    red: parseInt(validHEXInput[1], 16),
+    green: parseInt(validHEXInput[2], 16),
+    blue: parseInt(validHEXInput[3], 16),
+    alpha: 1,
   };
 };
 
 export const rgb2hex = (color: string | undefined): string => {
   if (color) {
     const isAlpha = color.includes('a');
-    const rgbPoints = color.substring(isAlpha ? 5 : 4, color.length - 1).replace(/ /g, '').split(',');
+    const rgbPoints = color.substring(isAlpha ? 5 : 4, color.length - 1).replace(/ /g, '')
+      .split(',');
 
     const hexArray = rgbPoints.map((point) => {
       const hexPoint = Number(point).toString(16);
 
       if (hexPoint.length === 1) {
-        return '0' + hexPoint;
-      } else {
-        return hexPoint;
+        return `0${hexPoint}`;
       }
+      return hexPoint;
     });
 
     return isAlpha ? `#${hexArray.slice(0, -1).join('')}` : `#${hexArray.join('')}`;
-  } else {
-    return '#000000';
   }
+  return '#000000';
 };
 
 export const allowOnlyNumbers = (event: KeyboardEvent) => {
