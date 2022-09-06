@@ -15,18 +15,24 @@ import {
   GRADIENT_TYPES,
   maxColorsCount,
 } from '../../shared/constants';
+import {
+  IGeneralMessage,
+  IPalette,
+} from '../../shared/types/interfaces';
 
 import './GradientGenerator.scss';
 
+interface GradientGeneratorProps {
+  addNewMessage: (newMessage: Partial<IGeneralMessage>) => void;
+}
 
-const GradientGenerator = ({ addNewMessage }) => {
+const GradientGenerator:React.FC<GradientGeneratorProps> = ({ addNewMessage }) => {
 
-  const [gradient, setGradient] = useState('');
-
-  const [palettes, setPalettes] = useState([]);
-  const [activePalette, setActivePalette] = useState(null);
-  const [gradientType, setGradientType] = useState('');
-  const [gradientPosition, setGradientPosition] = useState('');
+  const [gradient, setGradient] = useState<string>('');
+  const [palettes, setPalettes] = useState<IPalette[]>([]);
+  const [activePalette, setActivePalette] = useState<IPalette | null>(null);
+  const [gradientType, setGradientType] = useState<string>('');
+  const [gradientPosition, setGradientPosition] = useState<string>('');
 
   useEffect(() => {
     initGradient(defaultGradient);
@@ -50,7 +56,6 @@ const GradientGenerator = ({ addNewMessage }) => {
   };
 
   const createGradientBackground = () => {
-    //TODO need to sort here ????
     const sortedPallets = [...palettes].sort((paletteA, paletteB) => paletteA.position - paletteB.position);
     const colorsAndPositionsString = sortedPallets.map((palette) => `${palette.color} ${palette.position}%`).join(', ');
     const result = `${gradientType}-gradient(${gradientPosition}, ${colorsAndPositionsString})`;

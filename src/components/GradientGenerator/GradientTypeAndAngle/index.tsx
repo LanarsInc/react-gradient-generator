@@ -6,20 +6,26 @@ import { GRADIENT_TYPES } from '../../../shared/constants';
 
 import './GradientTypeAndAngle.scss';
 
+interface GradientTypeAndAngleProps {
+  gradientType: string;
+  gradientPosition: string;
+  handleGradientTypeChange: (type: string, position: string) => void;
+  setGradientPosition: (position: string) => void;
+}
 
-const GradientTypeAndAngle = ({
+const GradientTypeAndAngle:React.FC<GradientTypeAndAngleProps> = ({
   gradientType,
   gradientPosition,
   handleGradientTypeChange,
   setGradientPosition
 }) => {
 
-  const circleAngleRef = useRef(null);
+  const circleAngleRef = useRef<HTMLDivElement | null>(null);
 
-  const [isMouseDown, setIsMouseDown] = useState(false);
-  const [angelInDegree, setAngelInDegree] = useState(null);
-  const [radialXPosition, setRadialXPosition] = useState(null);
-  const [radialYPosition, setRadialYPosition] = useState(null);
+  const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
+  const [angelInDegree, setAngelInDegree] = useState<number | string | null>(null);
+  const [radialXPosition, setRadialXPosition] = useState<number | null>(null);
+  const [radialYPosition, setRadialYPosition] = useState<number | null>(null);
 
   useEffect(() => {
     window.addEventListener('mousedown', () => {
@@ -139,7 +145,7 @@ const GradientTypeAndAngle = ({
             })}
             onClick={() => handleGradientTypeChange(
               GRADIENT_TYPES.LINEAR,
-              parseInt(angelInDegree) ? parseInt(angelInDegree) + 'deg' : '0deg'
+              parseInt(angelInDegree as string) ? parseInt(angelInDegree as string) + 'deg' : '0deg'
             )}
           >
             Linear
@@ -167,7 +173,7 @@ const GradientTypeAndAngle = ({
               ref={circleAngleRef}
               className='gradient-angle-linear__circle'
               style={{
-                transform: `rotate(${parseInt(angelInDegree)}deg)`
+                transform: `rotate(${parseInt(angelInDegree as string)}deg)`
               }}
               onMouseMove={isMouseDown ? handleLinearCircleClick : undefined}
               onClick={handleLinearCircleClick}

@@ -3,8 +3,11 @@ import { ReactComponent as Logo } from './../../../assets/svg/logo.svg';
 
 import './GradientHeader.scss';
 
+interface GradientHeaderProps {
+    resetGradient: () => void;
+}
 
-const GradientHeader = ({ resetGradient }) => {
+const GradientHeader:React.FC<GradientHeaderProps> = ({ resetGradient }) => {
   return (
     <div className='gradient-header'>
       <div>

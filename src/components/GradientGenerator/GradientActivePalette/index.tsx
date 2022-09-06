@@ -1,26 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { allowOnlyNumbers, hex2rgb, rgb2hex } from '../../../shared/utils';
+import {
+  allowOnlyNumbers,
+  hex2rgb,
+  rgb2hex,
+} from '../../../shared/utils';
 import { ReactComponent as DeleteIcon } from './../../../assets/svg/ic_delete.svg';
+import { IPalette } from '../../../shared/types/interfaces';
+import { KeyNumberValue } from '../../../shared/types';
 
 import './GradientActivePalette.scss';
 
+interface GradientActivePaletteProps {
+  activePalette: IPalette;
+  canDeletePalette: boolean;
+  handleGradientColorChange: (color: string, isRGB?: boolean) => void;
+  handleDeletePalette: (paletteId: string) => void;
+}
 
-const GradientActivePalette = ({
+const GradientActivePalette:React.FC<GradientActivePaletteProps> = ({
   activePalette,
   canDeletePalette,
   handleGradientColorChange,
   handleDeletePalette,
 }) => {
 
-  const [hexColor, setHexColor] = useState('#000000');
-  const [rgbObject, setRgbObject] = useState({r: 255, g: 255, b: 255, a: 1});
-  const [colorOpacity, setColorOpacity] = useState(100);
-  const [colorOpacityInput, setColorOpacityInput] = useState('100%');
+  const [hexColor, setHexColor] = useState<string>('#000000');
+  const [rgbObject, setRgbObject] = useState<KeyNumberValue>({r: 255, g: 255, b: 255, a: 1});
+  const [colorOpacity, setColorOpacity] = useState<number>(100);
+  const [colorOpacityInput, setColorOpacityInput] = useState<string>('100%');
 
   useEffect(() => {
     const colorInHex = rgb2hex(activePalette?.color);
     const colorInRGB = hex2rgb(colorInHex);
-    const alpha = parseFloat(activePalette?.color.split(',')[3]);
+    const alpha = parseFloat(activePalette?.color.split(',')[3] as string);
 
     setHexColor(colorInHex);
     setRgbObject(colorInRGB)
@@ -51,7 +63,7 @@ const GradientActivePalette = ({
   const handleChangeColorOpacityViaSlider = (value) => {
     const { r, g, b } = rgbObject;
 
-    setColorOpacity(value);
+    setColorOpacity(Number(value));
     handleGradientColorChange(`rgba(${r}, ${g}, ${b}, ${value / 100})`, true);
   };
 
@@ -96,7 +108,7 @@ const GradientActivePalette = ({
             className='gradient-active-color__picker'
             type='color'
             value={rgb2hex(activePalette?.color)}
-            onInput={(event) => handleGradientColorChange(event.target?.value)}
+            onInput={(event) => handleGradientColorChange(event.target.value)}
           />
         </label>
 

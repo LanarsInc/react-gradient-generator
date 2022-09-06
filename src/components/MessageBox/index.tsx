@@ -1,16 +1,25 @@
 import React, { useEffect, useRef } from 'react';
 import { ReactComponent as CloseIconBig } from './../../assets/svg/ic-close-big.svg';
+import { IGeneralMessage } from '../../shared/types/interfaces';
 
 import './MessageBox.scss';
 
+interface MessageBoxProps extends IGeneralMessage{
+  onClose: (id: string) => void;
+}
 
-const MessageBox = ({ id, text, lifeTime, onClose }) => {
+const MessageBox: React.FC<MessageBoxProps> = ({
+  id,
+  text,
+  lifeTime,
+  onClose
+}) => {
 
-  const messageRef = useRef(null);
+  const messageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      handleCloseMessage(id);
+      handleCloseMessage();
     }, lifeTime);
 
     return () => clearTimeout(timer);

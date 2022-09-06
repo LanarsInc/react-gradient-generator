@@ -1,12 +1,13 @@
-import GradientGenerator from './components/GradientGenerator';
+import React from 'react';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import GradientGenerator from './components/GradientGenerator';
 import MessageContainer from './components/MessageContainer';
-
+import { IGeneralMessage } from './shared/types/interfaces';
 
 const App = () => {
 
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<IGeneralMessage[]>([]);
 
   const addNewMessage = (newMessage) => {
     const newMessageArray = [

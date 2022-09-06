@@ -3,11 +3,19 @@ import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
 import variables from '../../../../styles/abstracts/variables.scss';
 import { rgb2hex } from '../../../../shared/utils';
+import { IPalette } from '../../../../shared/types/interfaces';
 
 import './MultiThumbSlider.scss';
 
+interface MultiThumbSliderProps {
+  maxColorsCount: number;
+  palettes: IPalette[];
+  activePalette: IPalette;
+  setPalettes: (func: (palettes: IPalette[]) => void) => void;
+  setActivePalette: (palette: IPalette) => void;
+}
 
-const MultiThumbSlider = ({
+const MultiThumbSlider:React.FC<MultiThumbSliderProps> = ({
   maxColorsCount,
   palettes,
   activePalette,
@@ -15,7 +23,7 @@ const MultiThumbSlider = ({
   setActivePalette,
 }) => {
 
-  const sliderContainerRef = useRef(null);
+  const sliderContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const sliders = sliderContainerRef.current.querySelectorAll('.multi-thumb-slider__input');
@@ -43,7 +51,7 @@ const MultiThumbSlider = ({
     const positionForInput = Math.round(mousePosition * 100 / variables.gradientPreviewWidth);
 
     if (e.target === sliderContainerRef.current) {
-      setPalettes((prevState) => ([
+      setPalettes((prevState: IPalette[]) => ([
         ...prevState,
         {id: uuidv4(), color: 'rgba(0, 0, 0, 1)', position: positionForInput},
       ]));

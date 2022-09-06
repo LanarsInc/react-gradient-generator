@@ -1,11 +1,16 @@
 import React from 'react';
+import { IGeneralMessage } from '../../../shared/types/interfaces';
 
 import './GradientCode.scss';
 
 const linesNumber = 6;
 
+interface GradientCodeProps {
+  gradient: string;
+  addNewMessage: (newMessage: Partial<IGeneralMessage>) => void;
+}
 
-const GradientCode = ({ gradient, addNewMessage }) => {
+const GradientCode:React.FC<GradientCodeProps> = ({ gradient, addNewMessage }) => {
 
   const handleCopyGradientCode = () => {
     navigator.clipboard.writeText(`background: ${gradient};`);

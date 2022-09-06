@@ -1,11 +1,19 @@
 import React from 'react';
 import classnames from 'classnames';
 import { ReactComponent as CloseIcon } from './../../../assets/svg/ic-close.svg';
+import { IPalette } from '../../../shared/types/interfaces';
 
 import './GradientPreview.scss';
 
+interface GradientPreviewProps {
+    palettes: IPalette[];
+    activePaletteId: string;
+    gradient: string;
+    setActivePalette: (palette: IPalette) => void;
+    handleDeletePalette: (paletteId: string) => void;
+}
 
-const GradientPreview = ({
+const GradientPreview:React.FC<GradientPreviewProps> = ({
   palettes,
   activePaletteId,
   gradient,
