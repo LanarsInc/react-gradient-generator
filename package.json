@@ -61,7 +61,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.1",
     "eslint-plugin-react": "^7.31.7",
-    "prop-types": "^15.8.1",
     "sass": "^1.54.7",
     "stylelint": "^14.11.0",
     "ts-loader": "^9.3.1",
