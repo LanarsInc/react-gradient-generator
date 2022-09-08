@@ -1,22 +1,21 @@
 import React from 'react';
 import MultiThumbSlider from './MultiThumbSlider';
-// @ts-ignore
 import { ReactComponent as SwapIcon } from './../../../assets/svg/ic_swap.svg';
-import { IPalette } from '../../../shared/types/interfaces';
+import { Palette } from '../../../shared/types/interfaces';
 
 import './GradientSlider.scss';
 
 interface GradientRangeSettingsProps {
-    gradient: string;
-    maxColorsCount: number;
-    palettes: IPalette[];
-    activePalette: IPalette;
-    setPalettes: (func: (palettes: IPalette[]) => void) => void;
-    setActivePalette: (palette: IPalette) => void;
-    handleSwapColors: () => void;
+  gradient: string;
+  maxColorsCount: number;
+  palettes: Palette[];
+  activePalette: Palette | null;
+  setPalettes: (palettes: Palette[]) => void;
+  setActivePalette: (palette: Palette) => void;
+  handleSwapColors: () => void;
 }
 
-const GradientRangeSettings:React.FC<GradientRangeSettingsProps> = ({
+const GradientRangeSettings: React.FC<GradientRangeSettingsProps> = ({
   gradient,
   maxColorsCount,
   palettes,

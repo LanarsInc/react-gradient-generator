@@ -9,9 +9,10 @@
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "exclude": ["node_modules"]
   },
+  "exclude": ["node_modules"],
   "include": [
-    "./src/"
+    "./src/",
+    "global.d.ts"
   ]
 }

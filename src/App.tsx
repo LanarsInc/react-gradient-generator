@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import GradientGenerator from './components/GradientGenerator';
 import MessageContainer from './components/MessageContainer';
-import { IGeneralMessage } from './shared/types/interfaces';
+import { GeneralMessage } from './shared/types/interfaces';
 
-const App = () => {
-  const [messages, setMessages] = useState<IGeneralMessage[]>([]);
+const App = (): JSX.Element => {
+  const [messages, setMessages] = useState<GeneralMessage[]>([]);
 
   const addNewMessage = (newMessage) => {
     const newMessageArray = [
@@ -14,7 +14,7 @@ const App = () => {
         lifeTime: 3000,
         id: uuidv4(),
         ...newMessage,
-      }
+      },
     ];
 
     setMessages(newMessageArray);

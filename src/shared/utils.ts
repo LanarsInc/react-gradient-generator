@@ -1,14 +1,12 @@
-import { IPalette } from './types/interfaces';
+import { Palette } from './types/interfaces';
 import { KeyNumberValue } from './types';
 
-type splitGradientStringReturnValue = [string, string, Omit<IPalette, 'id'>[]];
+type SplitGradientStringReturnValue = [string, string, Omit<Palette, 'id'>[]];
 
-export const splitGradientString = (gradientString: string): splitGradientStringReturnValue => {
+export const splitGradientString = (gradientString: string): SplitGradientStringReturnValue => {
   const regex = new RegExp(/,(?![^(]*\))(?![^"']*["'](?:[^"']*["'][^"']*["'])*[^"']*$)/, 'gi');
-  // eslint-disable-next-line prefer-destructuring
   const gradientType = gradientString.substring(0, gradientString.indexOf('(')).split('-')[0];
   const secondPartOfGradient = gradientString.substring(gradientString.indexOf('(') + 1, gradientString.lastIndexOf(')')).split(regex);
-  // eslint-disable-next-line prefer-destructuring
   let gradientAnglePoint = secondPartOfGradient[0];
   const isDefaultAngle = !gradientAnglePoint.includes('rgb');
 
@@ -18,7 +16,7 @@ export const splitGradientString = (gradientString: string): splitGradientString
 
   const gradientPalettes = secondPartOfGradient.slice(Number(isDefaultAngle)).map((palette) => {
     const color = palette.substring(0, palette.indexOf(')') + 1).trim();
-    const position = palette.substring(palette.indexOf(')') + 1, palette.length - 1).trim();
+    const position = parseInt(palette.substring(palette.indexOf(')') + 1, palette.length - 1).trim());
 
     return ({
       color,
@@ -69,7 +67,7 @@ export const rgb2hex = (color: string | undefined): string => {
   return '#000000';
 };
 
-export const allowOnlyNumbers = (event: KeyboardEvent) => {
+export const allowOnlyNumbers = (event: KeyboardEvent): void => {
   if (!/^(\d|.{2,})$/.test(event.key)) {
     event.preventDefault();
   }

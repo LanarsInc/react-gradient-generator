@@ -1,10 +1,5 @@
-import React, {
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classnames from 'classnames';
-// @ts-ignore
 import { ReactComponent as AngleCircleIcon } from './../../../assets/svg/ic_angle-circle.svg';
 import { allowOnlyNumbers } from '../../../shared/utils';
 import { GRADIENT_TYPES } from '../../../shared/constants';
@@ -18,11 +13,11 @@ interface GradientTypeAndAngleProps {
   setGradientPosition: (position: string) => void;
 }
 
-const GradientTypeAndAngle:React.FC<GradientTypeAndAngleProps> = ({
+const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
   gradientType,
   gradientPosition,
   handleGradientTypeChange,
-  setGradientPosition
+  setGradientPosition,
 }) => {
   const circleAngleRef = useRef<HTMLDivElement | null>(null);
 
@@ -66,50 +61,57 @@ const GradientTypeAndAngle:React.FC<GradientTypeAndAngleProps> = ({
   }, [gradientPosition, gradientType, angelInDegree, radialXPosition, radialYPosition]);
 
   const handleLinearCircleClick = (event) => {
-    const rect = circleAngleRef.current.getBoundingClientRect();
+    const rect = circleAngleRef.current?.getBoundingClientRect();
 
-    const xCircleCenter = (rect.left + rect.right) / 2;
-    const yCircleCenter = (rect.top + rect.bottom) / 2;
+    if (rect) {
+      const { top, bottom, left, right} = rect;
 
-    const xMouse = event.clientX;
-    const yMouse = event.clientY;
+      const xCircleCenter = (left + right) / 2;
+      const yCircleCenter = (top + bottom) / 2;
 
-    const deltaX = xCircleCenter - xMouse;
-    const deltaY = yCircleCenter - yMouse;
+      const xMouse = event.clientX;
+      const yMouse = event.clientY;
 
-    const rad = Math.atan2(deltaY, deltaX);
-    let deg = Math.round(rad * (180 / Math.PI)) - 90;
+      const deltaX = xCircleCenter - xMouse;
+      const deltaY = yCircleCenter - yMouse;
 
-    if (deg < 0) {
-      deg = (deg + 360) % 360;
+      const rad = Math.atan2(deltaY, deltaX);
+      let deg = Math.round(rad * (180 / Math.PI)) - 90;
+
+      if (deg < 0) {
+        deg = (deg + 360) % 360;
+      }
+
+      setAngelInDegree(`${deg}\xB0`);
+      setGradientPosition(`${deg}deg`);
     }
-
-    setAngelInDegree(`${deg}\xB0`);
-    setGradientPosition(`${deg}deg`);
   };
 
   const handleRadialCircleClick = (event) => {
-    const rect = circleAngleRef.current.getBoundingClientRect();
-    const { right, bottom } = rect;
+    const rect = circleAngleRef.current?.getBoundingClientRect();
 
-    const xMouse = event.clientX;
-    const yMouse = event.clientY;
+    if (rect) {
+      const { right, bottom } = rect;
 
-    const deltaX = right - xMouse;
-    const deltaY = bottom - yMouse;
+      const xMouse = event.clientX;
+      const yMouse = event.clientY;
 
-    const percentageDeltaX = Math.round(100 - (deltaX * 100 / 62));
-    const percentageDeltaY = Math.round(100 - (deltaY * 100 / 62));
+      const deltaX = right - xMouse;
+      const deltaY = bottom - yMouse;
 
-    if (percentageDeltaX >= 0 && percentageDeltaX <= 100) {
-      setRadialXPosition(percentageDeltaX);
+      const percentageDeltaX = Math.round(100 - (deltaX * 100 / 62));
+      const percentageDeltaY = Math.round(100 - (deltaY * 100 / 62));
+
+      if (percentageDeltaX >= 0 && percentageDeltaX <= 100) {
+        setRadialXPosition(percentageDeltaX);
+      }
+
+      if (percentageDeltaY >= 0 && percentageDeltaY <= 100) {
+        setRadialYPosition(percentageDeltaY);
+      }
+
+      setGradientPosition(`circle at ${percentageDeltaX}% ${percentageDeltaY}%`);
     }
-
-    if (percentageDeltaY >= 0 && percentageDeltaY <= 100) {
-      setRadialYPosition(percentageDeltaY);
-    }
-
-    setGradientPosition(`circle at ${percentageDeltaX}% ${percentageDeltaY}%`);
   };
 
   const handleDegreeChange = (value) => {
@@ -146,7 +148,7 @@ const GradientTypeAndAngle:React.FC<GradientTypeAndAngleProps> = ({
             className={ classnames('gradient-type__btn', { active: gradientType === GRADIENT_TYPES.LINEAR }) }
             onClick={ () => handleGradientTypeChange(
               GRADIENT_TYPES.LINEAR,
-              parseInt(angelInDegree as string) ? `${parseInt(angelInDegree as string)}deg` : '0deg'
+              parseInt(angelInDegree as string) ? `${parseInt(angelInDegree as string)}deg` : '0deg',
             ) }
           >
             Linear
@@ -155,7 +157,7 @@ const GradientTypeAndAngle:React.FC<GradientTypeAndAngleProps> = ({
             className={ classnames('gradient-type__btn', { active: gradientType === GRADIENT_TYPES.RADIAL }) }
             onClick={ () => handleGradientTypeChange(
               GRADIENT_TYPES.RADIAL,
-              radialXPosition && radialYPosition ? `circle at ${radialXPosition}% ${radialYPosition}%` : 'circle at 50% 50%'
+              radialXPosition && radialYPosition ? `circle at ${radialXPosition}% ${radialYPosition}%` : 'circle at 50% 50%',
             ) }
           >
             Radial
@@ -186,7 +188,7 @@ const GradientTypeAndAngle:React.FC<GradientTypeAndAngleProps> = ({
               onBlur={ (event) => handleDegreeBlur(event.target.value) }
               onKeyDown={ handleDegreeKeyDown } />
           </div>
-          </div>
+        </div>
         : <div className="gradient-angle-radial">
           <h3 className="gradient-generator__subheader">Position</h3>
           <div className="gradient-angle-radial__content">
@@ -204,7 +206,7 @@ const GradientTypeAndAngle:React.FC<GradientTypeAndAngleProps> = ({
                 }} />
             </div>
           </div>
-          </div>
+        </div>
       }
 
     </div>

@@ -4,21 +4,20 @@ import {
   hex2rgb,
   rgb2hex,
 } from '../../../shared/utils';
-// @ts-ignore
 import { ReactComponent as DeleteIcon } from './../../../assets/svg/ic_delete.svg';
-import { IPalette } from '../../../shared/types/interfaces';
+import { Palette } from '../../../shared/types/interfaces';
 import { KeyNumberValue } from '../../../shared/types';
 
 import './GradientActivePalette.scss';
 
 interface GradientActivePaletteProps {
-  activePalette: IPalette;
+  activePalette: Palette;
   canDeletePalette: boolean;
   handleGradientColorChange: (color: string, isRGB?: boolean) => void;
   handleDeletePalette: (paletteId: string) => void;
 }
 
-const GradientActivePalette:React.FC<GradientActivePaletteProps> = ({
+const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
   activePalette,
   canDeletePalette,
   handleGradientColorChange,
@@ -26,7 +25,7 @@ const GradientActivePalette:React.FC<GradientActivePaletteProps> = ({
 }) => {
   const [hexColor, setHexColor] = useState<string>('#000000');
   const [rgbObject, setRgbObject] = useState<KeyNumberValue>({
-    red: 255, green: 255, blue: 255, alpha: 1
+    red: 255, green: 255, blue: 255, alpha: 1,
   });
   const [colorOpacity, setColorOpacity] = useState<number>(100);
   const [colorOpacityInput, setColorOpacityInput] = useState<string>('100%');
@@ -139,7 +138,6 @@ const GradientActivePalette:React.FC<GradientActivePaletteProps> = ({
               min="0"
               max="100"
               style={{
-                // @ts-ignore
                 '--slider-thumb-color': rgb2hex(activePalette?.color),
                 background: `linear-gradient(to right, rgba(${red}, ${green}, ${blue}, 0), rgba(${red}, ${green}, ${blue}, 1))`,
               }}

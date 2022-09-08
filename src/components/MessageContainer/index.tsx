@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import MessageBox from '../MessageBox';
-import { IGeneralMessage } from '../../shared/types/interfaces';
+import { GeneralMessage } from '../../shared/types/interfaces';
 
 import './MessageContainer.scss';
 
 interface MessageContainerProps {
-  messages: IGeneralMessage[];
+  messages: GeneralMessage[];
   handleRemoveMessage: (id: string) => void;
 }
 
-const MessageContainer:React.FC<MessageContainerProps> = ({ messages, handleRemoveMessage }) => ReactDom.createPortal(
+const MessageContainer: React.FC<MessageContainerProps> = ({ messages, handleRemoveMessage }) => ReactDom.createPortal(
   <div className="message-container">
     { messages.map((message) => (<MessageBox
       key={ message.id }
@@ -19,7 +19,8 @@ const MessageContainer:React.FC<MessageContainerProps> = ({ messages, handleRemo
       lifeTime={ message.lifeTime }
       onClose={ handleRemoveMessage } />)) }
   </div>,
-    document.getElementById('portal')!
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  document.getElementById('portal')!,
 );
 
 export default MessageContainer;

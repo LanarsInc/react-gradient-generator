@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import GradientHeader from './GradientHeader';
 import GradientPreview from './GradientPreview';
@@ -16,33 +16,25 @@ import {
   maxColorsCount,
 } from '../../shared/constants';
 import {
-  IGeneralMessage,
-  IPalette,
+  GeneralMessage,
+  Palette,
 } from '../../shared/types/interfaces';
 
 import './GradientGenerator.scss';
 
 interface GradientGeneratorProps {
-  addNewMessage: (newMessage: Omit<IGeneralMessage, 'id'>) => void;
+  addNewMessage: (newMessage: Omit<GeneralMessage, 'id'>) => void;
 }
 
-const GradientGenerator:React.FC<GradientGeneratorProps> = ({ addNewMessage }) => {
+const GradientGenerator: React.FC<GradientGeneratorProps> = ({ addNewMessage }) => {
   const [gradient, setGradient] = useState<string>('');
-  const [palettes, setPalettes] = useState<IPalette[]>([]);
-  const [activePalette, setActivePalette] = useState<IPalette | null>(null);
+  const [palettes, setPalettes] = useState<Palette[]>([]);
+  const [activePalette, setActivePalette] = useState<Palette | null>(null);
   const [gradientType, setGradientType] = useState<string>('');
   const [gradientPosition, setGradientPosition] = useState<string>('');
 
-  useEffect(() => {
-    initGradient(defaultGradient);
-  }, []);
-
-  useEffect(() => {
-    createGradientBackground();
-  }, [palettes, gradientType, gradientPosition]);
-
-  const initGradient = (gradient) => {
-    const [gradientType, gradientAnglePoint, gradientPalettes] = splitGradientString(gradient);
+  const initGradient = useCallback((neededGradient) => {
+    const [extractedGradientType, extractedGradientAnglePoint, gradientPalettes] = splitGradientString(neededGradient);
 
     const newGradientPalettes = gradientPalettes.map((palette) => ({
       ...palette,
@@ -50,18 +42,25 @@ const GradientGenerator:React.FC<GradientGeneratorProps> = ({ addNewMessage }) =
     }));
 
     setPalettes(newGradientPalettes);
-    handleGradientTypeChange(gradientType, gradientAnglePoint);
+    handleGradientTypeChange(extractedGradientType, extractedGradientAnglePoint);
     setActivePalette(newGradientPalettes[0]);
-  };
+  }, []);
 
-  const createGradientBackground = () => {
-    // @ts-ignore
+  useEffect(() => {
+    initGradient(defaultGradient);
+  }, [initGradient]);
+
+  const createGradientBackground = useCallback(() => {
     const sortedPallets = [...palettes].sort((paletteA, paletteB) => paletteA.position - paletteB.position);
     const colorsAndPositionsString = sortedPallets.map((palette) => `${palette.color} ${palette.position}%`).join(', ');
     const result = `${gradientType}-gradient(${gradientPosition}, ${colorsAndPositionsString})`;
 
     setGradient(result);
-  };
+  }, [palettes, gradientType, gradientPosition]);
+
+  useEffect(() => {
+    createGradientBackground();
+  }, [createGradientBackground, palettes, gradientType, gradientPosition]);
 
   const resetGradient = () => {
     initGradient(defaultGradient);
@@ -71,21 +70,22 @@ const GradientGenerator:React.FC<GradientGeneratorProps> = ({ addNewMessage }) =
     const clonePalettes = [...palettes];
     const neededPalette = clonePalettes.find((palette) => palette.id === activePalette?.id);
 
-    if (isRGBA) {
-      neededPalette.color = color;
-    } else {
-      const rgbColor = hex2rgb(color);
-      const { red, green, blue, alpha } = rgbColor;
+    if (neededPalette) {
+      if (isRGBA) {
+        neededPalette.color = color;
+      } else {
+        const rgbColor = hex2rgb(color);
+        const { red, green, blue, alpha } = rgbColor;
 
-      neededPalette.color = `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+        neededPalette.color = `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+      }
+
+      setActivePalette(neededPalette);
+      setPalettes(clonePalettes);
     }
-
-    setActivePalette(neededPalette);
-    setPalettes(clonePalettes);
   };
 
   const handleSwapColors = () => {
-    // @ts-ignore
     const sortedPallets = [...palettes].sort((paletteA, paletteB) => paletteA.position - paletteB.position);
     const reversePositions = sortedPallets.map((palette) => palette.position).reverse();
     const swappedPalettes = sortedPallets
@@ -93,7 +93,6 @@ const GradientGenerator:React.FC<GradientGeneratorProps> = ({ addNewMessage }) =
         ...palette,
         position: reversePositions[paletteIndex],
       }))
-      // @ts-ignore
       .sort((paletteA, paletteB) => paletteA.position - paletteB.position);
 
     setPalettes(swappedPalettes);

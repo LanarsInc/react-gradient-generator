@@ -1,11 +1,10 @@
-import React, { useEffect, useRef } from 'react';
-// @ts-ignore
+import React, { useEffect, useRef, useCallback } from 'react';
 import { ReactComponent as CloseIconBig } from './../../assets/svg/ic-close-big.svg';
-import { IGeneralMessage } from '../../shared/types/interfaces';
+import { GeneralMessage } from '../../shared/types/interfaces';
 
 import './MessageBox.scss';
 
-interface MessageBoxProps extends IGeneralMessage{
+interface MessageBoxProps extends GeneralMessage{
   onClose: (id: string) => void;
 }
 
@@ -13,19 +12,11 @@ const MessageBox: React.FC<MessageBoxProps> = ({
   id,
   text,
   lifeTime,
-  onClose
+  onClose,
 }) => {
   const messageRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      handleCloseMessage();
-    }, lifeTime);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleCloseMessage = () => {
+  const handleCloseMessage = useCallback(() => {
     if (messageRef.current) {
       messageRef.current.classList.add('hide');
     }
@@ -33,7 +24,15 @@ const MessageBox: React.FC<MessageBoxProps> = ({
     setTimeout(() => {
       onClose(id);
     }, 600);
-  };
+  }, [id, onClose]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      handleCloseMessage();
+    }, lifeTime);
+
+    return () => clearTimeout(timer);
+  }, [lifeTime, handleCloseMessage]);
 
   return (
     <div

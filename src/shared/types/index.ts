@@ -1,3 +1,3 @@
 export type KeyNumberValue = {
-    [key: string]: number;
+  [key: string]: number;
 };

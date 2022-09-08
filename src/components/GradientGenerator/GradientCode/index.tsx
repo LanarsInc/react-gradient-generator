@@ -1,5 +1,5 @@
 import React from 'react';
-import { IGeneralMessage } from '../../../shared/types/interfaces';
+import { GeneralMessage } from '../../../shared/types/interfaces';
 
 import './GradientCode.scss';
 
@@ -7,10 +7,10 @@ const linesNumber = 6;
 
 interface GradientCodeProps {
   gradient: string;
-  addNewMessage: (newMessage: Omit<IGeneralMessage, 'id'>) => void;
+  addNewMessage: (newMessage: Omit<GeneralMessage, 'id'>) => void;
 }
 
-const GradientCode:React.FC<GradientCodeProps> = ({ gradient, addNewMessage }) => {
+const GradientCode: React.FC<GradientCodeProps> = ({ gradient, addNewMessage }) => {
   const handleCopyGradientCode = () => {
     navigator.clipboard.writeText(`background: ${gradient};`);
     addNewMessage({
@@ -24,8 +24,7 @@ const GradientCode:React.FC<GradientCodeProps> = ({ gradient, addNewMessage }) =
       <div className="gradient-code__top">
         <div className="gradient-code-lines">
           {
-            // @ts-ignore
-            [...Array(linesNumber).keys()].map((number) => (
+            Array.from(Array(linesNumber).keys()).map((number) => (
               <p key={ number } className="gradient-code-line">
                 { number + 1 }
               </p>)) }

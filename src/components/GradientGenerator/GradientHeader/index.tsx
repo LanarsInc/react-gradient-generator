@@ -1,14 +1,13 @@
 import React from 'react';
-// @ts-ignore
 import { ReactComponent as Logo } from './../../../assets/svg/logo.svg';
 
 import './GradientHeader.scss';
 
 interface GradientHeaderProps {
-    resetGradient: () => void;
+  resetGradient: () => void;
 }
 
-const GradientHeader:React.FC<GradientHeaderProps> = ({ resetGradient }) => (
+const GradientHeader: React.FC<GradientHeaderProps> = ({ resetGradient }) => (
   <div className="gradient-header">
     <div>
       <Logo className="gradient-header__icon" />

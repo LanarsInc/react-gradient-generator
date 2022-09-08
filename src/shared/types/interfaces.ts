@@ -1,11 +1,11 @@
-export interface IGeneralMessage {
-    id: string;
-    text: string;
-    lifeTime: number;
+export interface GeneralMessage {
+  id: string;
+  text: string;
+  lifeTime: number;
 }
 
-export interface IPalette {
-    id: string;
-    color: string;
-    position: string | number;
+export interface Palette {
+  id: string;
+  color: string;
+  position: number;
 }
