@@ -72,7 +72,7 @@ const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
       { palettes.map((palette) => (<input
         key={ palette.id }
         className={ classnames('multi-thumb-slider__input', { active: activePalette?.id === palette.id }) }
-        style={{ '--gradient-thumb-color': rgb2hex(palette.color) }}
+        style={{ ['--gradient-thumb-color' as string]: rgb2hex(palette.color) }}
         onClick={ () => setActivePalette(palette) }
         data-color={ palette.color }
         data-id={ palette.id }

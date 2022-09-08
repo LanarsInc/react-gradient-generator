@@ -138,7 +138,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
               min="0"
               max="100"
               style={{
-                '--slider-thumb-color': rgb2hex(activePalette?.color),
+                ['--slider-thumb-color' as string]: rgb2hex(activePalette?.color),
                 background: `linear-gradient(to right, rgba(${red}, ${green}, ${blue}, 0), rgba(${red}, ${green}, ${blue}, 1))`,
               }}
               value={ colorOpacity }
