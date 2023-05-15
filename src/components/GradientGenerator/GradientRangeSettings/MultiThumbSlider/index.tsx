@@ -25,25 +25,31 @@ const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
   const sliderContainerRef = useRef<HTMLDivElement | null>(null);
 
   const handleRangeChange = useCallback(() => {
-    const sliders = sliderContainerRef.current?.querySelectorAll('.multi-thumb-slider__input');
+    const sliders = sliderContainerRef.current?.querySelectorAll(
+      '.multi-thumb-slider__input'
+    );
 
     if (sliders) {
-      const newPalettesArray = Array.from(sliders)
-        .map((element: HTMLInputElement) => ({
+      const newPalettesArray = Array.from(sliders).map(
+        (element: HTMLInputElement) => ({
           id: element.dataset.id ?? uuidv4(),
-          position: parseInt(element.value),
+          position: parseInt(element.value, 10),
           color: element.dataset.color ?? 'rgba(0, 0, 0, 1)',
-        }));
+        })
+      );
 
       setPalettes(newPalettesArray);
     }
   }, [setPalettes]);
 
   useEffect(() => {
-    const sliders = sliderContainerRef.current?.querySelectorAll('.multi-thumb-slider__input');
+    const sliders = sliderContainerRef.current?.querySelectorAll(
+      '.multi-thumb-slider__input'
+    );
 
     if (sliders) {
       sliders.forEach((slider: HTMLElement) => {
+        // eslint-disable-next-line no-param-reassign
         slider.oninput = handleRangeChange;
       });
     }
@@ -51,13 +57,17 @@ const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
 
   const handleAddNewSlider = (event) => {
     const mousePosition = event.nativeEvent.offsetX;
-    const positionForInput = Math.round(mousePosition * 100 / Number(variables.gradientPreviewWidth));
+    const positionForInput = Math.round(
+      (mousePosition * 100) / Number(variables.gradientPreviewWidth)
+    );
 
     if (event.target === sliderContainerRef.current) {
       setPalettes([
         ...palettes,
         {
-          id: uuidv4(), color: 'rgba(0, 0, 0, 1)', position: positionForInput,
+          id: uuidv4(),
+          color: 'rgba(0, 0, 0, 1)',
+          position: positionForInput,
         },
       ]);
     }
@@ -65,23 +75,32 @@ const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
 
   return (
     <div
-      ref={ sliderContainerRef }
-      className={ classnames('multi-thumb-slider', { limit: palettes.length >= maxColorsCount }) }
-      onClick={ handleAddNewSlider }
+      ref={sliderContainerRef}
+      className={classnames('multi-thumb-slider', {
+        limit: palettes.length >= maxColorsCount,
+      })}
+      onClick={handleAddNewSlider}
     >
-      { palettes.map((palette) => (<input
-        key={ palette.id }
-        className={ classnames('multi-thumb-slider__input', { active: activePalette?.id === palette.id }) }
-        style={{ ['--gradient-thumb-color' as string]: rgb2hex(palette.color) }}
-        onClick={ () => setActivePalette(palette) }
-        data-color={ palette.color }
-        data-id={ palette.id }
-        value={ palette.position }
-        readOnly
-        min="0"
-        max="100"
-        step="1"
-        type="range" />)) }
+      {palettes.map((palette) => (
+        <input
+          key={palette.id}
+          className={classnames('multi-thumb-slider__input', {
+            active: activePalette?.id === palette.id,
+          })}
+          style={{
+            ['--gradient-thumb-color' as string]: rgb2hex(palette.color),
+          }}
+          onClick={() => setActivePalette(palette)}
+          data-color={palette.color}
+          data-id={palette.id}
+          value={palette.position}
+          readOnly
+          min="0"
+          max="100"
+          step="1"
+          type="range"
+        />
+      ))}
     </div>
   );
 };

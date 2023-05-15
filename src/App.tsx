@@ -4,7 +4,7 @@ import GradientGenerator from './components/GradientGenerator';
 import MessageContainer from './components/MessageContainer';
 import { GeneralMessage } from './shared/types/interfaces';
 
-const App = (): JSX.Element => {
+const App: React.FC = () => {
   const [messages, setMessages] = useState<GeneralMessage[]>([]);
 
   const addNewMessage = (newMessage) => {
@@ -21,16 +21,19 @@ const App = (): JSX.Element => {
   };
 
   const handleRemoveMessage = (messageId) => {
-    setMessages((prevState) => prevState.filter((message) => message.id !== messageId));
+    setMessages((prevState) =>
+      prevState.filter((message) => message.id !== messageId)
+    );
   };
 
   return (
     <>
-      <GradientGenerator addNewMessage={ addNewMessage } />
+      <GradientGenerator addNewMessage={addNewMessage} />
 
       <MessageContainer
-        messages={ messages }
-        handleRemoveMessage={ handleRemoveMessage } />
+        messages={messages}
+        handleRemoveMessage={handleRemoveMessage}
+      />
     </>
   );
 };

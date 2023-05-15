@@ -1,6 +1,6 @@
 import React from 'react';
 import MultiThumbSlider from './MultiThumbSlider';
-import { ReactComponent as SwapIcon } from './../../../assets/svg/ic_swap.svg';
+import { ReactComponent as SwapIcon } from '../../../assets/svg/ic_swap.svg';
 import { Palette } from '../../../shared/types/interfaces';
 
 import './GradientSlider.scss';
@@ -30,16 +30,18 @@ const GradientRangeSettings: React.FC<GradientRangeSettingsProps> = ({
       style={{ background: gradient }}
     >
       <MultiThumbSlider
-        maxColorsCount={ maxColorsCount }
-        palettes={ palettes }
-        activePalette={ activePalette }
-        setPalettes={ setPalettes }
-        setActivePalette={ setActivePalette } />
+        maxColorsCount={maxColorsCount}
+        palettes={palettes}
+        activePalette={activePalette}
+        setPalettes={setPalettes}
+        setActivePalette={setActivePalette}
+      />
     </div>
 
     <button
+      type="button"
       className="gradient-range-settings__swap-btn"
-      onClick={ handleSwapColors }
+      onClick={handleSwapColors}
     >
       <SwapIcon />
     </button>

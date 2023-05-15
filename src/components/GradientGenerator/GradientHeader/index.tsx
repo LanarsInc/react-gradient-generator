@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as Logo } from './../../../assets/svg/logo.svg';
+import { ReactComponent as Logo } from '../../../assets/svg/logo.svg';
 
 import './GradientHeader.scss';
 
@@ -15,10 +15,11 @@ const GradientHeader: React.FC<GradientHeaderProps> = ({ resetGradient }) => (
     </div>
 
     <button
+      type="button"
       className="gradient-header__reset-btn"
-      onClick={ resetGradient }
+      onClick={resetGradient}
     >
-        reset
+      reset
     </button>
   </div>
 );
