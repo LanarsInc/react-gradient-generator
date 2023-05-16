@@ -27,7 +27,7 @@
     margin: 0;
     padding: 0;
     transform: translateY(-50%);
-    background: transparent;
+    background-color: transparent;
 
     &.active {
       &::-webkit-slider-thumb {

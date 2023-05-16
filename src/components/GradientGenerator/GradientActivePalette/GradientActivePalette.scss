@@ -4,7 +4,7 @@
 .gradient-active-color {
   width: 591px;
   height: 189px;
-  background: $white;
+  background-color: var(--background-color);
   padding: 24px 32px 32px 32px;
   border-left: 2px solid $border-color;
   border-right: 2px solid $border-color;

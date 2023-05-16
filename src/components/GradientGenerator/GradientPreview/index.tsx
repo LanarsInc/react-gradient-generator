@@ -34,7 +34,7 @@ const GradientPreview: React.FC<GradientPreviewProps> = ({
           >
             <div
               className="gradient-preview-pallet__inner"
-              style={{ background: pallet.color }}
+              style={{ backgroundColor: pallet.color }}
             />
             <div
               className={classnames('gradient-preview-pallet__delete-btn', {

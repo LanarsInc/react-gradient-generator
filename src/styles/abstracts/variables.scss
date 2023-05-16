@@ -28,12 +28,25 @@ $dark-blue-border: #514d7d;
 $title-color: #9134d7;
 $light-purple-color: #a981ff;
 $pale-purple-color: #7c78a9;
-$main-text-color: #2b223e;
 $white: #ffffff;
-$light-grey: #f8f8f8;
+
 $placeholder-color: #e9edf2;
 $border-color: #eef0f3;
 $success-color: #32d9ab;
+
+html[data-theme="light"] {
+  --text-color: #2b223e;
+  --background-color: #f8f8f8;
+  --theme-mode-switcher-color: #f8e44d;
+  --theme-mode-switcher-bg: #f8f8f8;
+}
+
+html[data-theme="dark"] {
+  --text-color: #f8f8f8;
+  --background-color: #2b223e;
+  --theme-mode-switcher-color: #ffffff;
+  --theme-mode-switcher-bg: #02113c;
+}
 
 // values
 $gradient-preview-width: 451;

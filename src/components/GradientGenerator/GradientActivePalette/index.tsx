@@ -109,7 +109,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
         <label
           htmlFor="palette"
           className="gradient-active-color__label"
-          style={{ background: activePalette?.color }}
+          style={{ backgroundColor: activePalette?.color }}
         >
           <input
             id="palette"

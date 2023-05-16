@@ -43,7 +43,7 @@
   font-family: $font-main-semi-bold;
   text-transform: capitalize;
   color: $white;
-  background: $primary-color;
+  background-color: $primary-color;
   border-radius: 300px;
   padding: 0 30px;
   transition: 300ms;
@@ -58,52 +58,52 @@
 
   @if $inverse {
     color: $primary-color;
-    background: $secondary-color;
+    background-color: $secondary-color;
   }
 
   &:disabled {
     pointer-events: none;
     cursor: not-allowed;
     color: $primary-disabled-text;
-    background: $primary-disabled;
+    background-color: $primary-disabled;
 
     @if $inverse {
       color: $secondary-disabled-text;
-      background: $secondary-disabled;
+      background-color: $secondary-disabled;
     }
   }
 
   &:hover {
-    background: $primary-hover;
+    background-color: $primary-hover;
 
     @if $inverse {
-      background: $secondary-hover;
+      background-color: $secondary-hover;
     }
   }
 
   &:active {
-    background: $primary-active;
+    background-color: $primary-active;
 
     @if $inverse {
-      background: $secondary-active;
+      background-color: $secondary-active;
     }
   }
 }
 
 @mixin oval-button-danger ($width: null, $height: 52px) {
   @include oval-button ($inverse: false, $width: $width, $height: $height);
-  background: $danger-color;
+  background-color: $danger-color;
 
   &:hover {
-    background: $danger-hover;
+    background-color: $danger-hover;
   }
 
   &:active {
-    background: $danger-active;
+    background-color: $danger-active;
   }
 
   &:disabled {
-    background: $danger-disabled;
+    background-color: $danger-disabled;
   }
 }
 
@@ -112,8 +112,8 @@
   font-size: 16px;
   font-family: $font-main-semi-bold;
   line-height: 20px;
-  color: $main-text-color;
-  background: $white;
+  color: var(--text-color);
+  background-color: $white;
   border: 2px solid $border-color;
   border-radius: 300px;
   outline: none;
