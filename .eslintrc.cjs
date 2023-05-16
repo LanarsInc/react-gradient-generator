@@ -25,6 +25,7 @@ module.exports = {
         "prettier",
     ],
     "rules": {
+        'import/prefer-default-export': "off",
         'react/function-component-definition': [
             2,
             {
