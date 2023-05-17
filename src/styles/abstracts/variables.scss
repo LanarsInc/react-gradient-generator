@@ -36,6 +36,7 @@ $success-color: #32d9ab;
 
 html[data-theme="light"] {
   --text-color: #2b223e;
+  --input-text-color: #2b223e;
   --background-color: #f8f8f8;
   --theme-mode-switcher-color: #f8e44d;
   --theme-mode-switcher-bg: #f8f8f8;
@@ -43,6 +44,7 @@ html[data-theme="light"] {
 
 html[data-theme="dark"] {
   --text-color: #f8f8f8;
+  --input-text-color: #2b223e;
   --background-color: #2b223e;
   --theme-mode-switcher-color: #ffffff;
   --theme-mode-switcher-bg: #02113c;
