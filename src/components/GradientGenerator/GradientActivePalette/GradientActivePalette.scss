@@ -17,6 +17,7 @@
   }
 
   &__content {
+    position: relative;
     display: grid;
     grid-template-columns: auto 1fr auto;
     grid-column-gap: 24px;
@@ -28,7 +29,7 @@
     }
   }
 
-  &__label {
+  &__preview {
     @include clickable-element;
     display: flex;
     align-items: flex-end;
@@ -38,8 +39,10 @@
     border-radius: 16px;
   }
 
-  &__picker {
-    visibility: hidden;
+  &__picker-wrapper {
+    position: absolute;
+    top: 100px;
+    left: 0;
   }
 
   &__inputs-container {
