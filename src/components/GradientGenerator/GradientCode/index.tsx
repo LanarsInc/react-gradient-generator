@@ -1,5 +1,6 @@
 import React from 'react';
 import { GeneralMessage } from '../../../shared/types/interfaces';
+import { messageLifeTime } from '../../../shared/constants';
 
 import './GradientCode.scss';
 
@@ -20,7 +21,7 @@ const GradientCode: React.FC<GradientCodeProps> = ({
     navigator.clipboard.writeText(`background: ${gradient};`);
     addNewMessage({
       text: 'CSS code has been copied',
-      lifeTime: 3000,
+      lifeTime: messageLifeTime,
     });
   };
 

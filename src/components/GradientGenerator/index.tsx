@@ -25,7 +25,9 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
   const [gradient, setGradient] = useState<string>('');
   const [palettes, setPalettes] = useState<Palette[]>([]);
   const [activePalette, setActivePalette] = useState<Palette | null>(null);
-  const [gradientType, setGradientType] = useState<string>('');
+  const [gradientType, setGradientType] = useState<GradientTypes>(
+    GradientTypes.LINEAR
+  );
   const [gradientPosition, setGradientPosition] = useState<string>('');
 
   const handleGradientTypeChange = (type, angle) => {

@@ -8,6 +8,7 @@ export enum ThemeMode {
   LIGHT = 'light',
 }
 
+export const messageLifeTime = 3000;
 export const themeModeLocalStorageKey = 'gradient-generator-theme-mode';
 export const maxColorsCount = 9;
 export const defaultGradient =

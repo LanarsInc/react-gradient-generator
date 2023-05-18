@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classnames from 'classnames';
-import { ReactComponent as AngleCircleIcon } from '../../../assets/svg/ic_angle-circle.svg';
 import { allowOnlyNumbers } from '../../../shared/utils';
 import { GradientTypes } from '../../../shared/constants';
+
+import { ReactComponent as AngleCircleIcon } from '../../../assets/svg/angle-circle.svg';
 
 import './GradientTypeAndAngle.scss';
 
 interface GradientTypeAndAngleProps {
-  gradientType: string;
+  gradientType: GradientTypes;
   gradientPosition: string;
   handleGradientTypeChange: (type: string, position: string) => void;
   setGradientPosition: (position: string) => void;
@@ -29,13 +30,23 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
   const [radialYPosition, setRadialYPosition] = useState<number | null>(null);
 
   useEffect(() => {
-    window.addEventListener('mousedown', () => {
+    document.addEventListener('mousedown', () => {
       setIsMouseDown(true);
     });
 
-    window.addEventListener('mouseup', () => {
+    document.addEventListener('mouseup', () => {
       setIsMouseDown(false);
     });
+
+    return () => {
+      document.removeEventListener('mousedown', () => {
+        setIsMouseDown(true);
+      });
+
+      document.removeEventListener('mouseup', () => {
+        setIsMouseDown(false);
+      });
+    };
   }, []);
 
   useEffect(() => {

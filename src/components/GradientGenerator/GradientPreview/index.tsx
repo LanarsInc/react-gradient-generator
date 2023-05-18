@@ -1,7 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
-import { ReactComponent as CloseIcon } from '../../../assets/svg/ic-close.svg';
 import { Palette } from '../../../shared/types/interfaces';
+
+import { ReactComponent as CloseIcon } from '../../../assets/svg/close.svg';
 
 import './GradientPreview.scss';
 

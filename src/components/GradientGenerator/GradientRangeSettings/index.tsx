@@ -1,7 +1,8 @@
 import React from 'react';
 import MultiThumbSlider from './MultiThumbSlider';
-import { ReactComponent as SwapIcon } from '../../../assets/svg/ic_swap.svg';
 import { Palette } from '../../../shared/types/interfaces';
+
+import { ReactComponent as SwapIcon } from '../../../assets/svg/swap.svg';
 
 import './GradientSlider.scss';
 

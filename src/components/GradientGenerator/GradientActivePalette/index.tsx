@@ -5,7 +5,7 @@ import { KeyNumberValue } from '../../../shared/types';
 import { useOutsideClick } from '../../../shared/hooks/useOutsideClick';
 import { Palette } from '../../../shared/types/interfaces';
 
-import { ReactComponent as DeleteIcon } from '../../../assets/svg/ic_delete.svg';
+import { ReactComponent as DeleteIcon } from '../../../assets/svg/delete.svg';
 
 import './GradientActivePalette.scss';
 

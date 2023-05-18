@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { ReactComponent as CloseIconBig } from '../../assets/svg/ic-close-big.svg';
+import { ReactComponent as CloseIconBig } from '../../assets/svg/close-big.svg';
 import { GeneralMessage } from '../../shared/types/interfaces';
 
 import './MessageBox.scss';

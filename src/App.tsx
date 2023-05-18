@@ -14,7 +14,6 @@ const App: React.FC = () => {
     const newMessageArray = [
       ...messages,
       {
-        lifeTime: 3000,
         id: uuidv4(),
         ...newMessage,
       },

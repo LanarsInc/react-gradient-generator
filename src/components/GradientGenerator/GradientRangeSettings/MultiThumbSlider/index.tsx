@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
-import variables from '../../../../styles/abstracts/variables.scss';
 import { rgb2hex } from '../../../../shared/utils';
 import { Palette } from '../../../../shared/types/interfaces';
+import variables from '../../../../styles/abstracts/variables.scss';
 
 import './MultiThumbSlider.scss';
 
