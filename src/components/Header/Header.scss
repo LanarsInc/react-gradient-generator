@@ -12,13 +12,13 @@
   background-color: var(--background-color);
   border: 2px solid $border-color;
   border-radius: 40px;
+}
 
-  & > div {
-    display: grid;
-    grid-template-columns: auto auto;
-    align-items: center;
-    grid-column-gap: 12px;
-  }
+.logo {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  grid-column-gap: 12px;
 
   &__icon {
     border-radius: 10px;

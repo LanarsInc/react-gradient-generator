@@ -1,171 +1,233 @@
 @use './../../styles/abstracts' as *;
 
 $animation-time: 700ms;
+$animation-timing-function: linear;
 
 .theme-mode-switcher {
   @include flex-center;
   $this: &;
   position: relative;
-  width: 100px;
-  height: 50px;
+  width: 72px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  column-gap: 10px;
+  column-gap: 11px;
   background-color: var(--theme-mode-switcher-bg);
-  outline: 2px solid $border-color;
-  border-radius: 40px;
+  border: 1px solid var(--theme-mode-switcher-border);
+  transition: background-color $animation-time;
+  border-radius: 20px;
   cursor: pointer;
 
   &.dark {
     #{$this}__icon.moon {
-      animation: moon $animation-time forwards linear;
+      animation: moon-appear $animation-time forwards $animation-timing-function;
     }
 
-    #{$this}__circle {
-      animation: slide_to_right $animation-time forwards linear;
-    }
-  }
-
-  //cubic-bezier(.8, .5, .2, 1.4)
-
-  &.light {
     #{$this}__icon.sun {
-      animation: sun $animation-time forwards linear;
+      animation: sun-disappear $animation-time forwards $animation-timing-function;
 
       .sun-beam {
-        animation: sun-beam $animation-time forwards linear;
+        animation: sun-beam-disappear $animation-time forwards $animation-timing-function;
       }
     }
 
     #{$this}__circle {
-      animation: slide_to_left $animation-time forwards linear;
+      animation: slide_to_right $animation-time forwards $animation-timing-function;
+    }
+  }
+
+  &.light {
+    #{$this}__icon.moon {
+      animation: moon-disappear $animation-time forwards $animation-timing-function;
+    }
+
+    #{$this}__icon.sun {
+      animation: sun-appear $animation-time forwards $animation-timing-function;
+
+      .sun-beam {
+        animation: sun-beam-appear $animation-time forwards $animation-timing-function;
+      }
+    }
+
+    #{$this}__circle {
+      animation: slide_to_left $animation-time forwards $animation-timing-function;
     }
   }
 
   &__circle {
     position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 40px;
-    height: 40px;
+    top: 1px;
+    left: 1px;
+    width: 36px;
+    height: 36px;
     background-color: var(--theme-mode-switcher-color);
-    border-radius: 40px;
+    border-radius: 20px;
+    transition: background-color $animation-time;
   }
 
   &__icon {
-    width: 40px;
-    height: 40px;
-    fill: var(--theme-mode-switcher-bg);
+    width: 22px;
+    height: 22px;
     opacity: 0;
-    z-index: 2;
-
-    path {
-      fill: var(--theme-mode-switcher-bg);
-    }
 
     &.moon {
-      scale: 0.4;
+      scale: 0.9;
     }
 
     &.sun {
-      .sun-circle {
-        scale: 0.5;
-        transform-origin: 45px 45px;
-      }
-      .sun-beam {
-        scale: 0.5;
-        transform-origin: 45px 45px;
-      }
+      transform-origin: 12px 12px;
+      scale: 1.1;
+    }
+
+    .sun-circle {
+      transform-origin: 12px 12px;
+      scale: 0.9;
+    }
+
+    .sun-beam {
+      opacity: 0;
+      transform-origin: 12px 12px;
     }
   }
 }
 
-@keyframes moon {
-  60% {
+@keyframes moon-appear {
+  65% {
     opacity: 0;
     translate: 0;
     rotate: 0;
   }
-  85% {
+  70% {
     opacity: 1;
-    translate: 8px;
-    rotate: 15deg;
+    translate: 4px;
+    rotate: -20deg;
+  }
+  80% {
+    rotate: 0;
   }
   90% {
     rotate: -5deg;
   }
-  95% {
-    rotate: 0deg;
+  100% {
+    opacity: 1;
+    translate: 0;
+    rotate: -10deg;
+  }
+}
+
+@keyframes moon-disappear {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    rotate: 20deg;
+    opacity: 1;
+  }
+  22%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sun-beam-appear {
+  60% {
+    opacity: 0;
+    scale: 0.6;
+  }
+  70% {
+    opacity: 1;
+    scale: 0.7;
+  }
+  85% {
+    scale: 1;
+  }
+  100% {
+    opacity: 1;
+    scale: 0.9;
+  }
+}
+
+@keyframes sun-beam-disappear {
+  0% {
+    opacity: 1;
+    scale: 0.9;
+  }
+  15%, 100%  {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+
+@keyframes sun-appear {
+  45% {
+    opacity: 0;
+    translate: 0;
+  }
+  50% {
+    opacity: 1;
+    translate: 0;
+  }
+  70% {
+    translate: -5px;
   }
   100% {
     opacity: 1;
     translate: 0;
-    rotate: 5deg;
   }
 }
 
-@keyframes sun-beam {
-  80% {
-    scale: 0.2;
-  }
-  100% {
-    scale: 0.5;
-  }
-}
-
-@keyframes sun {
-  50% {
-    opacity: 0;
-  }
-  100% {
+@keyframes sun-disappear {
+  0% {
     opacity: 1;
+  }
+  15%, 100% {
+    opacity: 0;
   }
 }
 
 @keyframes slide_to_right {
   25% {
-    width: 67px;
+    width: 54px;
   }
   60% {
-    width: 40px;
-    translate: 50px;
+    width: 36px;
+    translate: 32px;
   }
-  85% {
-    width: 33px;
-    translate: 60px;
-    scale: 1 1.03;
-    border-radius: 16px;
+  68% {
+    border-radius: 20px;
+  }
+  70% {
+    width: 28px;
+    translate: 40px;
+    border-radius: 15px;
   }
   100% {
-    width: 40px;
-    translate: 50px;
-    scale: 1;
-    border-radius: 40px;
+    width: 36px;
+    translate: 32px;
+    border-radius: 20px;
   }
 }
 
 @keyframes slide_to_left {
   0% {
-    translate: 50px;
-    scale: 1;
+    translate: 32px;
   }
   25% {
-    width: 67px;
+    width: 54px;
   }
-  46% {
+  45% {
     translate: 0;
   }
-  85% {
-    width: 33px;
-    border-radius: 16px;
-    translate: -3px;
-    scale: 1 1.03;
+  68% {
+    border-radius: 20px;
+  }
+  70% {
+    width: 28px;
+    border-radius: 15px;
   }
   100% {
-    width: 40px;
-    border-radius: 40px;
+    width: 36px;
+    border-radius: 20px;
     translate: 0;
-    scale: 1;
   }
 }

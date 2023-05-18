@@ -38,8 +38,9 @@ html[data-theme="light"] {
   --text-color: #2b223e;
   --input-text-color: #2b223e;
   --background-color: #f8f8f8;
-  --theme-mode-switcher-color: #f8e44d;
+  --theme-mode-switcher-color: #ffd600;
   --theme-mode-switcher-bg: #f8f8f8;
+  --theme-mode-switcher-border: #eef0f3;
 }
 
 html[data-theme="dark"] {
@@ -47,7 +48,8 @@ html[data-theme="dark"] {
   --input-text-color: #2b223e;
   --background-color: #2b223e;
   --theme-mode-switcher-color: #ffffff;
-  --theme-mode-switcher-bg: #02113c;
+  --theme-mode-switcher-bg: #25243e;
+  --theme-mode-switcher-border: #514d7d;
 }
 
 // values

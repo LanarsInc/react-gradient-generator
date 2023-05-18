@@ -15,9 +15,9 @@ const Header: React.FC<HeaderProps> = ({
   toggleThemeMode,
 }) => (
   <header className="header">
-    <div>
-      <Logo className="header__icon" />
-      <h1 className="header__title">CSS Gradient</h1>
+    <div className="logo">
+      <Logo className="logo__icon" />
+      <h1 className="logo__title">CSS Gradient</h1>
     </div>
 
     <ThemeModeSwitcher

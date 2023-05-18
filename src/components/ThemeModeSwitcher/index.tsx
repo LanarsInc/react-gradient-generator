@@ -23,9 +23,9 @@ const ThemeModeSwitcher: FC<ThemeModeSwitcherProps> = ({
       })}
       onClick={() => toggleThemeMode()}
     >
+      <div className="theme-mode-switcher__circle" />
       <SunIcon className="theme-mode-switcher__icon sun" />
       <MoonIcon className="theme-mode-switcher__icon moon" />
-      <div className="theme-mode-switcher__circle" />
     </div>
   );
 };
