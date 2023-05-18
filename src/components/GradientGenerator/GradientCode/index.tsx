@@ -7,11 +7,13 @@ const linesNumber = 6;
 
 interface GradientCodeProps {
   gradient: string;
+  resetGradient: () => void;
   addNewMessage: (newMessage: Omit<GeneralMessage, 'id'>) => void;
 }
 
 const GradientCode: React.FC<GradientCodeProps> = ({
   gradient,
+  resetGradient,
   addNewMessage,
 }) => {
   const handleCopyGradientCode = () => {
@@ -44,6 +46,14 @@ const GradientCode: React.FC<GradientCodeProps> = ({
       </div>
 
       <div className="gradient-code__bottom">
+        <button
+          type="button"
+          className="gradient-code__reset-btn"
+          onClick={resetGradient}
+        >
+          reset
+        </button>
+
         <button
           type="button"
           className="gradient-code__copy-btn"

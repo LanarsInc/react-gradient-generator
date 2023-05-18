@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import GradientHeader from './GradientHeader';
 import GradientPreview from './GradientPreview';
 import GradientActivePalette from './GradientActivePalette';
 import GradientTypeAndAngle from './GradientTypeAndAngle';
@@ -132,8 +131,6 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
 
   return (
     <div className="gradient-generator">
-      <GradientHeader resetGradient={resetGradient} />
-
       <div className="gradient-generator__main">
         <GradientPreview
           palettes={[...palettes]}
@@ -174,7 +171,11 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
         </div>
       </div>
 
-      <GradientCode gradient={gradient} addNewMessage={addNewMessage} />
+      <GradientCode
+        gradient={gradient}
+        resetGradient={resetGradient}
+        addNewMessage={addNewMessage}
+      />
     </div>
   );
 };

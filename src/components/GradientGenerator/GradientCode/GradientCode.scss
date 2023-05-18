@@ -19,7 +19,15 @@
   }
 
   &__bottom {
-    @include flex-center;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-items: center;
+    column-gap: 16px;
+  }
+
+  &__reset-btn {
+    @include oval-button(true, 110px);
   }
 
   &__copy-btn {

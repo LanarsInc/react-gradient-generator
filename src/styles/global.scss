@@ -2,7 +2,6 @@
 
 * {
   box-sizing: border-box;
-  transition: background-color 500ms ease-in-out;
 }
 
 html,
@@ -11,4 +10,8 @@ body {
   margin: 0;
   background-color: var(--background-color);
   font-family: $font-main-regular;
+}
+
+main {
+  padding: 20px 80px 42px;
 }

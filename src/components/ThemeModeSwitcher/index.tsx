@@ -7,7 +7,7 @@ import { ThemeMode } from '../../shared/constants';
 import './ThemeModeSwitcher.scss';
 
 interface ThemeModeSwitcherProps {
-  activeThemeMode: string | null;
+  activeThemeMode: ThemeMode | null;
   toggleThemeMode: () => void;
 }
 

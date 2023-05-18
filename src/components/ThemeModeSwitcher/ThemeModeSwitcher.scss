@@ -16,7 +16,6 @@ $animation-time: 700ms;
   outline: 2px solid $border-color;
   border-radius: 40px;
   cursor: pointer;
-  margin: 50px;
 
   &.dark {
     #{$this}__icon.moon {

@@ -1,7 +1,7 @@
-@use './../../../styles/abstracts' as *;
+@use '../../styles/abstracts/index' as *;
 
 
-.gradient-header {
+.header {
   width: 100%;
   height: 84px;
   display: grid;
@@ -30,9 +30,5 @@
     font-family: $font-main-bold;
     color: $title-color;
     line-height: 30px;
-  }
-
-  &__reset-btn {
-    @include oval-button(true, 110px);
   }
 }
