@@ -10,6 +10,12 @@
   }
 }
 
+@mixin theme-transition {
+  transition-property: color, background-color, border-color, fill, box-shadow;
+  transition-duration: 500ms;
+  transition-timing-function: ease-out;
+}
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -25,15 +31,16 @@
 
 @mixin chess-board {
   background-image:
-          linear-gradient(45deg, darken($border-color, 10%) 25%, transparent 25%),
-          linear-gradient(-45deg, darken($border-color, 10%) 25%, transparent 25%),
-          linear-gradient(45deg, transparent 75%, darken($border-color, 10%) 75%),
-          linear-gradient(-45deg, transparent 75%, darken($border-color, 10%) 75%);
+          linear-gradient(45deg, darken($board-color-light, 10%) 25%, transparent 25%),
+          linear-gradient(-45deg, darken($board-color-light, 10%) 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, darken($board-color-light, 10%) 75%),
+          linear-gradient(-45deg, transparent 75%, darken($board-color-light, 10%) 75%);
   background-size: 10px 10px;
   background-position: 0 0, 0 5px, 5px -5px, -5px 0px;
 }
 
 @mixin oval-button ($inverse: false, $width: null, $height: 52px) {
+  @include theme-transition;
   @include clickable-element;
   display: flex;
   justify-content: center;
@@ -42,11 +49,14 @@
   line-height: 20px;
   font-family: $font-main-semi-bold;
   text-transform: capitalize;
-  color: $white;
-  background-color: $primary-color;
+  color: var(--surface-color);
+  background-color: var(--primary-color);
   border-radius: 300px;
   padding: 0 30px;
-  transition: 300ms;
+
+  svg {
+    fill: var(--primary-color);
+  }
 
   @if $width {
     width: $width;
@@ -57,64 +67,83 @@
   }
 
   @if $inverse {
-    color: $primary-color;
-    background-color: $secondary-color;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+  }
+
+  &:hover {
+    background-color: var(--primary-hover);
+
+    @if $inverse {
+      background-color: var(--secondary-hover);
+    }
+  }
+
+  &:active {
+    background-color: var(--primary-active);
+
+    @if $inverse {
+      background-color: var(--secondary-active);
+    }
   }
 
   &:disabled {
     pointer-events: none;
     cursor: not-allowed;
-    color: $primary-disabled-text;
-    background-color: $primary-disabled;
+    color: var(--primary-disabled-content);
+    background-color: var(--primary-disabled);
 
-    @if $inverse {
-      color: $secondary-disabled-text;
-      background-color: $secondary-disabled;
+    svg {
+      fill: var(--primary-disabled-content);
     }
-  }
-
-  &:hover {
-    background-color: $primary-hover;
 
     @if $inverse {
-      background-color: $secondary-hover;
-    }
-  }
+      color: var(--secondary-disabled-content);
+      background-color: var(--secondary-disabled);
 
-  &:active {
-    background-color: $primary-active;
-
-    @if $inverse {
-      background-color: $secondary-active;
+      svg {
+        fill: var(--secondary-disabled-content);
+      }
     }
   }
 }
 
 @mixin oval-button-danger ($width: null, $height: 52px) {
   @include oval-button ($inverse: false, $width: $width, $height: $height);
-  background-color: $danger-color;
+  color: var(--error-content);
+  background-color: var(--error-color);
+
+  svg {
+    fill: var(--error-content);
+  }
 
   &:hover {
-    background-color: $danger-hover;
+    background-color: var(--error-hover);
   }
 
   &:active {
-    background-color: $danger-active;
+    background-color: var(--error-active);
   }
 
   &:disabled {
-    background-color: $danger-disabled;
+    color: var(--error-disabled-content);
+    background-color: var(--error-disabled);
+
+    svg {
+      fill: var(--error-disabled-content);
+    }
   }
 }
 
 @mixin oval-input ($width: null, $height: 52px) {
+  @include theme-transition;
   padding: 16px 24px;
   font-size: 16px;
   font-family: $font-main-semi-bold;
   line-height: 20px;
-  color: var(--input-text-color);
-  background-color: $white;
-  border: 2px solid $border-color;
+  color: var(--text-color);
+  background-color: var(--surface-color);
+  border: 2px solid var(--border-color);
   border-radius: 300px;
   outline: none;
 
@@ -131,6 +160,6 @@
   }
 
   &:focus {
-    border: 2px solid $primary-color;
+    border: 2px solid $primary-color-light;
   }
 }

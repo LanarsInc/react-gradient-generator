@@ -1,55 +1,84 @@
 @import 'fonts';
 
-// colors
-$primary-color: #7134f2;
-$primary-hover: #864ffa;
-$primary-active: #622bd4;
-$primary-disabled: #d3beff;
-$primary-disabled-text: #a984f9;
-
-$secondary-color: #f1ebfe;
-$secondary-hover: #f7f3ff;
-$secondary-active: #eae0ff;
-$secondary-disabled: #f1ebfe;
-$secondary-disabled-text: #c7adff;
-$secondary-border: #d4bfff;
-
-$danger-color: #fceff0;
-$danger-hover: #fef7f7;
-$danger-active: #ffe0e3;
-$danger-disabled: #fceff0;
-$danger-disabled-text: #f3acb2;
-
-$dark-blue-100: #1a1a33;
-$dark-blue-80: #2a2941;
-$dark-blue-60: #343250;
-$dark-blue-border: #514d7d;
-
-$title-color: #9134d7;
-$light-purple-color: #a981ff;
-$pale-purple-color: #7c78a9;
+// basic colors
+$primary-color-light: #7134f2;
+$secondary-color-light: #f1ebfe;
+$secondary-color-dark: #494775;
+$error-color-light: #fceff0;
+$error-color-dark: #ca434d;
 $white: #ffffff;
-
 $placeholder-color: #e9edf2;
-$border-color: #eef0f3;
+$board-color-light: #eef0f3;
+$border-color-dark: #514d7d;
+$surface-color-dark: #2a2941;
 $success-color: #32d9ab;
 
+// gradient code colors
+$gradient-code-header: #1a1a33;
+$gradient-code-contour: #343250;
+$gradient-code-key: #a981ff;
+$gradient-code-line: #7c78a9;
+
+// light theme colors
 html[data-theme="light"] {
+  --primary-color: #{$primary-color-light};
+  --primary-hover: #864ffa;
+  --primary-active: #622bd4;
+  --primary-disabled: #d3beff;
+  --primary-disabled-content: #a984f9;
+
+  --secondary-color: #{$secondary-color-light};
+  --secondary-hover: #f7f3ff;
+  --secondary-active: #eae0ff;
+  --secondary-disabled: #{$secondary-color-light};
+  --secondary-disabled-content: #c7adff;
+
+  --error-color: #{$error-color-light};
+  --error-content: #e45d68;
+  --error-hover: #fef7f7;
+  --error-active: #ffe0e3;
+  --error-disabled: #{$error-color-light};
+  --error-disabled-content: #f3acb2;
+
   --text-color: #2b223e;
-  --input-text-color: #2b223e;
+  --title-color: #9134d7;
   --background-color: #f8f8f8;
+  --surface-color: #{$white};
+  --selected-color: #dce0e7;
+  --border-color: #{$board-color-light};
   --theme-mode-switcher-color: #ffd600;
-  --theme-mode-switcher-bg: #f8f8f8;
-  --theme-mode-switcher-border: #eef0f3;
+  --angle-boundary-color: #d4bfff;
 }
 
+// dark theme colors
 html[data-theme="dark"] {
-  --text-color: #f8f8f8;
-  --input-text-color: #2b223e;
-  --background-color: #2b223e;
-  --theme-mode-switcher-color: #ffffff;
-  --theme-mode-switcher-bg: #25243e;
-  --theme-mode-switcher-border: #514d7d;
+  --primary-color: #cfb9ff;
+  --primary-hover: #dfcfff;
+  --primary-active: #bc9cff;
+  --primary-disabled: #665884;
+  --primary-disabled-content: #51446c;
+
+  --secondary-color: #{$secondary-color-dark};
+  --secondary-hover: #6562a2;
+  --secondary-active: #3e3c68;
+  --secondary-disabled: #{$secondary-color-dark};
+  --secondary-disabled-content: #6e6ca0;
+
+  --error-color: #{$error-color-dark};
+  --error-content: #ffd4d8;
+  --error-hover: #da737b;
+  --error-active: #b1353f;
+  --error-disabled: #{$error-color-dark};
+  --error-disabled-content: #e7656e;
+
+  --text-color: #{$white};
+  --title-color: #{$white};
+  --background-color: #25243e;
+  --surface-color: #{$surface-color-dark};
+  --selected-color: #635e9b;
+  --border-color: #{$border-color-dark};
+  --theme-mode-switcher-color: #{$white};
+  --angle-boundary-color: #{$border-color-dark};
 }
 
 // values
@@ -66,7 +95,6 @@ $font-code-semi-bold: 'SourceCodePro-SemiBold';
 
 //other
 $shadow: -2px 2px 8px rgba(111, 120, 129, 0.16);
-
 $break-points: (
   small: 600px,
   media: 992px,

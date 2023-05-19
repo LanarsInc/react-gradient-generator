@@ -213,7 +213,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
               onMouseMove={isMouseDown ? handleLinearCircleClick : undefined}
               onClick={handleLinearCircleClick}
             >
-              <AngleCircleIcon />
+              <AngleCircleIcon className="gradient-angle-linear__icon" />
               <div className="gradient-angle-linear__dot" />
             </div>
 
@@ -232,7 +232,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
           <div className="gradient-angle-radial__content">
             <div
               ref={circleAngleRef}
-              className="gradient-angle-radial__circle"
+              className="gradient-angle-radial__square"
               onMouseMove={isMouseDown ? handleRadialCircleClick : undefined}
               onClick={handleRadialCircleClick}
             >

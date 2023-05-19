@@ -1,5 +1,7 @@
 @use './../../styles/abstracts' as *;
 
+$animation-time: 300ms;
+$animation-timing-function: linear;
 
 .message-box {
   margin: 0 auto;
@@ -12,10 +14,10 @@
   padding: 18px 38px 18px 32px;
   background-color: $success-color;
   border-radius: 40px;
-  animation: 300ms linear slide_from_top;
+  animation: $animation-time $animation-timing-function slide_from_top;
 
   &.hide {
-    animation: 300ms linear forwards slide_to_top;
+    animation: $animation-time $animation-timing-function forwards slide_to_top;
   }
 
   &__text {

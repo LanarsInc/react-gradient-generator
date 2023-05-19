@@ -14,6 +14,7 @@
   }
 
   &__input {
+    @include theme-transition;
     -webkit-appearance: none;
     -moz-appearance: none;
     pointer-events: none;
@@ -31,15 +32,16 @@
 
     &.active {
       &::-webkit-slider-thumb {
-        box-shadow: $shadow, 0 0 0 2px $border-color;
+        box-shadow: $shadow, 0 0 0 2px var(--border-color);
       }
 
       &::-moz-range-thumb {
-        outline: 2px solid $border-color;
+        outline: 2px solid var(--border-color);
       }
     }
 
     &::-webkit-slider-thumb {
+      @include theme-transition;
       @include clickable-element;
       -webkit-appearance: none;
       appearance: none;
@@ -47,28 +49,30 @@
       width: 24px;
       height: 24px;
       background-color: var(--gradient-thumb-color, black);
-      border: 3px solid $white;
-      border-radius: 50%;
-
-      &:hover {
-        box-shadow: $shadow, 0 0 0 2px $border-color;
-      }
-    }
-
-    &::-moz-range-thumb {
-      @include clickable-element;
-      -moz-appearance: none;
-      appearance: none;
-      pointer-events: all;
-      width: 24px;
-      height: 24px;
-      background-color: var(--gradient-thumb-color, black);
-      border: 3px solid $white;
+      border: 3px solid var(--surface-color);
       border-radius: 50%;
       box-shadow: $shadow;
 
       &:hover {
-        outline: 2px solid $border-color;
+        box-shadow: $shadow, 0 0 0 2px var(--border-color);
+      }
+    }
+
+    &::-moz-range-thumb {
+      @include theme-transition;
+      @include clickable-element;
+      -moz-appearance: none;
+      appearance: none;
+      pointer-events: all;
+      width: 20px;
+      height: 20px;
+      background-color: var(--gradient-thumb-color, black);
+      border: 2px solid var(--surface-color);
+      border-radius: 50%;
+      box-shadow: $shadow;
+
+      &:hover {
+        box-shadow: $shadow, 0 0 0 2px var(--border-color);
       }
     }
   }

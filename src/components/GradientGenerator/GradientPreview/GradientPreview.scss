@@ -2,6 +2,7 @@
 
 
 .gradient-preview {
+  @include theme-transition;
   width: 591px;
   min-height: 496px;
   display: grid;
@@ -9,8 +10,8 @@
   grid-template-columns: 1fr;
   grid-row-gap: 22px;
   padding: 34px 32px 32px;
-  background-color: var(--background-color);
-  border: 2px solid $border-color;
+  background-color: var(--surface-color);
+  border: 2px solid var(--border-color);
   border-radius: 30px;
 
   &__panel {
@@ -20,10 +21,11 @@
   }
 
   &__gradient-container {
+    @include theme-transition;
     @include chess-board;
     width: 527px;
     height: 364px;
-    border: 2px solid $border-color;
+    border: 2px solid var(--border-color);
     border-radius: 20px;
     overflow: hidden;
   }
@@ -35,17 +37,18 @@
 }
 
 .gradient-preview-pallet {
+  @include theme-transition;
   @include clickable-element;
   @include flex-center;
   position: relative;
   width: 48px;
   height: 48px;
-  background-color: $white;
+  background-color: var(--surface-color);
   border: 2px solid transparent;
   border-radius: 50%;
 
   &.active {
-    border: 2px solid $border-color;
+    border: 2px solid var(--selected-color);
   }
 
   &:hover {
@@ -55,13 +58,15 @@
   }
 
   &__inner {
+    @include theme-transition;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid $border-color;
+    border: 1px solid var(--border-color);
   }
 
   &__delete-btn {
+    @include theme-transition;
     @include flex-center;
     display: flex;
     position: absolute;
@@ -70,10 +75,19 @@
     right: -4px;
     width: 18px;
     height: 18px;
-    background-color: $white;
+    background-color: var(--surface-color);
+    border: 1px solid transparent;
     border-radius: 50%;
     opacity: 0;
     transition: 300ms;
+
+    svg {
+      fill: var(--primary-color);
+    }
+
+    &:hover {
+      border-color: var(--border-color);
+    }
 
     &.canDelete {
       visibility: visible;

@@ -13,9 +13,11 @@ $animation-timing-function: linear;
   justify-content: center;
   align-items: center;
   column-gap: 11px;
-  background-color: var(--theme-mode-switcher-bg);
-  border: 1px solid var(--theme-mode-switcher-border);
-  transition: background-color $animation-time;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  transition-property: background-color, border;
+  transition-duration: $animation-time;
+  transition-timing-function: $animation-timing-function;
   border-radius: 20px;
   cursor: pointer;
 
@@ -63,7 +65,7 @@ $animation-timing-function: linear;
     height: 36px;
     background-color: var(--theme-mode-switcher-color);
     border-radius: 20px;
-    transition: background-color $animation-time;
+    transition: background-color $animation-time $animation-timing-function;
   }
 
   &__icon {
