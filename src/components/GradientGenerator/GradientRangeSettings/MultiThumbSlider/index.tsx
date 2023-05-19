@@ -60,16 +60,15 @@ const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
     const positionForInput = Math.round(
       (mousePosition * 100) / Number(variables.gradientPreviewWidth)
     );
+    const newPalette = {
+      id: uuidv4(),
+      color: 'rgba(0, 0, 0, 1)',
+      position: positionForInput,
+    };
 
     if (event.target === sliderContainerRef.current) {
-      setPalettes([
-        ...palettes,
-        {
-          id: uuidv4(),
-          color: 'rgba(0, 0, 0, 1)',
-          position: positionForInput,
-        },
-      ]);
+      setPalettes([...palettes, newPalette]);
+      setActivePalette(newPalette);
     }
   };
 
