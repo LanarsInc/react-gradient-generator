@@ -2,11 +2,11 @@
 .message-container {
   position: fixed;
   top: 34px;
-  width: 100%;
-  height: auto;
+  left: 50%;
   display: grid;
   grid-template-columns: 1fr;
   justify-content: center;
   gap: 10px;
+  translate: -50%;
 }
 
