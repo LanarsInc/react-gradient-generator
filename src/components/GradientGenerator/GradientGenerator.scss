@@ -5,7 +5,7 @@
   margin-top: 40px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  row-gap: 40px;
 
   &__main {
     @include mq(large) {
@@ -32,7 +32,7 @@
 .gradient-generator-settings {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  row-gap: 24px;
 
   &__top {
     height: 311px;

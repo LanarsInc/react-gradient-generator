@@ -16,11 +16,11 @@
 .gradient-type {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  row-gap: 20px;
 
   &__buttons-container {
     display: flex;
-    gap: 16px;
+    column-gap: 16px;
   }
 
   &__btn {
@@ -36,7 +36,7 @@
 .gradient-angle-radial {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  row-gap: 15px;
 }
 
 .gradient-angle-linear {
@@ -44,7 +44,7 @@
   &__content {
     @include flex-center;
     width: 178px;
-    gap: 26px;
+    column-gap: 26px;
   }
 
   &__circle {

@@ -4,9 +4,9 @@
   top: 34px;
   left: 50%;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: auto;
   justify-content: center;
-  gap: 10px;
+  row-gap: 16px;
   translate: -50%;
 }
 
