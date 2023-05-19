@@ -68,7 +68,6 @@
   &__delete-btn {
     @include theme-transition;
     @include flex-center;
-    display: flex;
     position: absolute;
     visibility: hidden;
     top: -4px;

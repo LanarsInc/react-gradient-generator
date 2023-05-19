@@ -42,8 +42,8 @@
 .gradient-angle-linear {
 
   &__content {
+    @include flex-center;
     width: 178px;
-    display: flex;
     gap: 26px;
   }
 

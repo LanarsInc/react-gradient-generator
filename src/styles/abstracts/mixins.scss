@@ -42,9 +42,7 @@
 @mixin oval-button ($inverse: false, $width: null, $height: 52px) {
   @include theme-transition;
   @include clickable-element;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
   font-size: 16px;
   line-height: 20px;
   font-family: $font-main-semi-bold;
