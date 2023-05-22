@@ -5,7 +5,7 @@ import { KeyNumberValue } from '../../../shared/types';
 import { useOutsideClick } from '../../../shared/hooks/useOutsideClick';
 import { Palette } from '../../../shared/types/interfaces';
 
-import { ReactComponent as DeleteIcon } from '../../../assets/svg/delete.svg';
+import { ReactComponent as TrashIcon } from '../../../assets/svg/trash.svg';
 
 import './GradientActivePalette.scss';
 
@@ -157,7 +157,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
           disabled={!canDeletePalette}
           onClick={() => handleDeletePalette(activePalette.id)}
         >
-          <DeleteIcon className="gradient-active-color__delete-icon" />
+          <TrashIcon className="gradient-active-color__delete-icon" />
         </button>
       </div>
     </div>

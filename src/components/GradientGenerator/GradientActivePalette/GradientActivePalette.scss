@@ -3,6 +3,7 @@
 
 .gradient-active-color {
   @include theme-transition;
+  $this: &;
   width: 591px;
   height: 189px;
   background-color: var(--surface-color);
@@ -119,5 +120,39 @@
   &__delete-btn {
     @include oval-button-danger(52px, 88px);
     padding: 0;
+
+    &:hover {
+      #{$this}__delete-icon path.trash-lid {
+        animation: trash-lid-jump 500ms ease-in-out forwards;
+      }
+    }
+  }
+
+  &__delete-icon path {
+    scale: 0.4;
+    transform-origin: center;
+  }
+}
+
+@keyframes trash-lid-jump {
+  25% {
+   rotate: -25deg;
+   translate: 0 -15px;
+  }
+  50% {
+    rotate: 15deg;
+    translate: 0 -7px;
+  }
+  65% {
+    rotate: 0;
+    translate: 0 0;
+  }
+  85% {
+    rotate: -8deg;
+    translate: 0 -2px;
+  }
+  100% {
+    rotate: 0;
+    translate: 0 0;
   }
 }
