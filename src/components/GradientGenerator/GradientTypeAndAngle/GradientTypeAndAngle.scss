@@ -50,24 +50,28 @@
   &__circle {
     @include clickable-element;
     @include flex-center;
+    position: relative;
     width: 62px;
     height: 62px;
-    position: relative;
+    scale: 1.6;
+    border-radius: 50%;
   }
 
   &__icon {
     @include theme-transition;
     fill: var(--angle-boundary-color);
+    scale: 0.625;
   }
 
   &__dot {
     @include theme-transition;
     position: absolute;
-    top: -3px;
+    top: 6px;
     left: 50%;
     width: 16px;
     height: 16px;
-    transform: translateX(-50%);
+    translate: -50%;
+    scale: 0.625;
     border-radius: 50%;
     background-color: var(--primary-color);
   }
@@ -89,14 +93,18 @@
     width: 178px;
   }
 
+  &__square-wrapper {
+    @include clickable-element;
+    border-radius: 12px;
+    scale: 1.6;
+  }
+
   &__square {
     @include theme-transition;
-    @include clickable-element;
     position: relative;
-    width: 62px;
-    height: 62px;
-    outline: 2px solid var(--angle-boundary-color);
+    border: 2px solid var(--angle-boundary-color);
     border-radius: 12px;
+    scale: 0.625;
   }
 
   &__dot {

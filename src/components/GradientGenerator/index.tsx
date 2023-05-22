@@ -33,10 +33,10 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
   const handleGradientTypeChange = (type, angle) => {
     if (type === GradientTypes.LINEAR) {
       setGradientType(type);
-      setGradientPosition(angle ?? '0deg');
+      setGradientPosition(angle);
     } else {
       setGradientType(type);
-      setGradientPosition(angle ?? 'circle at 50% 50%');
+      setGradientPosition(angle);
     }
   };
 
