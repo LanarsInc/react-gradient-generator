@@ -44,7 +44,7 @@ const GradientRangeSettings: React.FC<GradientRangeSettingsProps> = ({
       className="gradient-range-settings__swap-btn"
       onClick={handleSwapColors}
     >
-      <SwapIcon />
+      <SwapIcon className="gradient-range-settings__swap-icon" />
     </button>
   </div>
 );

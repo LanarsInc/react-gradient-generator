@@ -1,5 +1,7 @@
 @use './../../../styles/abstracts' as *;
 
+$swap-icon-animation-time: 500ms;
+$swap-icon-animation-timing-function: ease-in-out;
 
 .gradient-range-settings {
   @include theme-transition;
@@ -27,5 +29,74 @@
     @include oval-button(true, 52px);
     padding: 0;
     border-radius: 50%;
+  }
+
+  &__swap-icon {
+    scale: 0.55;
+
+    .line {
+      stroke-dasharray: 500;
+      stroke-dashoffset: 1000;
+    }
+
+    &:active {
+      .swap-top-arrow {
+        animation: top-arrow-move $swap-icon-animation-time $swap-icon-animation-timing-function forwards;
+      }
+
+      .swap-bottom-arrow {
+        animation: bottom-arrow-move $swap-icon-animation-time $swap-icon-animation-timing-function forwards;
+      }
+
+      .line {
+        animation: arrow-length $swap-icon-animation-time $swap-icon-animation-timing-function forwards;
+      }
+    }
+  }
+
+
+  @keyframes arrow-length {
+    25% {
+      stroke-dasharray: 525;
+    }
+    50% {
+      stroke-dasharray: 550;
+    }
+    75% {
+      stroke-dasharray: 525;
+    }
+    100% {
+      stroke-dasharray: 500;
+    }
+  }
+}
+
+@keyframes top-arrow-move {
+  25% {
+    translate: 100px;
+  }
+  50% {
+    translate: -100px;
+  }
+  75% {
+    translate: 100px;
+  }
+  100% {
+    translate: 0;
+  }
+}
+
+@keyframes bottom-arrow-move {
+  25% {
+    translate: -100px;
+  }
+  50% {
+    translate: 100px;
+  }
+  75% {
+    translate: -100px;
+  }
+  100% {
+    translate: 0;
   }
 }
