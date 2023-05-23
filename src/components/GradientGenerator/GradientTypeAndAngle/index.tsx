@@ -202,10 +202,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
               ref={pickZoneRef}
               className="gradient-angle-linear__circle"
               style={{
-                transform: `rotate(${parseInt(
-                  angelInDegree as string,
-                  10
-                )}deg)`,
+                rotate: `${parseInt(angelInDegree as string, 10)}deg`,
               }}
               onMouseMove={isMouseDown ? handleLinearCircleClick : undefined}
               onClick={handleLinearCircleClick}

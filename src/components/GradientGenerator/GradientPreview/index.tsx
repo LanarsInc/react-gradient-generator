@@ -43,7 +43,7 @@ const GradientPreview: React.FC<GradientPreviewProps> = ({
               })}
               onClick={() => handleDeletePalette(pallet.id)}
             >
-              <CloseIcon />
+              <CloseIcon className="gradient-preview-pallet__delete-icon" />
             </div>
           </div>
         ))}

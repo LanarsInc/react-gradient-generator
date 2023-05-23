@@ -78,11 +78,6 @@
     border: 1px solid transparent;
     border-radius: 50%;
     opacity: 0;
-    transition: 300ms;
-
-    svg {
-      fill: var(--primary-color);
-    }
 
     &:hover {
       border-color: var(--border-color);
@@ -91,5 +86,9 @@
     &.canDelete {
       visibility: visible;
     }
+  }
+
+  &__delete-icon {
+    fill: var(--primary-color);
   }
 }

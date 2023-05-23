@@ -113,7 +113,7 @@
     position: absolute;
     width: 16px;
     height: 16px;
-    transform: translate(-50%, -50%);
+    translate: -50% -50%;
     border-radius: 50%;
     background-color: var(--primary-color);
   }

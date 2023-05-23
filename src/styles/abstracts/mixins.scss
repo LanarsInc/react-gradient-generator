@@ -11,8 +11,8 @@
 }
 
 @mixin theme-transition {
-  transition-property: color, background-color, border-color, fill, box-shadow;
-  transition-duration: 500ms;
+  transition-property: color, background-color, border-color, fill, stroke, box-shadow;
+  transition-duration: $theme-transition-time;
   transition-timing-function: ease-out;
 }
 
@@ -53,18 +53,21 @@
   border-radius: 300px;
   padding: 0 30px;
   overflow: hidden;
-  transition: all 300ms ease-in-out;
+  transition:
+    scale 300ms ease-in-out,
+    color $theme-transition-time ease-out,
+    background-color $theme-transition-time ease-out;
+  z-index: 1;
 
   &::before {
     content: '';
     position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     border-radius: 300px;
     background-color: var(--primary-hover);
-    transition: top 300ms ease-in-out;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 300ms ease-in-out;
     z-index: -1;
 
     @if $inverse {
@@ -73,6 +76,7 @@
   }
 
   svg {
+    @include theme-transition;
     stroke: var(--primary-color);
     fill: var(--primary-color);
   }
@@ -94,7 +98,7 @@
     scale: 1.15;
 
     &:before {
-      top: 0;
+      transform: scaleY(1);
     }
   }
 
