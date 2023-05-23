@@ -1,5 +1,7 @@
 @use './../../../styles/abstracts' as *;
 
+$trash-icon-animation-time: 500ms;
+$trash-icon-animation-timing-function: ease-in-out;
 
 .gradient-active-color {
   @include theme-transition;
@@ -121,16 +123,21 @@
     @include oval-button-danger(52px, 88px);
     padding: 0;
 
-    &:hover {
-      #{$this}__delete-icon path.trash-lid {
-        animation: trash-lid-jump 500ms ease-in-out forwards;
+    &:active {
+      #{$this}__delete-icon .trash-lid {
+        animation: trash-lid-jump $trash-icon-animation-time $trash-icon-animation-timing-function forwards;
       }
     }
   }
 
-  &__delete-icon path {
-    scale: 0.4;
-    transform-origin: center;
+  &__delete-icon {
+    width: 52px;
+    height: 88px;
+
+    path {
+      scale: 0.4;
+      transform-origin: center;
+    }
   }
 }
 
