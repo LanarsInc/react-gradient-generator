@@ -1,7 +1,6 @@
 @import 'fonts';
 
 // basic colors
-$primary-color-light: #7134f2;
 $secondary-color-light: #f1ebfe;
 $secondary-color-dark: #494775;
 $error-color-light: #fceff0;
@@ -21,7 +20,7 @@ $gradient-code-line: #7c78a9;
 
 // light theme colors
 html[data-theme="light"] {
-  --primary-color: #{$primary-color-light};
+  --primary-color: #7134f2;
   --primary-hover: #864ffa;
   --primary-active: #622bd4;
   --primary-disabled: #d3beff;

@@ -1,6 +1,6 @@
 @use './../../../styles/abstracts' as *;
 
-$swap-icon-animation-time: 500ms;
+$swap-icon-animation-time: 700ms;
 $swap-icon-animation-timing-function: ease-in-out;
 
 .gradient-range-settings {
@@ -29,17 +29,8 @@ $swap-icon-animation-timing-function: ease-in-out;
     @include oval-button(true, 52px);
     padding: 0;
     border-radius: 50%;
-  }
 
-  &__swap-icon {
-    scale: 0.55;
-
-    .line {
-      stroke-dasharray: 500;
-      stroke-dashoffset: 1000;
-    }
-
-    &:active {
+    &:hover {
       .swap-top-arrow {
         animation: top-arrow-move $swap-icon-animation-time $swap-icon-animation-timing-function forwards;
       }
@@ -48,26 +39,34 @@ $swap-icon-animation-timing-function: ease-in-out;
         animation: bottom-arrow-move $swap-icon-animation-time $swap-icon-animation-timing-function forwards;
       }
 
-      .line {
+      .swap-arrow-line {
         animation: arrow-length $swap-icon-animation-time $swap-icon-animation-timing-function forwards;
       }
     }
   }
 
+  &__swap-icon {
+    scale: 0.55;
 
-  @keyframes arrow-length {
-    25% {
-      stroke-dasharray: 525;
-    }
-    50% {
-      stroke-dasharray: 550;
-    }
-    75% {
-      stroke-dasharray: 525;
-    }
-    100% {
+    .swap-arrow-line {
       stroke-dasharray: 500;
+      stroke-dashoffset: 1000;
     }
+  }
+}
+
+@keyframes arrow-length {
+  25% {
+    stroke-dasharray: 525;
+  }
+  50% {
+    stroke-dasharray: 550;
+  }
+  75% {
+    stroke-dasharray: 525;
+  }
+  100% {
+    stroke-dasharray: 500;
   }
 }
 

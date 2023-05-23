@@ -1,6 +1,6 @@
 @use './../../../styles/abstracts' as *;
 
-$trash-icon-animation-time: 500ms;
+$trash-icon-animation-time: 700ms;
 $trash-icon-animation-timing-function: ease-in-out;
 
 .gradient-active-color {
@@ -123,9 +123,9 @@ $trash-icon-animation-timing-function: ease-in-out;
     @include oval-button-danger(52px, 88px);
     padding: 0;
 
-    &:active {
+    &:hover {
       #{$this}__delete-icon .trash-lid {
-        animation: trash-lid-jump $trash-icon-animation-time $trash-icon-animation-timing-function forwards;
+        animation: trash-lid-jump $trash-icon-animation-time $trash-icon-animation-timing-function;
       }
     }
   }
