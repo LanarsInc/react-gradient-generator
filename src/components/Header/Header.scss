@@ -21,10 +21,6 @@
   align-items: center;
   grid-column-gap: 12px;
 
-  &__icon {
-    border-radius: 10px;
-  }
-
   &__title {
     @include theme-transition;
     margin: 0;
