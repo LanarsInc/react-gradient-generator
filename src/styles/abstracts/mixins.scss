@@ -53,6 +53,7 @@
   padding: 0 30px;
 
   svg {
+    stroke: var(--primary-color);
     fill: var(--primary-color);
   }
 
@@ -92,6 +93,7 @@
     background-color: var(--primary-disabled);
 
     svg {
+      stroke: var(--primary-disabled-content);
       fill: var(--primary-disabled-content);
     }
 
@@ -100,6 +102,7 @@
       background-color: var(--secondary-disabled);
 
       svg {
+        stroke: var(--secondary-disabled-content);
         fill: var(--secondary-disabled-content);
       }
     }
@@ -112,6 +115,7 @@
   background-color: var(--error-color);
 
   svg {
+    stroke: var(--error-content);
     fill: var(--error-content);
   }
 
@@ -128,6 +132,7 @@
     background-color: var(--error-disabled);
 
     svg {
+      stroke: var(--error-disabled-content);
       fill: var(--error-disabled-content);
     }
   }
