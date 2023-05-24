@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 800 800">
-  <g class="swap-top-arrow" stroke-width="53" fill="none" stroke-linecap="round" stroke-linejoin="round"
-     transform="matrix(0.7071067811865474,-0.7071067811865477,0.7071067811865477,0.7071067811865474,-197.68542494923804,265.0000000000001)">
-    <line class="swap-arrow-line" x1="250" y1="300" x2="550" y2="600" marker-end="url(#SvgMarkerRight)"></line>
+  <g class="swap-top-arrow" stroke-width="53" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <line class="swap-arrow-line" x1="155" y1="325" x2="615" y2="325" ></line>
+    <line x1="615" y1="325" x2="615" y2="325" marker-end="url(#SvgMarkerRight)" />
   </g>
   <defs>
     <marker markerWidth="6" markerHeight="6" refX="3" refY="3" viewBox="0 0 6 6" orient="auto" id="SvgMarkerRight">
@@ -10,8 +10,8 @@
     </marker>
   </defs>
 
-  <g class="swap-bottom-arrow" stroke-width="53" fill="none" stroke-linecap="round" stroke-linejoin="round"
-     transform="matrix(-0.7071067811865475,0.7071067811865476,-0.7071067811865476,-0.7071067811865475,997.685424949238,640)">
-    <line class="swap-arrow-line" x1="200" y1="328" x2="500" y2="623" marker-end="url(#SvgMarkerRight)"></line>
+  <g class="swap-bottom-arrow" stroke-width="53" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <line class="swap-arrow-line" x1="615" y1="550" x2="155" y2="550"></line>
+    <line x1="156" y1="550" x2="155" y2="550" marker-end="url(#SvgMarkerRight)"></line>
   </g>
 </svg>

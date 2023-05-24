@@ -48,6 +48,7 @@ $trash-icon-animation-timing-function: ease-in-out;
     position: absolute;
     top: 100px;
     left: 0;
+    z-index: 2;
   }
 
   &__inputs-container {

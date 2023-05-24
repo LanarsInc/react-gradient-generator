@@ -46,7 +46,9 @@ $swap-icon-animation-timing-function: ease-in-out;
   }
 
   &__swap-icon {
-    scale: 0.55;
+    width: 50px;
+    height: 50px;
+    scale: 0.6;
 
     .swap-arrow-line {
       stroke-dasharray: 500;
