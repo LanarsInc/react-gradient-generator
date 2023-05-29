@@ -52,6 +52,8 @@
   }
 
   &:hover {
+    transition: $hover-transition-time;
+
     .gradient-preview-pallet__delete-btn {
       opacity: 1;
     }
@@ -80,6 +82,7 @@
     opacity: 0;
 
     &:hover {
+      transition: $hover-transition-time;
       border-color: var(--border-color);
     }
 

@@ -99,6 +99,7 @@ $trash-icon-animation-timing-function: ease-in-out;
 
       &:hover {
         box-shadow: $shadow, 0 0 0 2px var(--border-color);
+        transition: $hover-transition-time;
       }
     }
 
@@ -116,6 +117,7 @@ $trash-icon-animation-timing-function: ease-in-out;
 
       &:hover {
         box-shadow: $shadow, 0 0 0 2px var(--border-color);
+        transition: $hover-transition-time;
       }
     }
   }

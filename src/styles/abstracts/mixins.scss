@@ -54,7 +54,7 @@
   padding: 0 30px;
   overflow: hidden;
   transition:
-    scale 300ms ease-in-out,
+    scale $hover-transition-time ease-in-out,
     color $theme-transition-time ease-out,
     background-color $theme-transition-time ease-out;
   z-index: 1;
@@ -67,7 +67,7 @@
     background-color: var(--primary-hover);
     transform: scaleY(0);
     transform-origin: bottom;
-    transition: transform 300ms ease-in-out;
+    transition: transform $hover-transition-time ease-in-out;
     z-index: -1;
 
     @if $inverse {
@@ -189,5 +189,6 @@
 
   &:focus {
     border: 2px solid var(--primary-color);
+    transition: $hover-transition-time;
   }
 }
