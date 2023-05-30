@@ -4,6 +4,7 @@ import { allowOnlyNumbers, hex2rgb, rgb2hex } from '../../../shared/utils';
 import { KeyNumberValue } from '../../../shared/types';
 import { useOutsideClick } from '../../../shared/hooks/useOutsideClick';
 import { Palette } from '../../../shared/types/interfaces';
+import { hexColorRegExp } from '../../../shared/constants';
 
 import { ReactComponent as TrashIcon } from '../../../assets/svg/trash.svg';
 
@@ -52,9 +53,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
   }, [activePalette.color]);
 
   const handleBlurColorInput = () => {
-    const validHEXInput = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
-      hexColor
-    );
+    const validHEXInput = hexColorRegExp.exec(hexColor);
 
     handleGradientColorChange(validHEXInput ? hexColor : '#000000');
   };
