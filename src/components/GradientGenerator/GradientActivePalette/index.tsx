@@ -4,7 +4,7 @@ import { allowOnlyNumbers, hex2rgb, rgb2hex } from '../../../shared/utils';
 import { KeyNumberValue } from '../../../shared/types';
 import { useOutsideClick } from '../../../shared/hooks/useOutsideClick';
 import { Palette } from '../../../shared/types/interfaces';
-import { hexColorRegExp } from '../../../shared/constants';
+import { defaultHexColor, hexColorRegExp } from '../../../shared/constants';
 
 import { ReactComponent as TrashIcon } from '../../../assets/svg/trash.svg';
 
@@ -24,7 +24,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
   handleDeletePalette,
 }) => {
   const [isShowColorPicker, setIsShowColorPicker] = useState<boolean>(false);
-  const [hexColor, setHexColor] = useState<string>('#000000');
+  const [hexColor, setHexColor] = useState<string>(defaultHexColor);
   const [rgbObject, setRgbObject] = useState<KeyNumberValue>({
     red: 255,
     green: 255,
@@ -52,10 +52,13 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
     setColorOpacityInput(`${opacity}%`);
   }, [activePalette.color]);
 
-  const handleBlurColorInput = () => {
-    const validHEXInput = hexColorRegExp.exec(hexColor);
-
-    handleGradientColorChange(validHEXInput ? hexColor : '#000000');
+  const handleBlurColorInput = (color) => {
+    if (hexColorRegExp.test(color)) {
+      handleGradientColorChange(hexColor);
+    } else {
+      setHexColor(defaultHexColor);
+      handleGradientColorChange(defaultHexColor);
+    }
   };
 
   const handleKeyDownColorInput = (event) => {
@@ -121,7 +124,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
               placeholder="Color"
               value={hexColor}
               onChange={(event) => setHexColor(event.target.value)}
-              onBlur={handleBlurColorInput}
+              onBlur={(event) => handleBlurColorInput(event.target.value)}
               onKeyDown={handleKeyDownColorInput}
             />
 

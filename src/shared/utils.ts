@@ -1,4 +1,4 @@
-import { hexColorRegExp } from './constants';
+import { defaultHexColor, hexColorRegExp } from './constants';
 import { Palette } from './types/interfaces';
 import { KeyNumberValue } from './types';
 
@@ -80,7 +80,7 @@ export const rgb2hex = (color: string | undefined): string => {
       ? `#${hexArray.slice(0, -1).join('')}`
       : `#${hexArray.join('')}`;
   }
-  return '#000000';
+  return defaultHexColor;
 };
 
 export const allowOnlyNumbers = (event: KeyboardEvent): void => {
