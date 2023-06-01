@@ -34,7 +34,6 @@ $trash-icon-animation-timing-function: ease-in-out;
   }
 
   &__preview {
-    @include theme-transition;
     @include clickable-element;
     display: flex;
     align-items: flex-end;
@@ -42,6 +41,7 @@ $trash-icon-animation-timing-function: ease-in-out;
     height: 92px;
     border: 2px solid var(--border-color);
     border-radius: 16px;
+    transition: border-color $theme-transition-time $theme-transition-timing-function;
   }
 
   &__picker-wrapper {
@@ -65,13 +65,13 @@ $trash-icon-animation-timing-function: ease-in-out;
   }
 
   &__slider-container {
-    @include theme-transition;
     @include chess-board;
     @include flex-center;
     width: 335px;
     height: 28px;
     border: 2px solid var(--border-color);
     border-radius: 20px;
+    transition: border-color $theme-transition-time $theme-transition-timing-function;
   }
 
   &__slider {
@@ -86,7 +86,6 @@ $trash-icon-animation-timing-function: ease-in-out;
     outline: none;
 
     &::-webkit-slider-thumb {
-      @include theme-transition;
       @include clickable-element;
       -webkit-appearance: none;
       appearance: none;
@@ -96,6 +95,7 @@ $trash-icon-animation-timing-function: ease-in-out;
       border: 3px solid var(--surface-color);
       border-radius: 50%;
       box-shadow: $shadow;
+      transition: border-color $theme-transition-time $theme-transition-timing-function;
 
       &:hover {
         box-shadow: $shadow, 0 0 0 2px var(--border-color);
@@ -104,7 +104,6 @@ $trash-icon-animation-timing-function: ease-in-out;
     }
 
     &::-moz-range-thumb {
-      @include theme-transition;
       @include clickable-element;
       -moz-appearance: none;
       appearance: none;
@@ -114,6 +113,7 @@ $trash-icon-animation-timing-function: ease-in-out;
       border: 2px solid var(--surface-color);
       border-radius: 50%;
       box-shadow: $shadow;
+      transition: border-color $theme-transition-time $theme-transition-timing-function;
 
       &:hover {
         box-shadow: $shadow, 0 0 0 2px var(--border-color);

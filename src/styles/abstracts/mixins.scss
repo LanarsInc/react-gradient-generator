@@ -13,7 +13,7 @@
 @mixin theme-transition {
   transition-property: color, background-color, border-color, fill, stroke, box-shadow;
   transition-duration: $theme-transition-time;
-  transition-timing-function: ease-out;
+  transition-timing-function: $theme-transition-timing-function;
 }
 
 @mixin flex-center {
