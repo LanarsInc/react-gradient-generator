@@ -13,7 +13,7 @@
   border-radius: 30px;
 
   @include mq(small) {
-    width: 591px;
+    width: $section-width;
   }
 
   &__panel {

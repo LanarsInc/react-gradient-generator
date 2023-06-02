@@ -25,7 +25,7 @@ const GradientRangeSettings: React.FC<GradientRangeSettingsProps> = ({
   setActivePalette,
   handleSwapColors,
 }) => (
-  <div className="gradient-range-settings">
+  <section className="gradient-range-settings">
     <div
       className="gradient-range-settings__slider-container"
       style={{ background: gradient }}
@@ -46,7 +46,7 @@ const GradientRangeSettings: React.FC<GradientRangeSettingsProps> = ({
     >
       <SwapIcon className="gradient-range-settings__swap-icon" />
     </button>
-  </div>
+  </section>
 );
 
 export default GradientRangeSettings;

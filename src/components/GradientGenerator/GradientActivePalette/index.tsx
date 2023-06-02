@@ -94,7 +94,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
   const { red, green, blue } = rgbObject;
 
   return (
-    <div className="gradient-active-color">
+    <section className="gradient-active-color">
       <h3 className="gradient-generator__subheader">Color</h3>
 
       <div className="gradient-active-color__content">
@@ -162,7 +162,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
           <TrashIcon className="gradient-active-color__delete-icon" />
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 

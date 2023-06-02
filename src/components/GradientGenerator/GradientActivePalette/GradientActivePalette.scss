@@ -16,7 +16,7 @@ $trash-icon-animation-timing-function: ease-in-out;
   border-bottom-right-radius: 30px;
 
   @include mq(small) {
-    width: 591px;
+    width: $section-width;
   }
 
   .gradient-generator__subheader {

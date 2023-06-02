@@ -16,7 +16,7 @@ $swap-icon-animation-timing-function: ease-in-out;
   border-top-right-radius: 30px;
 
   @include mq(small) {
-    width: 591px;
+    width: $section-width;
   }
 
   &__slider-container {

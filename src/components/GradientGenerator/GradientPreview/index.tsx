@@ -21,7 +21,7 @@ const GradientPreview: React.FC<GradientPreviewProps> = ({
   setActivePalette,
   handleDeletePalette,
 }) => (
-  <div className="gradient-preview">
+  <section className="gradient-preview">
     <div className="gradient-preview__panel">
       {palettes
         .sort((paletteA, paletteB) => paletteA.position - paletteB.position)
@@ -55,7 +55,7 @@ const GradientPreview: React.FC<GradientPreviewProps> = ({
         style={{ background: gradient }}
       />
     </div>
-  </div>
+  </section>
 );
 
 export default GradientPreview;

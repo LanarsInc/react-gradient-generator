@@ -26,7 +26,7 @@ const GradientCode: React.FC<GradientCodeProps> = ({
   };
 
   return (
-    <div className="gradient-code">
+    <section className="gradient-code">
       <div className="gradient-code__top">
         <div className="gradient-code-lines">
           {Array.from(Array(linesNumber).keys()).map((number) => (
@@ -63,7 +63,7 @@ const GradientCode: React.FC<GradientCodeProps> = ({
           Copy CSS
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 

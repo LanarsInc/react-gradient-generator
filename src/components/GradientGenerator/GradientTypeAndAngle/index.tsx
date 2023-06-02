@@ -157,7 +157,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
   };
 
   return (
-    <div className="gradient-type-and-angle">
+    <section className="gradient-type-and-angle">
       <div className="gradient-type">
         <h3 className="gradient-generator__subheader">Type</h3>
 
@@ -253,7 +253,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
