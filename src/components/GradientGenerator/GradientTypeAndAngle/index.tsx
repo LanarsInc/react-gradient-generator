@@ -30,22 +30,30 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
   const [radialYPosition, setRadialYPosition] = useState<number>(50);
 
   useEffect(() => {
-    document.addEventListener('mousedown', () => {
-      setIsMouseDown(true);
-    });
+    ['mousedown', 'touchstart'].forEach((event) =>
+      document.addEventListener(event, () => {
+        setIsMouseDown(true);
+      })
+    );
 
-    document.addEventListener('mouseup', () => {
-      setIsMouseDown(false);
-    });
+    ['mouseup', 'touchend'].forEach((event) =>
+      document.addEventListener(event, () => {
+        setIsMouseDown(false);
+      })
+    );
 
     return () => {
-      document.removeEventListener('mousedown', () => {
-        setIsMouseDown(true);
-      });
+      ['mousedown', 'touchstart'].forEach((event) =>
+        document.removeEventListener(event, () => {
+          setIsMouseDown(true);
+        })
+      );
 
-      document.removeEventListener('mouseup', () => {
-        setIsMouseDown(false);
-      });
+      ['mouseup', 'touchend'].forEach((event) =>
+        document.removeEventListener(event, () => {
+          setIsMouseDown(false);
+        })
+      );
     };
   }, []);
 
