@@ -25,35 +25,22 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
   const pickZoneRef = useRef<HTMLDivElement | null>(null);
 
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
+  const [isTouchStart, setIsTouchStart] = useState<boolean>(false);
   const [angelInDegree, setAngelInDegree] = useState<string>('0\xB0');
   const [radialXPosition, setRadialXPosition] = useState<number>(50);
   const [radialYPosition, setRadialYPosition] = useState<number>(50);
 
   useEffect(() => {
-    ['mousedown', 'touchstart'].forEach((event) =>
-      document.addEventListener(event, () => {
-        setIsMouseDown(true);
-      })
-    );
-
-    ['mouseup', 'touchend'].forEach((event) =>
-      document.addEventListener(event, () => {
-        setIsMouseDown(false);
-      })
-    );
+    document.addEventListener('mousedown', () => setIsMouseDown(true));
+    document.addEventListener('touchstart', () => setIsTouchStart(true));
+    document.addEventListener('mouseup', () => setIsMouseDown(false));
+    document.addEventListener('touchend', () => setIsTouchStart(false));
 
     return () => {
-      ['mousedown', 'touchstart'].forEach((event) =>
-        document.removeEventListener(event, () => {
-          setIsMouseDown(true);
-        })
-      );
-
-      ['mouseup', 'touchend'].forEach((event) =>
-        document.removeEventListener(event, () => {
-          setIsMouseDown(false);
-        })
-      );
+      document.removeEventListener('mousedown', () => setIsMouseDown(true));
+      document.removeEventListener('touchstart', () => setIsTouchStart(true));
+      document.removeEventListener('mouseup', () => setIsMouseDown(false));
+      document.removeEventListener('touchend', () => setIsTouchStart(false));
     };
   }, []);
 
@@ -213,6 +200,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
                 rotate: `${parseInt(angelInDegree as string, 10)}deg`,
               }}
               onMouseMove={isMouseDown ? handleLinearCircleClick : undefined}
+              onTouchMove={isTouchStart ? handleLinearCircleClick : undefined}
               onClick={handleLinearCircleClick}
             >
               <AngleCircleIcon className="gradient-angle-linear__icon" />
@@ -240,6 +228,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
               }}
               onClick={handleRadialSquareClick}
               onMouseMove={isMouseDown ? handleRadialSquareClick : undefined}
+              onTouchMove={isTouchStart ? handleRadialSquareClick : undefined}
             >
               <div
                 ref={pickZoneRef}

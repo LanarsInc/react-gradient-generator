@@ -49,7 +49,7 @@ const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
     if (sliders) {
       sliders.forEach((slider: HTMLElement) => {
         // eslint-disable-next-line no-param-reassign
-        slider.oninput = handleRangeChange;
+        slider.onchange = handleRangeChange;
         // eslint-disable-next-line no-param-reassign
         slider.ontouchmove = handleRangeChange;
       });
