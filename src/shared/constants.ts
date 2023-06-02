@@ -10,7 +10,7 @@ export enum ThemeMode {
 
 export const messageLifeTime = 3000;
 export const themeModeLocalStorageKey = 'gradient-generator-theme-mode';
-export const maxColorsCount = 19;
+export const maxColorsCount = 9;
 export const hexColorRegExp = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
 export const defaultHexColor = '#000000';
 export const defaultGradient =

@@ -90,6 +90,7 @@ $font-code-semi-bold: 'SourceCodePro-SemiBold';
 
 //other
 $section-width: 591px;
+$gradient-code-line-height: 25px;
 $shadow: -2px 2px 8px rgba(111, 120, 129, 0.16);
 $theme-transition-time: 500ms;
 $theme-transition-timing-function: ease-out;
@@ -100,3 +101,8 @@ $break-points: (
   medium: 1050px,
   large: 1350px,
 );
+
+:export {
+  gradientCodeLineHeight: $gradient-code-line-height,
+};
+

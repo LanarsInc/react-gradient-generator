@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { GeneralMessage } from '../../../shared/types/interfaces';
 import { messageLifeTime } from '../../../shared/constants';
+import variables from '../../../styles/abstracts/variables.scss';
 
 import './GradientCode.scss';
 
-const linesNumber = 7;
+const defaultLinesNumber = 6;
 
 interface GradientCodeProps {
   gradient: string;
@@ -17,6 +18,35 @@ const GradientCode: React.FC<GradientCodeProps> = ({
   resetGradient,
   addNewMessage,
 }) => {
+  const [linesNumber, setLinesNumber] = useState(defaultLinesNumber);
+  const codeContainerRef = useRef<HTMLSpanElement>(null);
+
+  const handleCalculateLinesNumber = () => {
+    const codeHeight = codeContainerRef.current?.offsetHeight ?? 100;
+    const neededLinesNumber = Math.ceil(
+      codeHeight / parseInt(variables.gradientCodeLineHeight, 10)
+    );
+
+    setLinesNumber(
+      neededLinesNumber > defaultLinesNumber
+        ? neededLinesNumber
+        : defaultLinesNumber
+    );
+  };
+
+  useEffect(() => {
+    document.fonts.ready.then(() => handleCalculateLinesNumber());
+    window.addEventListener('resize', handleCalculateLinesNumber);
+
+    return () => {
+      window.removeEventListener('resize', handleCalculateLinesNumber);
+    };
+  }, []);
+
+  useEffect(() => {
+    handleCalculateLinesNumber();
+  }, [gradient]);
+
   const handleCopyGradientCode = () => {
     navigator.clipboard.writeText(`background: ${gradient};`);
     addNewMessage({
@@ -39,9 +69,11 @@ const GradientCode: React.FC<GradientCodeProps> = ({
         <div className="gradient-code-label">CSS</div>
 
         <div className="gradient-code-preview">
-          <span className="gradient-code-preview__key">background</span>:
-          <span className="gradient-code-preview__value">
-            {` ${gradient};`}
+          <span ref={codeContainerRef}>
+            <span className="gradient-code-preview__key">background</span>:
+            <span className="gradient-code-preview__value">
+              {` ${gradient};`}
+            </span>
           </span>
         </div>
       </div>
