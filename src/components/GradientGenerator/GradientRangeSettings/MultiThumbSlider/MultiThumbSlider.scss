@@ -14,19 +14,18 @@
   }
 
   &__input {
-    @include theme-transition;
     -webkit-appearance: none;
     -moz-appearance: none;
     pointer-events: none;
     position: absolute;
-    border: none;
     left: 0;
     top: 50%;
-    width: $gradient-preview-width + px;
-    outline: none;
-    height: 8px;
     margin: 0;
     padding: 0;
+    width: $gradient-preview-width + px;
+    height: 8px;
+    border: none;
+    outline: none;
     transform: translateY(-50%);
     background-color: transparent;
 
@@ -36,12 +35,11 @@
       }
 
       &::-moz-range-thumb {
-        outline: 2px solid var(--border-color);
+        box-shadow: $shadow, 0 0 0 2px var(--border-color);
       }
     }
 
     &::-webkit-slider-thumb {
-      @include theme-transition;
       @include clickable-element;
       -webkit-appearance: none;
       appearance: none;
@@ -52,6 +50,9 @@
       border: 3px solid var(--surface-color);
       border-radius: 50%;
       box-shadow: $shadow;
+      transition:
+        border-color $theme-transition-time $theme-transition-timing-function,
+        box-shadow $theme-transition-time $theme-transition-timing-function;
 
       &:hover {
         box-shadow: $shadow, 0 0 0 2px var(--border-color);
@@ -60,7 +61,6 @@
     }
 
     &::-moz-range-thumb {
-      @include theme-transition;
       @include clickable-element;
       -moz-appearance: none;
       appearance: none;
@@ -71,6 +71,9 @@
       border: 2px solid var(--surface-color);
       border-radius: 50%;
       box-shadow: $shadow;
+      transition:
+        border-color $theme-transition-time $theme-transition-timing-function,
+        box-shadow $theme-transition-time $theme-transition-timing-function;
 
       &:hover {
         box-shadow: $shadow, 0 0 0 2px var(--border-color);
