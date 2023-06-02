@@ -17,6 +17,11 @@ $switcher-animation-timing-function: linear;
   transition-timing-function: $switcher-animation-timing-function;
   border-radius: 20px;
   cursor: pointer;
+  scale: 0.8;
+
+  @include mq(extraSmall) {
+    scale: 1;
+  }
 
   &.dark {
     #{$this}__icon.moon {

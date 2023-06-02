@@ -9,19 +9,22 @@ $message-animation-timing-function: linear;
   grid-template-columns: 1fr auto;
   align-items: center;
   column-gap: 10px;
-  width: 377px;
+  width: 300px;
   height: auto;
   padding: 18px 38px 18px 32px;
   background-color: $success-color;
   border-radius: 40px;
   animation: $message-animation-time $message-animation-timing-function slide_from_top;
 
+  @include mq(extraSmall) {
+    width: 377px;
+  }
+
   &.hide {
     animation: $message-animation-time $message-animation-timing-function forwards slide_to_top;
   }
 
   &__text {
-    margin: 0;
     color: $white;
     font-size: 16px;
     font-family: $font-main-bold;

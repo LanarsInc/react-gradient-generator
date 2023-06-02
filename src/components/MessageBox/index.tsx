@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { ReactComponent as CloseIconBig } from '../../assets/svg/close-big.svg';
 import { GeneralMessage } from '../../shared/types/interfaces';
+
+import { ReactComponent as CloseIconBig } from '../../assets/svg/close-big.svg';
 
 import './MessageBox.scss';
 
@@ -17,19 +18,12 @@ const MessageBox: React.FC<MessageBoxProps> = ({
   const messageRef = useRef<HTMLDivElement | null>(null);
 
   const handleCloseMessage = useCallback(() => {
-    if (messageRef.current) {
-      messageRef.current.classList.add('hide');
-    }
-
-    setTimeout(() => {
-      onClose(id);
-    }, 600);
+    messageRef.current?.classList.add('hide');
+    setTimeout(() => onClose(id), 600);
   }, [id, onClose]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      handleCloseMessage();
-    }, lifeTime);
+    const timer = setTimeout(() => handleCloseMessage(), lifeTime);
 
     return () => clearTimeout(timer);
   }, [lifeTime, handleCloseMessage]);

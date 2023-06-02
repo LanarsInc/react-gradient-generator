@@ -1,6 +1,8 @@
 @use 'abstracts' as *;
 
-* {
+*,
+*::after,
+*::before, {
   box-sizing: border-box;
 }
 
@@ -13,6 +15,18 @@ body {
   font-family: $font-main-regular;
 }
 
+h1, h3, p {
+  margin: 0;
+}
+
 main {
-  padding: 20px 80px 42px;
+  padding: 10px 20px 20px;
+
+  @include mq(extraSmall) {
+    padding: 15px 40px 30px;
+  }
+
+  @include mq(small) {
+    padding: 20px 80px 42px;
+  }
 }

@@ -1,10 +1,9 @@
 @use './../../../styles/abstracts' as *;
 
-
 .gradient-code {
-  height: 361px;
+  min-height: 361px;
   display: grid;
-  grid-template-rows: minmax(216px, 1fr) 84px;
+  grid-template-rows: minmax(216px, 1fr) auto;
   background-color: $gradient-code-contour;
   border: 2px solid $border-color-dark;
   border-radius: 30px;
@@ -19,15 +18,24 @@
   }
 
   &__bottom {
-    display: grid;
-    grid-template-columns: auto auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    column-gap: 16px;
+    gap: 16px;
+
+    @include mq(small) {
+      flex-direction: row;
+    }
   }
 
   &__reset-btn {
-    @include oval-button(true, 110px);
+    @include oval-button(true, 200px);
+
+    @include mq(small) {
+      @include oval-button(true, 110px);
+    }
   }
 
   &__copy-btn {
@@ -43,7 +51,6 @@
 }
 
 .gradient-code-line {
-  margin: 0;
   font-size: 16px;
   line-height: 25px;
   font-family: $font-code-regular;

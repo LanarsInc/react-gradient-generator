@@ -1,6 +1,7 @@
 import React from 'react';
 import ThemeModeSwitcher from '../ThemeModeSwitcher';
 import { ThemeMode } from '../../shared/constants';
+
 import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
 
 import './Header.scss';

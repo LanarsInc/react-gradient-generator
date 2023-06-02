@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import classnames from 'classnames';
+import { ThemeMode } from '../../shared/constants';
+
 import { ReactComponent as SunIcon } from '../../assets/svg/sun.svg';
 import { ReactComponent as MoonIcon } from '../../assets/svg/moon.svg';
-import { ThemeMode } from '../../shared/constants';
 
 import './ThemeModeSwitcher.scss';
 

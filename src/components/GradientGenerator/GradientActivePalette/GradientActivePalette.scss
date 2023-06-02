@@ -6,15 +6,18 @@ $trash-icon-animation-timing-function: ease-in-out;
 .gradient-active-color {
   @include theme-transition;
   $this: &;
-  width: 591px;
-  height: 189px;
-  background-color: var(--surface-color);
+  min-height: 189px;
   padding: 24px 32px 32px 32px;
+  background-color: var(--surface-color);
   border-left: 2px solid var(--border-color);
   border-right: 2px solid var(--border-color);
   border-bottom: 2px solid var(--border-color);
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
+
+  @include mq(small) {
+    width: 591px;
+  }
 
   .gradient-generator__subheader {
     margin-bottom: 16px;
@@ -23,18 +26,20 @@ $trash-icon-animation-timing-function: ease-in-out;
   &__content {
     position: relative;
     display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-column-gap: 24px;
+    grid-template-columns: auto auto;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 24px;
 
-    & > div {
-      display: flex;
-      flex-direction: column;
-      row-gap: 16px;
+    @include mq(small) {
+      grid-template-columns: auto 1fr auto;
+      grid-template-rows: 1fr;
+      grid-column-gap: 24px;
     }
   }
 
   &__preview {
     @include clickable-element;
+    grid-column: 1 / 2;
     display: flex;
     align-items: flex-end;
     width: 92px;
@@ -42,6 +47,10 @@ $trash-icon-animation-timing-function: ease-in-out;
     border: 2px solid var(--border-color);
     border-radius: 16px;
     transition: border-color $theme-transition-time $theme-transition-timing-function;
+
+    @include mq(small) {
+      grid-column: unset;
+    }
   }
 
   &__picker-wrapper {
@@ -51,8 +60,22 @@ $trash-icon-animation-timing-function: ease-in-out;
     z-index: 2;
   }
 
+  &__settings {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    grid-column: 1 / 3;
+    grid-row: 2;
+
+    @include mq(small) {
+      grid-column: unset;
+      grid-row: unset;
+    }
+  }
+
   &__inputs-container {
     display: flex;
+    column-gap: 10px;
     justify-content: space-between;
   }
 
@@ -67,11 +90,14 @@ $trash-icon-animation-timing-function: ease-in-out;
   &__slider-container {
     @include chess-board;
     @include flex-center;
-    width: 335px;
     height: 28px;
     border: 2px solid var(--border-color);
     border-radius: 20px;
     transition: border-color $theme-transition-time $theme-transition-timing-function;
+
+    @include mq(small) {
+      width: 335px;
+    }
   }
 
   &__slider {
@@ -79,11 +105,15 @@ $trash-icon-animation-timing-function: ease-in-out;
     -webkit-appearance: none;
     -moz-appearance: none;
     margin: 0;
-    width: 337px;
+    width: 100%;
     height: 24px;
     border-radius: 20px;
     appearance: none;
     outline: none;
+
+    @include mq(small) {
+      width: 337px;
+    }
 
     &::-webkit-slider-thumb {
       @include clickable-element;
@@ -125,6 +155,14 @@ $trash-icon-animation-timing-function: ease-in-out;
   &__delete-btn {
     @include oval-button-danger(52px, 88px);
     padding: 0;
+    grid-column: 2 / 3;
+    grid-row: 1;
+    justify-self: end;
+
+    @include mq(small) {
+      grid-column: unset;
+      grid-row: unset;
+    }
 
     &:hover {
       #{$this}__delete-icon .trash-lid {

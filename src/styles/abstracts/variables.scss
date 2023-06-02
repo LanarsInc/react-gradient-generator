@@ -80,10 +80,6 @@ html[data-theme="dark"] {
   --angle-boundary-color: #{$border-color-dark};
 }
 
-// values
-$gradient-preview-width: 451;
-$gradient-preview-height: 52;
-
 // fonts
 $font-main-regular: 'Quicksand-Regular';
 $font-main-semi-bold: 'Quicksand-SemiBold';
@@ -98,11 +94,8 @@ $theme-transition-time: 500ms;
 $theme-transition-timing-function: ease-out;
 $hover-transition-time: 300ms;
 $break-points: (
-  small: 600px,
-  media: 992px,
+  extraSmall: 450px,
+  small: 750px,
+  medium: 1050px,
   large: 1350px,
 );
-
-:export {
-  gradientPreviewWidth: $gradient-preview-width,
-};

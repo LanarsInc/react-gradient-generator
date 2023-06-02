@@ -4,7 +4,7 @@ import { messageLifeTime } from '../../../shared/constants';
 
 import './GradientCode.scss';
 
-const linesNumber = 6;
+const linesNumber = 7;
 
 interface GradientCodeProps {
   gradient: string;

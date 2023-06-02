@@ -1,7 +1,6 @@
 @use 'variables' as *;
 @use 'sass:map';
 
-
 @mixin mq($key) {
   $size: map.get($break-points, $key);
 

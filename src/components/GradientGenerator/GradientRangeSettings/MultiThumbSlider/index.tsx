@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
 import { rgb2hex } from '../../../../shared/utils';
 import { Palette } from '../../../../shared/types/interfaces';
-import variables from '../../../../styles/abstracts/variables.scss';
 
 import './MultiThumbSlider.scss';
 
@@ -58,7 +57,7 @@ const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
   const handleAddNewSlider = (event) => {
     const mousePosition = event.nativeEvent.offsetX;
     const positionForInput = Math.round(
-      (mousePosition * 100) / Number(variables.gradientPreviewWidth)
+      (mousePosition * 100) / Number(sliderContainerRef.current?.offsetWidth)
     );
     const newPalette = {
       id: uuidv4(),

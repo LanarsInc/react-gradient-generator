@@ -1,9 +1,7 @@
 @use './../../../styles/abstracts' as *;
 
-
 .gradient-preview {
   @include theme-transition;
-  width: 591px;
   min-height: 496px;
   display: grid;
   grid-template-rows: auto 1fr;
@@ -14,6 +12,10 @@
   border: 2px solid var(--border-color);
   border-radius: 30px;
 
+  @include mq(small) {
+    width: 591px;
+  }
+
   &__panel {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(38px, 38px));
@@ -23,8 +25,7 @@
   &__gradient-container {
     @include theme-transition;
     @include chess-board;
-    width: 527px;
-    height: 364px;
+    min-height: 364px;
     border: 2px solid var(--border-color);
     border-radius: 20px;
     overflow: hidden;
@@ -81,13 +82,13 @@
     border-radius: 50%;
     opacity: 0;
 
+    &.canDelete {
+      visibility: visible;
+    }
+
     &:hover {
       transition: $hover-transition-time;
       border-color: var(--border-color);
-    }
-
-    &.canDelete {
-      visibility: visible;
     }
   }
 

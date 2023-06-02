@@ -117,7 +117,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
           </div>
         )}
 
-        <div>
+        <div className="gradient-active-color__settings">
           <div className="gradient-active-color__inputs-container">
             <input
               className="gradient-active-color__input"
