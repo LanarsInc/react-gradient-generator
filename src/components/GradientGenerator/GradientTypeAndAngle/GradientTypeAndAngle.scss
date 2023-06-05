@@ -60,6 +60,7 @@
     height: 62px;
     scale: 1.6;
     border-radius: 50%;
+    touch-action: none;
   }
 
   &__icon {
@@ -102,6 +103,7 @@
     @include clickable-element;
     border-radius: 12px;
     scale: 1.6;
+    touch-action: none;
   }
 
   &__square {
