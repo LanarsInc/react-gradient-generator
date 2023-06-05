@@ -1,75 +1,55 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
 import { rgb2hex } from '../../../../shared/utils';
+import { maxColorsCount } from '../../../../shared/constants';
 import { Palette } from '../../../../shared/types/interfaces';
 
 import './MultiThumbSlider.scss';
 
 interface MultiThumbSliderProps {
-  maxColorsCount: number;
   palettes: Palette[];
-  activePalette: Palette | null;
+  activePaletteId: string | undefined;
   setPalettes: (palettes: Palette[]) => void;
   setActivePalette: (palette: Palette) => void;
 }
 
 const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
-  maxColorsCount,
   palettes,
-  activePalette,
+  activePaletteId,
   setPalettes,
   setActivePalette,
 }) => {
   const sliderContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const handleRangeChange = useCallback(() => {
-    const sliders = sliderContainerRef.current?.querySelectorAll(
-      '.multi-thumb-slider__input'
+  const handleColorPositionChange = (value: string, paletteId: string) => {
+    const newPalettes = [...palettes];
+    const neededPalette = newPalettes.find(
+      (palette) => palette.id === paletteId
     );
 
-    if (sliders) {
-      const newPalettesArray = Array.from(sliders).map(
-        (element: HTMLInputElement) => ({
-          id: element.dataset.id ?? uuidv4(),
-          position: parseInt(element.value, 10),
-          color: element.dataset.color ?? 'rgba(0, 0, 0, 1)',
-        })
-      );
-
-      setPalettes(newPalettesArray);
+    if (neededPalette) {
+      neededPalette.position = parseInt(value, 10);
+      setPalettes(newPalettes);
     }
-  }, [setPalettes]);
+  };
 
-  useEffect(() => {
-    const sliders = sliderContainerRef.current?.querySelectorAll(
-      '.multi-thumb-slider__input'
-    );
-
-    if (sliders) {
-      sliders.forEach((slider: HTMLElement) => {
-        // eslint-disable-next-line no-param-reassign
-        slider.oninput = handleRangeChange;
-        // eslint-disable-next-line no-param-reassign
-        slider.ontouchmove = handleRangeChange;
-      });
-    }
-  }, [palettes, handleRangeChange]);
-
-  const handleAddNewSlider = (event) => {
-    const mousePosition = event.nativeEvent.offsetX;
-    const positionForInput = Math.round(
-      (mousePosition * 100) / Number(sliderContainerRef.current?.offsetWidth)
-    );
-    const newPalette = {
-      id: uuidv4(),
-      color: 'rgba(0, 0, 0, 1)',
-      position: positionForInput,
-    };
-
+  const handleAddNewColor = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     if (event.target === sliderContainerRef.current) {
-      setPalettes([...palettes, newPalette]);
+      const mousePosition = event.nativeEvent.offsetX;
+      const positionForInput = Math.round(
+        (mousePosition * 100) / Number(sliderContainerRef.current?.offsetWidth)
+      );
+      const newPalette = {
+        id: uuidv4(),
+        color: 'rgba(0, 0, 0, 1)',
+        position: positionForInput,
+      };
+
       setActivePalette(newPalette);
+      setPalettes([...palettes, newPalette]);
     }
   };
 
@@ -79,26 +59,26 @@ const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
       className={classnames('multi-thumb-slider', {
         limit: palettes.length >= maxColorsCount,
       })}
-      onClick={handleAddNewSlider}
+      onClick={handleAddNewColor}
     >
       {palettes.map((palette) => (
         <input
           key={palette.id}
           className={classnames('multi-thumb-slider__input', {
-            active: activePalette?.id === palette.id,
+            active: activePaletteId === palette.id,
           })}
           style={{
             ['--gradient-thumb-color' as string]: rgb2hex(palette.color),
           }}
-          onClick={() => setActivePalette(palette)}
-          data-color={palette.color}
-          data-id={palette.id}
           value={palette.position}
-          readOnly
+          onClick={() => setActivePalette(palette)}
+          onChange={(event) =>
+            handleColorPositionChange(event.target.value, palette.id)
+          }
+          type="range"
           min="0"
           max="100"
           step="1"
-          type="range"
         />
       ))}
     </div>

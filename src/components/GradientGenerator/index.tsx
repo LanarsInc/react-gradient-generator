@@ -6,11 +6,7 @@ import GradientTypeAndAngle from './GradientTypeAndAngle';
 import GradientRangeSettings from './GradientRangeSettings';
 import GradientCode from './GradientCode';
 import { hex2rgb, splitGradientString } from '../../shared/utils';
-import {
-  defaultGradient,
-  GradientTypes,
-  maxColorsCount,
-} from '../../shared/constants';
+import { defaultGradient, GradientTypes } from '../../shared/constants';
 import { GeneralMessage, Palette } from '../../shared/types/interfaces';
 
 import './GradientGenerator.scss';
@@ -105,23 +101,6 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
     }
   };
 
-  const handleSwapColors = () => {
-    const sortedPallets = [...palettes].sort(
-      (paletteA, paletteB) => paletteA.position - paletteB.position
-    );
-    const reversePositions = sortedPallets
-      .map((palette) => palette.position)
-      .reverse();
-    const swappedPalettes = sortedPallets
-      .map((palette, paletteIndex) => ({
-        ...palette,
-        position: reversePositions[paletteIndex],
-      }))
-      .sort((paletteA, paletteB) => paletteA.position - paletteB.position);
-
-    setPalettes(swappedPalettes);
-  };
-
   const handleDeletePalette = (paletteId) => {
     const filteredPalettes = palettes.filter(
       (palette) => palette.id !== paletteId
@@ -146,12 +125,10 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
           <div className="gradient-generator-settings__top">
             <GradientRangeSettings
               gradient={gradient}
-              maxColorsCount={maxColorsCount}
               palettes={palettes}
-              activePalette={activePalette}
+              activePaletteId={activePalette?.id}
               setPalettes={setPalettes}
               setActivePalette={setActivePalette}
-              handleSwapColors={handleSwapColors}
             />
 
             {activePalette && (

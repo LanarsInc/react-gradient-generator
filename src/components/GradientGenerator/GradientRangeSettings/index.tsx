@@ -8,45 +8,59 @@ import './GradientSlider.scss';
 
 interface GradientRangeSettingsProps {
   gradient: string;
-  maxColorsCount: number;
   palettes: Palette[];
-  activePalette: Palette | null;
+  activePaletteId: string | undefined;
   setPalettes: (palettes: Palette[]) => void;
   setActivePalette: (palette: Palette) => void;
-  handleSwapColors: () => void;
 }
 
 const GradientRangeSettings: React.FC<GradientRangeSettingsProps> = ({
   gradient,
-  maxColorsCount,
   palettes,
-  activePalette,
+  activePaletteId,
   setPalettes,
   setActivePalette,
-  handleSwapColors,
-}) => (
-  <section className="gradient-range-settings">
-    <div
-      className="gradient-range-settings__slider-container"
-      style={{ background: gradient }}
-    >
-      <MultiThumbSlider
-        maxColorsCount={maxColorsCount}
-        palettes={palettes}
-        activePalette={activePalette}
-        setPalettes={setPalettes}
-        setActivePalette={setActivePalette}
-      />
-    </div>
+}) => {
+  const handleSwapColors = () => {
+    const sortedPallets = [...palettes].sort(
+      (paletteA, paletteB) => paletteA.position - paletteB.position
+    );
+    const reversePositions = sortedPallets
+      .map((palette) => palette.position)
+      .reverse();
+    const swappedPalettes = sortedPallets
+      .map((palette, paletteIndex) => ({
+        ...palette,
+        position: reversePositions[paletteIndex],
+      }))
+      .sort((paletteA, paletteB) => paletteA.position - paletteB.position);
 
-    <button
-      type="button"
-      className="gradient-range-settings__swap-btn"
-      onClick={handleSwapColors}
-    >
-      <SwapIcon className="gradient-range-settings__swap-icon" />
-    </button>
-  </section>
-);
+    setPalettes(swappedPalettes);
+  };
+
+  return (
+    <section className="gradient-range-settings">
+      <div
+        className="gradient-range-settings__slider-container"
+        style={{ background: gradient }}
+      >
+        <MultiThumbSlider
+          palettes={palettes}
+          activePaletteId={activePaletteId}
+          setPalettes={setPalettes}
+          setActivePalette={setActivePalette}
+        />
+      </div>
+
+      <button
+        type="button"
+        className="gradient-range-settings__swap-btn"
+        onClick={handleSwapColors}
+      >
+        <SwapIcon className="gradient-range-settings__swap-icon" />
+      </button>
+    </section>
+  );
+};
 
 export default GradientRangeSettings;
