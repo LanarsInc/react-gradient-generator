@@ -52,7 +52,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
     setColorOpacityInput(`${opacity}%`);
   }, [activePalette.color]);
 
-  const handleBlurColorInput = (color) => {
+  const handleBlurColorInput = (color: string) => {
     if (hexColorRegExp.test(color)) {
       handleGradientColorChange(hexColor);
     } else {
@@ -67,7 +67,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
     }
   };
 
-  const handleChangeColorOpacity = (value) => {
+  const handleChangeColorOpacity = (value: string) => {
     const { red, green, blue } = rgbObject;
     let opacity = !value ? 0 : parseInt(value, 10);
 
@@ -139,15 +139,15 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
 
           <div className="gradient-active-color__slider-container">
             <input
-              id="myRange"
               className="gradient-active-color__slider"
-              type="range"
-              min="0"
-              max="100"
               style={{
                 ['--slider-thumb-color' as string]: hexColor,
                 background: `linear-gradient(to right, rgba(${red}, ${green}, ${blue}, 0), rgba(${red}, ${green}, ${blue}, 1))`,
               }}
+              type="range"
+              min="0"
+              max="100"
+              step="1"
               value={colorOpacity}
               onChange={(event) => handleChangeColorOpacity(event.target.value)}
             />

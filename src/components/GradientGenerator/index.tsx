@@ -114,9 +114,9 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
     <div className="gradient-generator">
       <div className="gradient-generator__main">
         <GradientPreview
-          palettes={[...palettes]}
-          activePaletteId={activePalette?.id}
           gradient={gradient}
+          palettes={palettes}
+          activePaletteId={activePalette?.id}
           setActivePalette={setActivePalette}
           handleDeletePalette={handleDeletePalette}
         />

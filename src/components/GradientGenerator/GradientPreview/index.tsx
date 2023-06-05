@@ -7,23 +7,23 @@ import { ReactComponent as CloseIcon } from '../../../assets/svg/close.svg';
 import './GradientPreview.scss';
 
 interface GradientPreviewProps {
+  gradient: string;
   palettes: Palette[];
   activePaletteId: string | undefined;
-  gradient: string;
   setActivePalette: (palette: Palette) => void;
   handleDeletePalette: (paletteId: string) => void;
 }
 
 const GradientPreview: React.FC<GradientPreviewProps> = ({
+  gradient,
   palettes,
   activePaletteId,
-  gradient,
   setActivePalette,
   handleDeletePalette,
 }) => (
   <section className="gradient-preview">
     <div className="gradient-preview__panel">
-      {palettes
+      {[...palettes]
         .sort((paletteA, paletteB) => paletteA.position - paletteB.position)
         .map((pallet) => (
           <div

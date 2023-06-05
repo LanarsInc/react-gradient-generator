@@ -70,11 +70,16 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
       const xCircleCenter = (left + right) / 2;
       const yCircleCenter = (top + bottom) / 2;
 
-      const xMouse = event.clientX;
-      const yMouse = event.clientY;
+      let xPoint = event.clientX;
+      let yPoint = event.clientY;
 
-      const deltaX = xCircleCenter - xMouse;
-      const deltaY = yCircleCenter - yMouse;
+      if (event.type === 'touchmove') {
+        xPoint = event.touches[0].clientX;
+        yPoint = event.touches[0].clientY;
+      }
+
+      const deltaX = xCircleCenter - xPoint;
+      const deltaY = yCircleCenter - yPoint;
 
       const rad = Math.atan2(deltaY, deltaX);
       let deg = Math.round(rad * (180 / Math.PI)) - 90;
@@ -93,11 +98,16 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
     if (rect) {
       const { right, bottom } = rect;
 
-      const xMouse = event.clientX;
-      const yMouse = event.clientY;
+      let xPoint = event.clientX;
+      let yPoint = event.clientY;
 
-      const deltaX = right - xMouse;
-      const deltaY = bottom - yMouse;
+      if (event.type === 'touchmove') {
+        xPoint = event.touches[0].clientX;
+        yPoint = event.touches[0].clientY;
+      }
+
+      const deltaX = right - xPoint;
+      const deltaY = bottom - yPoint;
 
       const percentageDeltaX = Math.round(
         100 - (deltaX * 100) / radianPickZoneDimension
@@ -129,11 +139,11 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
     }
   };
 
-  const handleDegreeChange = (value) => {
+  const handleDegreeChange = (value: string) => {
     setAngelInDegree(value);
   };
 
-  const handleDegreeBlur = (value) => {
+  const handleDegreeBlur = (value: string) => {
     let degree = !value ? 0 : parseInt(value, 10);
 
     if (degree > 360) {
@@ -199,9 +209,9 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
               style={{
                 rotate: `${parseInt(angelInDegree as string, 10)}deg`,
               }}
+              onClick={handleLinearCircleClick}
               onMouseMove={isMouseDown ? handleLinearCircleClick : undefined}
               onTouchMove={isTouchStart ? handleLinearCircleClick : undefined}
-              onClick={handleLinearCircleClick}
             >
               <AngleCircleIcon className="gradient-angle-linear__icon" />
               <div className="gradient-angle-linear__dot" />

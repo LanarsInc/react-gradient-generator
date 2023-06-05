@@ -70,15 +70,15 @@ const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
           style={{
             ['--gradient-thumb-color' as string]: rgb2hex(palette.color),
           }}
+          type="range"
+          min="0"
+          max="100"
+          step="1"
           value={palette.position}
           onClick={() => setActivePalette(palette)}
           onChange={(event) =>
             handleColorPositionChange(event.target.value, palette.id)
           }
-          type="range"
-          min="0"
-          max="100"
-          step="1"
         />
       ))}
     </div>
