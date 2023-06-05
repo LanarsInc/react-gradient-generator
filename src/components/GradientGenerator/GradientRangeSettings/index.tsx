@@ -54,6 +54,7 @@ const GradientRangeSettings: React.FC<GradientRangeSettingsProps> = ({
 
       <button
         type="button"
+        aria-label="swap"
         className="gradient-range-settings__swap-btn"
         onClick={handleSwapColors}
       >

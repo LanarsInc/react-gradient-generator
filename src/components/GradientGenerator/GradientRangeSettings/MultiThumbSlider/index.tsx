@@ -64,6 +64,7 @@ const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
       {palettes.map((palette) => (
         <input
           key={palette.id}
+          aria-label="color-position"
           className={classnames('multi-thumb-slider__input', {
             active: activePaletteId === palette.id,
           })}

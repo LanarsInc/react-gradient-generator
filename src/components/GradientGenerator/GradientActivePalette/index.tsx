@@ -95,7 +95,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
 
   return (
     <section className="gradient-active-color">
-      <h3 className="gradient-generator__subheader">Color</h3>
+      <h2 className="gradient-generator__subheader">Color</h2>
 
       <div className="gradient-active-color__content">
         <div
@@ -120,6 +120,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
         <div className="gradient-active-color__settings">
           <div className="gradient-active-color__inputs-container">
             <input
+              aria-label="color-value"
               className="gradient-active-color__input"
               placeholder="Color"
               value={hexColor}
@@ -129,6 +130,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
             />
 
             <input
+              aria-label="color-opacity"
               className="gradient-active-color__input"
               value={colorOpacityInput}
               onChange={(event) => setColorOpacityInput(event.target.value)}
@@ -139,6 +141,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
 
           <div className="gradient-active-color__slider-container">
             <input
+              aria-label="color-opacity"
               className="gradient-active-color__slider"
               style={{
                 ['--slider-thumb-color' as string]: hexColor,
@@ -155,6 +158,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
         </div>
         <button
           type="button"
+          aria-label="delete"
           className="gradient-active-color__delete-btn"
           disabled={!canDeletePalette}
           onClick={() => handleDeletePalette(activePalette.id)}

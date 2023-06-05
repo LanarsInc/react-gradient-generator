@@ -26,7 +26,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
 
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
   const [isTouchStart, setIsTouchStart] = useState<boolean>(false);
-  const [angelInDegree, setAngelInDegree] = useState<string>('0\xB0');
+  const [angleInDegree, setAngleInDegree] = useState<string>('0\xB0');
   const [radialXPosition, setRadialXPosition] = useState<number>(50);
   const [radialYPosition, setRadialYPosition] = useState<number>(50);
 
@@ -47,7 +47,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
   useEffect(() => {
     if (gradientPosition) {
       if (gradientType === GradientTypes.LINEAR) {
-        setAngelInDegree(`${parseInt(gradientPosition, 10)}\xB0`);
+        setAngleInDegree(`${parseInt(gradientPosition, 10)}\xB0`);
       }
 
       if (gradientType === GradientTypes.RADIAL) {
@@ -140,7 +140,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
   };
 
   const handleDegreeChange = (value: string) => {
-    setAngelInDegree(value);
+    setAngleInDegree(value);
   };
 
   const handleDegreeBlur = (value: string) => {
@@ -164,7 +164,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
   return (
     <section className="gradient-type-and-angle">
       <div className="gradient-type">
-        <h3 className="gradient-generator__subheader">Type</h3>
+        <h2 className="gradient-generator__subheader">Type</h2>
 
         <div className="gradient-type__buttons-container">
           <button
@@ -175,7 +175,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
             onClick={() =>
               handleGradientTypeChange(
                 GradientTypes.LINEAR,
-                `${parseInt(angelInDegree as string, 10)}deg`
+                `${parseInt(angleInDegree as string, 10)}deg`
               )
             }
           >
@@ -200,14 +200,14 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
 
       {gradientType === GradientTypes.LINEAR ? (
         <div className="gradient-angle-linear">
-          <h3 className="gradient-generator__subheader">Angle</h3>
+          <h2 className="gradient-generator__subheader">Angle</h2>
 
           <div className="gradient-angle-linear__content">
             <div
               ref={pickZoneRef}
               className="gradient-angle-linear__circle"
               style={{
-                rotate: `${parseInt(angelInDegree as string, 10)}deg`,
+                rotate: `${parseInt(angleInDegree as string, 10)}deg`,
               }}
               onClick={handleLinearCircleClick}
               onMouseMove={isMouseDown ? handleLinearCircleClick : undefined}
@@ -218,8 +218,9 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
             </div>
 
             <input
+              aria-label="angle"
               className="gradient-angle-linear__input"
-              value={angelInDegree}
+              value={angleInDegree}
               onChange={(event) => handleDegreeChange(event.target.value)}
               onBlur={(event) => handleDegreeBlur(event.target.value)}
               onKeyDown={handleDegreeKeyDown}
@@ -228,7 +229,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
         </div>
       ) : (
         <div className="gradient-angle-radial">
-          <h3 className="gradient-generator__subheader">Position</h3>
+          <h2 className="gradient-generator__subheader">Position</h2>
           <div className="gradient-angle-radial__content">
             <div
               className="gradient-angle-radial__square-wrapper"
