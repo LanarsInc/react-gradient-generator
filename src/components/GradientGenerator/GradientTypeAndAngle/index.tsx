@@ -25,22 +25,17 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
   const pickZoneRef = useRef<HTMLDivElement | null>(null);
 
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
-  const [isTouchStart, setIsTouchStart] = useState<boolean>(false);
   const [angleInDegree, setAngleInDegree] = useState<string>('0\xB0');
   const [radialXPosition, setRadialXPosition] = useState<number>(50);
   const [radialYPosition, setRadialYPosition] = useState<number>(50);
 
   useEffect(() => {
     document.addEventListener('mousedown', () => setIsMouseDown(true));
-    document.addEventListener('touchstart', () => setIsTouchStart(true));
     document.addEventListener('mouseup', () => setIsMouseDown(false));
-    document.addEventListener('touchend', () => setIsTouchStart(false));
 
     return () => {
       document.removeEventListener('mousedown', () => setIsMouseDown(true));
-      document.removeEventListener('touchstart', () => setIsTouchStart(true));
       document.removeEventListener('mouseup', () => setIsMouseDown(false));
-      document.removeEventListener('touchend', () => setIsTouchStart(false));
     };
   }, []);
 
@@ -211,7 +206,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
               }}
               onClick={handleLinearCircleClick}
               onMouseMove={isMouseDown ? handleLinearCircleClick : undefined}
-              onTouchMove={isTouchStart ? handleLinearCircleClick : undefined}
+              onTouchMove={handleLinearCircleClick}
             >
               <AngleCircleIcon className="gradient-angle-linear__icon" />
               <div className="gradient-angle-linear__dot" />
@@ -239,7 +234,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
               }}
               onClick={handleRadialSquareClick}
               onMouseMove={isMouseDown ? handleRadialSquareClick : undefined}
-              onTouchMove={isTouchStart ? handleRadialSquareClick : undefined}
+              onTouchMove={handleRadialSquareClick}
             >
               <div
                 ref={pickZoneRef}
