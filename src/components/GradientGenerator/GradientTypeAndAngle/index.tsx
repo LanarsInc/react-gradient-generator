@@ -145,6 +145,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
       degree = 360;
     }
 
+    setAngleInDegree(`${degree}\xB0`);
     setGradientPosition(`${degree}deg`);
   };
 
