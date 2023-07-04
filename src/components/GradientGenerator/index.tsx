@@ -102,9 +102,9 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
   };
 
   const handleDeletePalette = (paletteId) => {
-    const filteredPalettes = palettes.filter(
-      (palette) => palette.id !== paletteId
-    );
+    const filteredPalettes = palettes
+      .filter((palette) => palette.id !== paletteId)
+      .sort((paletteA, paletteB) => paletteA.position - paletteB.position);
 
     setPalettes(filteredPalettes);
     setActivePalette(filteredPalettes[0]);
