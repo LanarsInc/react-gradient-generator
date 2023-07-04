@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { motion as m } from 'framer-motion';
 import GradientPreview from './GradientPreview';
 import GradientActivePalette from './GradientActivePalette';
 import GradientTypeAndAngle from './GradientTypeAndAngle';
@@ -8,6 +9,7 @@ import GradientCode from './GradientCode';
 import { hex2rgb, splitGradientString } from '../../shared/utils';
 import { defaultGradient, GradientTypes } from '../../shared/constants';
 import { GeneralMessage, Palette } from '../../shared/types/interfaces';
+import { SectionAppearAnimation } from '../../shared/animation';
 
 import './GradientGenerator.scss';
 
@@ -122,7 +124,12 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
         />
 
         <div className="gradient-generator-settings">
-          <div className="gradient-generator-settings__top">
+          <m.div
+            initial={SectionAppearAnimation.initial}
+            animate={SectionAppearAnimation.animate}
+            transition={SectionAppearAnimation.transition(0.2)}
+            className="gradient-generator-settings__top"
+          >
             <GradientRangeSettings
               gradient={gradient}
               palettes={palettes}
@@ -139,7 +146,7 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
                 handleDeletePalette={handleDeletePalette}
               />
             )}
-          </div>
+          </m.div>
 
           <GradientTypeAndAngle
             gradientType={gradientType}

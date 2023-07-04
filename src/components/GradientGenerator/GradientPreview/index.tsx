@@ -1,6 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
+import { motion as m } from 'framer-motion';
 import { Palette } from '../../../shared/types/interfaces';
+import { SectionAppearAnimation } from '../../../shared/animation';
 
 import { ReactComponent as CloseIcon } from '../../../assets/svg/close.svg';
 
@@ -21,7 +23,12 @@ const GradientPreview: React.FC<GradientPreviewProps> = ({
   setActivePalette,
   handleDeletePalette,
 }) => (
-  <section className="gradient-preview">
+  <m.section
+    initial={SectionAppearAnimation.initial}
+    animate={SectionAppearAnimation.animate}
+    transition={SectionAppearAnimation.transition(0.5)}
+    className="gradient-preview"
+  >
     <div className="gradient-preview__panel">
       {[...palettes]
         .sort((paletteA, paletteB) => paletteA.position - paletteB.position)
@@ -55,7 +62,7 @@ const GradientPreview: React.FC<GradientPreviewProps> = ({
         style={{ background: gradient }}
       />
     </div>
-  </section>
+  </m.section>
 );
 
 export default GradientPreview;

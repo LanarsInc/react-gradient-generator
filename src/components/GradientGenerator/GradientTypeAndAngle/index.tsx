@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion as m } from 'framer-motion';
 import classnames from 'classnames';
 import { allowOnlyNumbers } from '../../../shared/utils';
 import { GradientTypes } from '../../../shared/constants';
+import { SectionAppearAnimation } from '../../../shared/animation';
 
 import { ReactComponent as AngleCircleIcon } from '../../../assets/svg/angle-circle.svg';
 
@@ -158,7 +160,12 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
   };
 
   return (
-    <section className="gradient-type-and-angle">
+    <m.section
+      initial={SectionAppearAnimation.initial}
+      animate={SectionAppearAnimation.animate}
+      transition={SectionAppearAnimation.transition(0.7)}
+      className="gradient-type-and-angle"
+    >
       <div className="gradient-type">
         <h2 className="gradient-generator__subheader">Type</h2>
 
@@ -257,7 +264,7 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
           </div>
         </div>
       )}
-    </section>
+    </m.section>
   );
 };
 

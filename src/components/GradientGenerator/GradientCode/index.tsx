@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { motion as m } from 'framer-motion';
 import { GeneralMessage } from '../../../shared/types/interfaces';
 import { messageLifeTime } from '../../../shared/constants';
+import { SectionAppearAnimation } from '../../../shared/animation';
 import variables from '../../../styles/abstracts/variables.scss';
 
 import './GradientCode.scss';
@@ -56,7 +58,12 @@ const GradientCode: React.FC<GradientCodeProps> = ({
   };
 
   return (
-    <section className="gradient-code">
+    <m.section
+      initial={SectionAppearAnimation.initial}
+      animate={SectionAppearAnimation.animate}
+      transition={SectionAppearAnimation.transition(0.9)}
+      className="gradient-code"
+    >
       <div className="gradient-code__top">
         <div className="gradient-code-lines">
           {Array.from(Array(linesNumber).keys()).map((number) => (
@@ -95,7 +102,7 @@ const GradientCode: React.FC<GradientCodeProps> = ({
           Copy CSS
         </button>
       </div>
-    </section>
+    </m.section>
   );
 };
 
