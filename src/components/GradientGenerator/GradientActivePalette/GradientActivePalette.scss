@@ -61,6 +61,7 @@ $trash-icon-animation-timing-function: ease-in-out;
   }
 
   &__settings {
+    min-width: 100%;
     display: flex;
     flex-direction: column;
     row-gap: 16px;
@@ -94,10 +95,6 @@ $trash-icon-animation-timing-function: ease-in-out;
     border: 2px solid var(--border-color);
     border-radius: 20px;
     transition: border-color $theme-transition-time $theme-transition-timing-function;
-
-    @include mq(small) {
-      width: 335px;
-    }
   }
 
   &__slider {
@@ -110,10 +107,6 @@ $trash-icon-animation-timing-function: ease-in-out;
     border-radius: 20px;
     appearance: none;
     outline: none;
-
-    @include mq(small) {
-      width: 337px;
-    }
 
     &::-webkit-slider-thumb {
       @include clickable-element;

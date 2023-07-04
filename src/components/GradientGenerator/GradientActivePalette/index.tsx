@@ -1,10 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { motion as m, AnimatePresence } from 'framer-motion';
 import { HexColorPicker as Picker } from 'react-colorful';
 import { allowOnlyNumbers, hex2rgb, rgb2hex } from '../../../shared/utils';
 import { KeyNumberValue } from '../../../shared/types';
 import { useOutsideClick } from '../../../shared/hooks/useOutsideClick';
 import { Palette } from '../../../shared/types/interfaces';
+import useWindowSize from '../../../shared/hooks/useWindowSize';
 import { defaultHexColor, hexColorRegExp } from '../../../shared/constants';
+import variables from '../../../styles/abstracts/variables.scss';
 
 import { ReactComponent as TrashIcon } from '../../../assets/svg/trash.svg';
 
@@ -23,6 +26,10 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
   handleGradientColorChange,
   handleDeletePalette,
 }) => {
+  const { width } = useWindowSize();
+  const isChangeSettingWidth =
+    width > parseInt(variables.smallBreakPoint, 10) && !canDeletePalette;
+
   const [isShowColorPicker, setIsShowColorPicker] = useState<boolean>(false);
   const [hexColor, setHexColor] = useState<string>(defaultHexColor);
   const [rgbObject, setRgbObject] = useState<KeyNumberValue>({
@@ -117,7 +124,15 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
           </div>
         )}
 
-        <div className="gradient-active-color__settings">
+        <m.div
+          initial={isChangeSettingWidth ? { width: 327 } : { width: 'auto' }}
+          animate={isChangeSettingWidth ? { width: 407 } : { width: 'auto' }}
+          transition={{
+            duration: 0.7,
+            ease: 'easeInOut',
+          }}
+          className="gradient-active-color__settings"
+        >
           <div className="gradient-active-color__inputs-container">
             <input
               aria-label="color-value"
@@ -139,7 +154,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
             />
           </div>
 
-          <div className="gradient-active-color__slider-container">
+          <m.div className="gradient-active-color__slider-container">
             <input
               aria-label="color-opacity"
               className="gradient-active-color__slider"
@@ -154,17 +169,28 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
               value={colorOpacity}
               onChange={(event) => handleChangeColorOpacity(event.target.value)}
             />
-          </div>
-        </div>
-        <button
-          type="button"
-          aria-label="delete"
-          className="gradient-active-color__delete-btn"
-          disabled={!canDeletePalette}
-          onClick={() => handleDeletePalette(activePalette.id)}
-        >
-          <TrashIcon className="gradient-active-color__delete-icon" />
-        </button>
+          </m.div>
+        </m.div>
+        <AnimatePresence>
+          {canDeletePalette && (
+            <m.button
+              initial={{ scale: 0 }}
+              animate={{ scale: 1, rotate: [0, 360] }}
+              exit={{ scale: 0, rotate: [0, 360] }}
+              transition={{
+                duration: 0.7,
+                ease: 'easeInOut',
+              }}
+              type="button"
+              aria-label="delete"
+              className="gradient-active-color__delete-btn"
+              disabled={!canDeletePalette}
+              onClick={() => handleDeletePalette(activePalette.id)}
+            >
+              <TrashIcon className="gradient-active-color__delete-icon" />
+            </m.button>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

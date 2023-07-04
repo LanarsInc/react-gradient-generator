@@ -95,14 +95,17 @@ $shadow: -2px 2px 8px rgba(111, 120, 129, 0.16);
 $theme-transition-time: 500ms;
 $theme-transition-timing-function: ease-out;
 $hover-transition-time: 300ms;
+$smallBreakPoint: 750px;
+
 $break-points: (
   extraSmall: 450px,
-  small: 750px,
+  small: $smallBreakPoint,
   medium: 1050px,
   large: 1350px,
 );
 
 :export {
-  gradientCodeLineHeight: $gradient-code-line-height,
+  gradientCodeLineHeight: $gradient-code-line-height;
+  smallBreakPoint: $smallBreakPoint;
 };
 
