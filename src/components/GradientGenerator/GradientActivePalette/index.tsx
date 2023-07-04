@@ -126,7 +126,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
 
         <m.div
           initial={isChangeSettingWidth ? { width: 327 } : { width: 'auto' }}
-          animate={isChangeSettingWidth ? { width: 407 } : { width: 'auto' }}
+          animate={isChangeSettingWidth ? { width: 383 } : { width: 'auto' }}
           transition={{
             duration: 0.7,
             ease: 'easeInOut',
