@@ -1,4 +1,4 @@
-import { defaultHexColor, hexColorRegExp } from './constants';
+import { hexColorRegExp, defaultHexColor } from './constants';
 import { Palette } from './types/interfaces';
 import { KeyNumberValue } from './types';
 
