@@ -27,6 +27,7 @@ module.exports = {
     "rules": {
         'import/no-extraneous-dependencies': 'off',
         'import/prefer-default-export': 'off',
+        'react-hooks/exhaustive-deps': 'off',
         'react/function-component-definition': [
             2,
             {

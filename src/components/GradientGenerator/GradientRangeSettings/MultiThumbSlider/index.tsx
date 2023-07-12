@@ -1,8 +1,11 @@
 import React, { useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
-import { rgb2hex } from '../../../../shared/utils';
-import { maxColorsCount } from '../../../../shared/constants';
+import {
+  hexToRgbaObject,
+  removeAlphaFromRgbaColor,
+} from '../../../../shared/utils';
+import { defaultHexColor, maxColorsCount } from '../../../../shared/constants';
 import { Palette } from '../../../../shared/types/interfaces';
 
 import './MultiThumbSlider.scss';
@@ -42,9 +45,11 @@ const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
       const positionForInput = Math.round(
         (mousePosition * 100) / Number(sliderContainerRef.current?.offsetWidth)
       );
+      const { red, green, blue, alpha } = hexToRgbaObject(defaultHexColor);
+
       const newPalette = {
         id: uuidv4(),
-        color: 'rgba(0, 0, 0, 1)',
+        color: `rgba(${red}, ${green}, ${blue}, ${alpha})`,
         position: positionForInput,
       };
 
@@ -69,7 +74,9 @@ const MultiThumbSlider: React.FC<MultiThumbSliderProps> = ({
             active: activePaletteId === palette.id,
           })}
           style={{
-            ['--gradient-thumb-color' as string]: rgb2hex(palette.color),
+            ['--gradient-thumb-color' as string]: removeAlphaFromRgbaColor(
+              palette.color
+            ),
           }}
           type="range"
           min="0"

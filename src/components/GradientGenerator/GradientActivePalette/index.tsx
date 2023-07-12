@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion as m, AnimatePresence } from 'framer-motion';
 import { HexColorPicker as Picker } from 'react-colorful';
-import { allowOnlyNumbers, hex2rgb, rgb2hex } from '../../../shared/utils';
+import {
+  allowOnlyNumbers,
+  hexToRgbaObject,
+  rgbaToHex,
+} from '../../../shared/utils';
 import { KeyNumberValue } from '../../../shared/types';
 import { useOutsideClick } from '../../../shared/hooks/useOutsideClick';
 import { Palette } from '../../../shared/types/interfaces';
@@ -32,10 +36,11 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
 
   const [isShowColorPicker, setIsShowColorPicker] = useState<boolean>(false);
   const [hexColor, setHexColor] = useState<string>(defaultHexColor);
-  const [rgbObject, setRgbObject] = useState<KeyNumberValue>({
-    red: 255,
-    green: 255,
-    blue: 255,
+  const [hexColorInput, setHexColorInput] = useState<string>(defaultHexColor);
+  const [rgbaObject, setRgbaObject] = useState<KeyNumberValue>({
+    red: 0,
+    green: 0,
+    blue: 0,
     alpha: 1,
   });
   const [colorOpacity, setColorOpacity] = useState<number>(100);
@@ -47,23 +52,43 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
     previewRef?.current
   );
 
+  const handleHexColorChange = (newHexColor: string) => {
+    setHexColor(newHexColor);
+    setHexColorInput(newHexColor);
+  };
+
+  const handleColorOpacityChange = (newColorOpacity: number) => {
+    setColorOpacity(newColorOpacity);
+    setColorOpacityInput(`${newColorOpacity}%`);
+  };
+
   useEffect(() => {
-    const colorInHex = rgb2hex(activePalette.color);
-    const colorInRGB = hex2rgb(colorInHex);
+    const colorInHex = rgbaToHex(activePalette.color);
     const alpha = parseFloat(activePalette.color.split(',')[3] as string);
     const opacity = Math.round(alpha * 100);
 
-    setHexColor(colorInHex);
-    setRgbObject(colorInRGB);
-    setColorOpacity(opacity);
-    setColorOpacityInput(`${opacity}%`);
-  }, [activePalette.color]);
+    handleHexColorChange(colorInHex);
+    handleColorOpacityChange(opacity);
+  }, [activePalette.id]);
 
-  const handleBlurColorInput = (color: string) => {
-    if (hexColorRegExp.test(color)) {
-      handleGradientColorChange(hexColor);
+  useEffect(() => {
+    const newRgbaObject = hexToRgbaObject(hexColor);
+
+    setRgbaObject(newRgbaObject);
+    handleColorOpacityChange(newRgbaObject.alpha * 100);
+  }, [hexColor]);
+
+  const handlePickNewHexColor = (newHexColor: string) => {
+    handleHexColorChange(newHexColor);
+    handleGradientColorChange(newHexColor);
+  };
+
+  const handleBlurColorInput = (newHexColor: string) => {
+    if (hexColorRegExp.test(newHexColor)) {
+      setHexColor(newHexColor);
+      handleGradientColorChange(newHexColor);
     } else {
-      setHexColor(defaultHexColor);
+      handleHexColorChange(defaultHexColor);
       handleGradientColorChange(defaultHexColor);
     }
   };
@@ -74,20 +99,20 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
     }
   };
 
-  const handleChangeColorOpacity = (value: string) => {
-    const { red, green, blue } = rgbObject;
-    let opacity = !value ? 0 : parseInt(value, 10);
+  const handleChangeColorOpacity = (opacityValue: string) => {
+    const { red, green, blue } = rgbaObject;
+    let opacity = !opacityValue ? 0 : parseInt(opacityValue, 10);
 
     if (opacity > 100) {
       opacity = 100;
     }
 
-    setColorOpacity(opacity);
-    setColorOpacityInput(`${opacity}%`);
-    handleGradientColorChange(
-      `rgba(${red}, ${green}, ${blue}, ${opacity / 100})`,
-      true
-    );
+    const newRgbaColor = `rgba(${red}, ${green}, ${blue}, ${opacity / 100})`;
+    const newHexColor = rgbaToHex(newRgbaColor);
+
+    handleHexColorChange(newHexColor);
+    handleColorOpacityChange(opacity);
+    handleGradientColorChange(newRgbaColor, true);
   };
 
   const handleKeyDownColorOpacityInput = (event) => {
@@ -98,7 +123,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
     allowOnlyNumbers(event);
   };
 
-  const { red, green, blue } = rgbObject;
+  const { red, green, blue } = rgbaObject;
 
   return (
     <section className="gradient-active-color">
@@ -108,7 +133,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
         <div
           ref={previewRef}
           className="gradient-active-color__preview"
-          style={{ backgroundColor: hexColor }}
+          style={{ backgroundColor: `rgb(${red}, ${green}, ${blue}` }}
           onClick={() => setIsShowColorPicker((prevState) => !prevState)}
         />
 
@@ -117,10 +142,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
             ref={pickerWrapperRef}
             className="gradient-active-color__picker-wrapper"
           >
-            <Picker
-              color={hexColor}
-              onChange={(valueInHex) => handleGradientColorChange(valueInHex)}
-            />
+            <Picker color={hexColor} onChange={handlePickNewHexColor} />
           </div>
         )}
 
@@ -138,8 +160,8 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
               aria-label="color-value"
               className="gradient-active-color__input"
               placeholder="Color"
-              value={hexColor}
-              onChange={(event) => setHexColor(event.target.value)}
+              value={hexColorInput}
+              onChange={(event) => setHexColorInput(event.target.value)}
               onBlur={(event) => handleBlurColorInput(event.target.value)}
               onKeyDown={handleKeyDownColorInput}
             />
@@ -159,7 +181,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
               aria-label="color-opacity"
               className="gradient-active-color__slider"
               style={{
-                ['--slider-thumb-color' as string]: hexColor,
+                ['--slider-thumb-color' as string]: `rgb(${red}, ${green}, ${blue}`,
                 background: `linear-gradient(to right, rgba(${red}, ${green}, ${blue}, 0), rgba(${red}, ${green}, ${blue}, 1))`,
               }}
               type="range"

@@ -39,48 +39,51 @@ export const splitGradientString = (
   return [gradientType, gradientAnglePoint, gradientPalettes];
 };
 
-export const hex2rgb = (hex: string): KeyNumberValue => {
-  const validHEXInput = hexColorRegExp.exec(hex);
+export const hexToRgbaObject = (hexColor: string): KeyNumberValue => {
+  const validHexColor = hexColorRegExp.exec(hexColor);
 
-  if (!validHEXInput) {
-    return {
-      red: 255,
-      green: 255,
-      blue: 255,
-      alpha: 1,
-    };
+  if (!validHexColor) {
+    return hexToRgbaObject(defaultHexColor);
   }
 
   return {
-    red: parseInt(validHEXInput[1], 16),
-    green: parseInt(validHEXInput[2], 16),
-    blue: parseInt(validHEXInput[3], 16),
-    alpha: 1,
+    red: parseInt(validHexColor[1], 16),
+    green: parseInt(validHexColor[2], 16),
+    blue: parseInt(validHexColor[3], 16),
+    alpha: validHexColor[4]
+      ? Math.round((parseInt(validHexColor[4], 16) / 255) * 100) / 100
+      : 1,
   };
 };
 
-export const rgb2hex = (color: string | undefined): string => {
-  if (color) {
-    const isAlpha = color.includes('a');
-    const rgbPoints = color
-      .substring(isAlpha ? 5 : 4, color.length - 1)
-      .replace(/ /g, '')
-      .split(',');
+export const rgbaToHex = (rgbaColor: string): string => {
+  const rgbaPoints = rgbaColor
+    .substring(5, rgbaColor.length - 1)
+    .replace(/ /g, '')
+    .split(',');
 
-    const hexArray = rgbPoints.map((point) => {
-      const hexPoint = Number(point).toString(16);
+  const hexPoints = rgbaPoints.map((rgbaPoint, index) => {
+    let hexPoint;
 
-      if (hexPoint.length === 1) {
-        return `0${hexPoint}`;
-      }
-      return hexPoint;
-    });
+    if (index === rgbaPoints.length - 1) {
+      hexPoint = Math.round(Number(rgbaPoint) * 255).toString(16);
+    } else {
+      hexPoint = Number(rgbaPoint).toString(16);
+    }
 
-    return isAlpha
-      ? `#${hexArray.slice(0, -1).join('')}`
-      : `#${hexArray.join('')}`;
-  }
-  return defaultHexColor;
+    return hexPoint.length === 1 ? `0${hexPoint}` : hexPoint;
+  });
+
+  return `#${hexPoints.join('')}`;
+};
+
+export const removeAlphaFromRgbaColor = (rgbaColor: string): string => {
+  const rgbPoints = rgbaColor
+    .substring(5, rgbaColor.length - 1)
+    .replace(/ /g, '')
+    .split(',');
+
+  return `rgb(${rgbPoints[0]}, ${rgbPoints[1]}, ${rgbPoints[2]})`;
 };
 
 export const allowOnlyNumbers = (event: KeyboardEvent): void => {

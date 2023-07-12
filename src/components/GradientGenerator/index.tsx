@@ -6,7 +6,7 @@ import GradientActivePalette from './GradientActivePalette';
 import GradientTypeAndAngle from './GradientTypeAndAngle';
 import GradientRangeSettings from './GradientRangeSettings';
 import GradientCode from './GradientCode';
-import { hex2rgb, splitGradientString } from '../../shared/utils';
+import { hexToRgbaObject, splitGradientString } from '../../shared/utils';
 import { defaultGradient, GradientTypes } from '../../shared/constants';
 import { GeneralMessage, Palette } from '../../shared/types/interfaces';
 import { SectionAppearAnimation } from '../../shared/animation';
@@ -92,9 +92,7 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
       if (isRGBA) {
         neededPalette.color = color;
       } else {
-        const rgbColor = hex2rgb(color);
-        const { red, green, blue, alpha } = rgbColor;
-
+        const { red, green, blue, alpha } = hexToRgbaObject(color);
         neededPalette.color = `rgba(${red}, ${green}, ${blue}, ${alpha})`;
       }
 
