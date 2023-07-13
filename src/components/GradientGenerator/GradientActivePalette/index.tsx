@@ -6,8 +6,8 @@ import {
   hexToRgbaObject,
   rgbaToHex,
 } from '../../../shared/utils';
-import { KeyNumberValue } from '../../../shared/types';
-import { useOutsideClick } from '../../../shared/hooks/useOutsideClick';
+import { KeyNumberValue } from '../../../shared/types/general';
+import useOutsideClick from '../../../shared/hooks/useOutsideClick';
 import { Palette } from '../../../shared/types/interfaces';
 import useWindowSize from '../../../shared/hooks/useWindowSize';
 import { defaultHexColor, hexColorRegExp } from '../../../shared/constants';
@@ -93,12 +93,6 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
     }
   };
 
-  const handleKeyDownColorInput = (event) => {
-    if (event.keyCode === 13) {
-      event.target.blur();
-    }
-  };
-
   const handleChangeColorOpacity = (opacityValue: string) => {
     const { red, green, blue } = rgbaObject;
     let opacity = !opacityValue ? 0 : parseInt(opacityValue, 10);
@@ -115,12 +109,10 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
     handleGradientColorChange(newRgbaColor, true);
   };
 
-  const handleKeyDownColorOpacityInput = (event) => {
+  const handleKeyDownInput = (event) => {
     if (event.keyCode === 13) {
       event.target.blur();
     }
-
-    allowOnlyNumbers(event);
   };
 
   const { red, green, blue } = rgbaObject;
@@ -163,7 +155,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
               value={hexColorInput}
               onChange={(event) => setHexColorInput(event.target.value)}
               onBlur={(event) => handleBlurColorInput(event.target.value)}
-              onKeyDown={handleKeyDownColorInput}
+              onKeyDown={handleKeyDownInput}
             />
 
             <input
@@ -172,7 +164,10 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
               value={colorOpacityInput}
               onChange={(event) => setColorOpacityInput(event.target.value)}
               onBlur={(event) => handleChangeColorOpacity(event.target.value)}
-              onKeyDown={handleKeyDownColorOpacityInput}
+              onKeyDown={(event) => {
+                handleKeyDownInput(event);
+                allowOnlyNumbers(event);
+              }}
             />
           </div>
 

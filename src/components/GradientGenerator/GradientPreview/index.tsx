@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { motion as m } from 'framer-motion';
 import { Palette } from '../../../shared/types/interfaces';
 import { SectionAppearAnimation } from '../../../shared/animation';
+import { removeAlphaFromRgbaColor } from '../../../shared/utils';
 
 import { ReactComponent as CloseIcon } from '../../../assets/svg/close.svg';
 
@@ -42,7 +43,9 @@ const GradientPreview: React.FC<GradientPreviewProps> = ({
           >
             <div
               className="gradient-preview-pallet__inner"
-              style={{ backgroundColor: pallet.color }}
+              style={{
+                backgroundColor: removeAlphaFromRgbaColor(pallet.color),
+              }}
             />
             <div
               className={classnames('gradient-preview-pallet__delete-btn', {

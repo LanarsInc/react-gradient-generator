@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export const useOutsideClick = (
+const useOutsideClick = (
   callback: () => void,
   excludedElement?: HTMLDivElement | null
 ) => {
@@ -19,10 +19,10 @@ export const useOutsideClick = (
 
     document.addEventListener('mousedown', handleClickOutside);
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [callback, excludedElement]);
 
   return ref;
 };
+
+export default useOutsideClick;

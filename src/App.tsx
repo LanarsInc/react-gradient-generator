@@ -8,7 +8,28 @@ import { ThemeMode, themeModeLocalStorageKey } from './shared/constants';
 
 const App: React.FC = () => {
   const [messages, setMessages] = useState<GeneralMessage[]>([]);
-  const [activeThemeMode, setActiveThemeMode] = useState(null);
+  const [activeThemeMode, setActiveThemeMode] = useState<ThemeMode | null>(
+    null
+  );
+
+  const setThemeMode = (modeName) => {
+    document.documentElement.setAttribute('data-theme', modeName);
+    localStorage.setItem(themeModeLocalStorageKey, modeName);
+    setActiveThemeMode(modeName);
+  };
+
+  useLayoutEffect(() => {
+    const themeFromLocalStorage = localStorage.getItem(
+      themeModeLocalStorageKey
+    );
+    const themeFromSystemPreference = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches
+      ? ThemeMode.DARK
+      : ThemeMode.LIGHT;
+
+    setThemeMode(themeFromLocalStorage || themeFromSystemPreference);
+  }, []);
 
   const addNewMessage = (newMessage) => {
     const newMessageArray = [
@@ -28,12 +49,6 @@ const App: React.FC = () => {
     );
   };
 
-  const setThemeMode = (modeName) => {
-    document.documentElement.setAttribute('data-theme', modeName);
-    localStorage.setItem(themeModeLocalStorageKey, modeName);
-    setActiveThemeMode(modeName);
-  };
-
   const toggleThemeMode = () => {
     return setThemeMode(
       document.documentElement.getAttribute('data-theme') === ThemeMode.LIGHT
@@ -41,23 +56,6 @@ const App: React.FC = () => {
         : ThemeMode.LIGHT
     );
   };
-
-  useLayoutEffect(() => {
-    const themeFromLocalStorage = localStorage.getItem(
-      themeModeLocalStorageKey
-    );
-    const themeFromSystemPreference = window.matchMedia(
-      '(prefers-color-scheme: dark)'
-    ).matches
-      ? ThemeMode.DARK
-      : ThemeMode.LIGHT;
-
-    if (themeFromLocalStorage) {
-      setThemeMode(themeFromLocalStorage);
-    } else {
-      setThemeMode(themeFromSystemPreference);
-    }
-  }, []);
 
   return (
     <main>

@@ -1,6 +1,7 @@
+import React from 'react';
 import { hexColorRegExp, defaultHexColor } from './constants';
 import { Palette } from './types/interfaces';
-import { KeyNumberValue } from './types';
+import { KeyNumberValue } from './types/general';
 
 type SplitGradientStringReturnValue = [string, string, Omit<Palette, 'id'>[]];
 
@@ -86,7 +87,9 @@ export const removeAlphaFromRgbaColor = (rgbaColor: string): string => {
   return `rgb(${rgbPoints[0]}, ${rgbPoints[1]}, ${rgbPoints[2]})`;
 };
 
-export const allowOnlyNumbers = (event: KeyboardEvent): void => {
+export const allowOnlyNumbers = (
+  event: React.KeyboardEvent<HTMLInputElement>
+): void => {
   if (!/^(\d|.{2,})$/.test(event.key)) {
     event.preventDefault();
   }

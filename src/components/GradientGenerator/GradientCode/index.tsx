@@ -40,9 +40,8 @@ const GradientCode: React.FC<GradientCodeProps> = ({
     document.fonts.ready.then(() => handleCalculateLinesNumber());
     window.addEventListener('resize', handleCalculateLinesNumber);
 
-    return () => {
+    return () =>
       window.removeEventListener('resize', handleCalculateLinesNumber);
-    };
   }, []);
 
   useEffect(() => {
