@@ -2,7 +2,7 @@
 
 *,
 *::after,
-*::before, {
+*::before {
   box-sizing: border-box;
 }
 
@@ -15,7 +15,9 @@ body {
   font-family: $font-main-regular;
 }
 
-h1, h2, p {
+h1,
+h2,
+p {
   margin: 0;
 }
 
