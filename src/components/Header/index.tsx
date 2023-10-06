@@ -3,7 +3,7 @@ import { motion as m } from 'framer-motion';
 import ThemeModeSwitcher from '../ThemeModeSwitcher';
 import { ThemeMode } from '../../shared/constants';
 import { SectionAppearAnimation } from '../../shared/animation';
-import { ReactComponent as Logo } from '../../assets/svg/logo.svg';
+import Logo from '../../assets/svg/logo.svg?react';
 
 import './Header.scss';
 

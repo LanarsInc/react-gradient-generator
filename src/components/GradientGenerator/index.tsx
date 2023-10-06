@@ -28,7 +28,7 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
   );
   const [gradientPosition, setGradientPosition] = useState<string>('');
 
-  const handleGradientTypeChange = (type, angle) => {
+  const handleGradientTypeChange = (type: GradientTypes, angle: string) => {
     if (type === GradientTypes.LINEAR) {
       setGradientType(type);
       setGradientPosition(angle);
@@ -38,7 +38,7 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
     }
   };
 
-  const initGradient = useCallback((neededGradient) => {
+  const initGradient = useCallback((neededGradient: string) => {
     const [
       extractedGradientType,
       extractedGradientAnglePoint,
@@ -52,7 +52,7 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
 
     setPalettes(newGradientPalettes);
     handleGradientTypeChange(
-      extractedGradientType,
+      extractedGradientType as GradientTypes,
       extractedGradientAnglePoint
     );
     setActivePalette(newGradientPalettes[0]);
@@ -82,7 +82,7 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
     initGradient(defaultGradient);
   };
 
-  const handleGradientColorChange = (color, isRGBA) => {
+  const handleGradientColorChange = (color: string, isRGBA?: boolean) => {
     const clonePalettes = [...palettes];
     const neededPalette = clonePalettes.find(
       (palette) => palette.id === activePalette?.id
@@ -101,7 +101,7 @@ const GradientGenerator: React.FC<GradientGeneratorProps> = ({
     }
   };
 
-  const handleDeletePalette = (paletteId) => {
+  const handleDeletePalette = (paletteId: string) => {
     const filteredPalettes = palettes
       .filter((palette) => palette.id !== paletteId)
       .sort((paletteA, paletteB) => paletteA.position - paletteB.position);

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import { GeneralMessage } from '../../shared/types/interfaces';
 
-import { ReactComponent as CloseIconBig } from '../../assets/svg/close-big.svg';
+import CloseIconBig from '../../assets/svg/close-big.svg?react';
 
 import './MessageBox.scss';
 
