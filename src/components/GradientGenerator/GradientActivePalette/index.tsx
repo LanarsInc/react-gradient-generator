@@ -10,10 +10,13 @@ import { KeyNumberValue } from '../../../shared/types/general';
 import useOutsideClick from '../../../shared/hooks/useOutsideClick';
 import { Palette } from '../../../shared/types/interfaces';
 import useWindowSize from '../../../shared/hooks/useWindowSize';
-import { defaultHexColor, hexColorRegExp } from '../../../shared/constants';
-import variables from '../../../styles/abstracts/variables.scss';
+import {
+  defaultHexColor,
+  hexColorRegExp,
+  smallBreakPoint,
+} from '../../../shared/constants';
 
-import { ReactComponent as TrashIcon } from '../../../assets/svg/trash.svg';
+import TrashIcon from '../../../assets/svg/trash.svg?react';
 
 import './GradientActivePalette.scss';
 
@@ -32,7 +35,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
 }) => {
   const { width } = useWindowSize();
   const isChangeSettingWidth =
-    width > parseInt(variables.smallBreakPoint, 10) && !canDeletePalette;
+    width > parseInt(smallBreakPoint, 10) && !canDeletePalette;
 
   const [isShowColorPicker, setIsShowColorPicker] = useState<boolean>(false);
   const [hexColor, setHexColor] = useState<string>(defaultHexColor);
@@ -69,6 +72,7 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
 
     handleHexColorChange(colorInHex);
     handleColorOpacityChange(opacity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activePalette.id]);
 
   useEffect(() => {
@@ -109,9 +113,9 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
     handleGradientColorChange(newRgbaColor, true);
   };
 
-  const handleKeyDownInput = (event) => {
-    if (event.keyCode === 13) {
-      event.target.blur();
+  const handleKeyDownInput = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.currentTarget.blur();
     }
   };
 

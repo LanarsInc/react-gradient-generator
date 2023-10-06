@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion as m } from 'framer-motion';
 import { GeneralMessage } from '../../../shared/types/interfaces';
-import { messageLifeTime } from '../../../shared/constants';
+import {
+  gradientCodeLineHeight,
+  messageLifeTime,
+} from '../../../shared/constants';
 import { SectionAppearAnimation } from '../../../shared/animation';
-import variables from '../../../styles/abstracts/variables.scss';
 
 import './GradientCode.scss';
 
@@ -26,7 +28,7 @@ const GradientCode: React.FC<GradientCodeProps> = ({
   const handleCalculateLinesNumber = () => {
     const codeHeight = codeContainerRef.current?.offsetHeight ?? 100;
     const neededLinesNumber = Math.ceil(
-      codeHeight / parseInt(variables.gradientCodeLineHeight, 10)
+      codeHeight / parseInt(gradientCodeLineHeight, 10)
     );
 
     setLinesNumber(

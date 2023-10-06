@@ -16,3 +16,5 @@ export const hexColorRegExp =
 export const defaultHexColor = '#000000ff';
 export const defaultGradient =
   'linear-gradient(180deg, rgba(242, 178, 56, 1) 0%, rgba(240, 103, 25, 1) 100%)';
+export const smallBreakPoint = '750px';
+export const gradientCodeLineHeight = '25px';
