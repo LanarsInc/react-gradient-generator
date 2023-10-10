@@ -72,7 +72,6 @@ const GradientActivePalette: React.FC<GradientActivePaletteProps> = ({
 
     handleHexColorChange(colorInHex);
     handleColorOpacityChange(opacity);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activePalette.id]);
 
   useEffect(() => {

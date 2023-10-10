@@ -32,5 +32,6 @@ module.exports = {
     'jsx-a11y/no-noninteractive-element-interactions': 0,
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
+    'react-hooks/exhaustive-deps': 'off',
   },
 };
