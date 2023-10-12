@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { ThemeMode } from '../../shared/constants';
 
-import { ReactComponent as SunIcon } from '../../assets/svg/sun.svg';
-import { ReactComponent as MoonIcon } from '../../assets/svg/moon.svg';
+import SunIcon from '../../assets/svg/sun.svg?react';
+import MoonIcon from '../../assets/svg/moon.svg?react';
 
 import './ThemeModeSwitcher.scss';
 
@@ -12,7 +12,7 @@ interface ThemeModeSwitcherProps {
   toggleThemeMode: () => void;
 }
 
-const ThemeModeSwitcher: FC<ThemeModeSwitcherProps> = ({
+const ThemeModeSwitcher: React.FC<ThemeModeSwitcherProps> = ({
   activeThemeMode,
   toggleThemeMode,
 }) => {

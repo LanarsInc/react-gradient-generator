@@ -12,7 +12,7 @@ const App: React.FC = () => {
     null
   );
 
-  const setThemeMode = (modeName) => {
+  const setThemeMode = (modeName: ThemeMode) => {
     document.documentElement.setAttribute('data-theme', modeName);
     localStorage.setItem(themeModeLocalStorageKey, modeName);
     setActiveThemeMode(modeName);
@@ -21,7 +21,7 @@ const App: React.FC = () => {
   useLayoutEffect(() => {
     const themeFromLocalStorage = localStorage.getItem(
       themeModeLocalStorageKey
-    );
+    ) as ThemeMode;
     const themeFromSystemPreference = window.matchMedia(
       '(prefers-color-scheme: dark)'
     ).matches
@@ -31,7 +31,7 @@ const App: React.FC = () => {
     setThemeMode(themeFromLocalStorage || themeFromSystemPreference);
   }, []);
 
-  const addNewMessage = (newMessage) => {
+  const addNewMessage = (newMessage: Omit<GeneralMessage, 'id'>) => {
     const newMessageArray = [
       ...messages,
       {
@@ -43,7 +43,7 @@ const App: React.FC = () => {
     setMessages(newMessageArray);
   };
 
-  const handleRemoveMessage = (messageId) => {
+  const handleRemoveMessage = (messageId: string) => {
     setMessages((prevState) =>
       prevState.filter((message) => message.id !== messageId)
     );

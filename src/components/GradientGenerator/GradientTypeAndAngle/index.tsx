@@ -5,14 +5,14 @@ import { allowOnlyNumbers } from '../../../shared/utils';
 import { GradientTypes } from '../../../shared/constants';
 import { SectionAppearAnimation } from '../../../shared/animation';
 
-import { ReactComponent as AngleCircleIcon } from '../../../assets/svg/angle-circle.svg';
+import AngleCircleIcon from '../../../assets/svg/angle-circle.svg?react';
 
 import './GradientTypeAndAngle.scss';
 
 interface GradientTypeAndAngleProps {
   gradientType: GradientTypes;
   gradientPosition: string;
-  handleGradientTypeChange: (type: string, position: string) => void;
+  handleGradientTypeChange: (type: GradientTypes, position: string) => void;
   setGradientPosition: (position: string) => void;
 }
 
@@ -58,7 +58,11 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
     }
   }, [gradientPosition, gradientType]);
 
-  const handleLinearCircleClick = (event) => {
+  const handleLinearCircleClick = (
+    event:
+      | React.TouchEvent<HTMLDivElement>
+      | React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     const rect = pickZoneRef.current?.getBoundingClientRect();
 
     if (rect) {
@@ -67,12 +71,14 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
       const xCircleCenter = (left + right) / 2;
       const yCircleCenter = (top + bottom) / 2;
 
-      let xPoint = event.clientX;
-      let yPoint = event.clientY;
+      let xPoint = (event as React.MouseEvent<HTMLDivElement, MouseEvent>)
+        .clientX;
+      let yPoint = (event as React.MouseEvent<HTMLDivElement, MouseEvent>)
+        .clientY;
 
       if (event.type === 'touchmove') {
-        xPoint = event.touches[0].clientX;
-        yPoint = event.touches[0].clientY;
+        xPoint = (event as React.TouchEvent<HTMLDivElement>).touches[0].clientX;
+        yPoint = (event as React.TouchEvent<HTMLDivElement>).touches[0].clientY;
       }
 
       const deltaX = xCircleCenter - xPoint;
@@ -89,18 +95,24 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
     }
   };
 
-  const handleRadialSquareClick = (event) => {
+  const handleRadialSquareClick = (
+    event:
+      | React.TouchEvent<HTMLDivElement>
+      | React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     const rect = pickZoneRef.current?.getBoundingClientRect();
 
     if (rect) {
       const { right, bottom } = rect;
 
-      let xPoint = event.clientX;
-      let yPoint = event.clientY;
+      let xPoint = (event as React.MouseEvent<HTMLDivElement, MouseEvent>)
+        .clientX;
+      let yPoint = (event as React.MouseEvent<HTMLDivElement, MouseEvent>)
+        .clientY;
 
       if (event.type === 'touchmove') {
-        xPoint = event.touches[0].clientX;
-        yPoint = event.touches[0].clientY;
+        xPoint = (event as React.TouchEvent<HTMLDivElement>).touches[0].clientX;
+        yPoint = (event as React.TouchEvent<HTMLDivElement>).touches[0].clientY;
       }
 
       const deltaX = right - xPoint;
@@ -151,9 +163,11 @@ const GradientTypeAndAngle: React.FC<GradientTypeAndAngleProps> = ({
     setGradientPosition(`${degree}deg`);
   };
 
-  const handleDegreeKeyDown = (event) => {
-    if (event.keyCode === 13) {
-      event.target.blur();
+  const handleDegreeKeyDown = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === 'Enter') {
+      event.currentTarget.blur();
     }
 
     allowOnlyNumbers(event);

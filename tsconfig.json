@@ -1,20 +1,31 @@
 {
   "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "allowJs": true,
+    "declaration": true,
+    "declarationMap": true,
     "outDir": "./dist/",
     "sourceMap": true,
     "strictNullChecks": true,
-    "module": "es6",
-    "jsx": "react",
-    "target": "es5",
-    "allowJs": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src"
   },
+  "include": ["src", ".eslintrc.cjs", "vite.config.ts"],
   "exclude": ["node_modules"],
-  "include": [
-    "./src/",
-    ".eslintrc.cjs",
-    "global.d.ts"
-  ]
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

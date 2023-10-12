@@ -5,7 +5,7 @@ import { Palette } from '../../../shared/types/interfaces';
 import { SectionAppearAnimation } from '../../../shared/animation';
 import { removeAlphaFromRgbaColor } from '../../../shared/utils';
 
-import { ReactComponent as CloseIcon } from '../../../assets/svg/close.svg';
+import CloseIcon from '../../../assets/svg/close.svg?react';
 
 import './GradientPreview.scss';
 
