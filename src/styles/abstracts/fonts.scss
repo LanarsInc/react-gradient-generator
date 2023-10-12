@@ -1,26 +1,31 @@
 /* Quicksand */
 @font-face {
   font-family: 'Quicksand-Regular';
-  src: local('Quicksand-Regular'), url(../../assets/fonts/Quicksand/Quicksand-Regular.ttf) format('truetype');
+  font-display: swap;
+  src: local('Quicksand-Regular'), url(/src/assets/fonts/Quicksand/Quicksand-Regular.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'Quicksand-SemiBold';
-  src: local('Quicksand-SemiBold'), url(../../assets/fonts/Quicksand/Quicksand-SemiBold.ttf) format('truetype');
+  font-display: swap;
+  src: local('Quicksand-SemiBold'), url(/src/assets/fonts/Quicksand/Quicksand-SemiBold.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'Quicksand-Bold';
-  src: local('Quicksand-Bold'), url(../../assets/fonts/Quicksand/Quicksand-Bold.ttf) format('truetype');
+  font-display: swap;
+  src: local('Quicksand-Bold'), url(/src/assets/fonts/Quicksand/Quicksand-Bold.ttf) format('truetype');
 }
 
 /* SourceCodePro */
 @font-face {
   font-family: 'SourceCodePro-Regular';
-  src: local('SourceCodePro-Regular'), url(../../assets/fonts/SourceCodePro/SourceCodePro-Regular.ttf) format('truetype');
+  font-display: swap;
+  src: local('SourceCodePro-Regular'), url(/src/assets/fonts/SourceCodePro/SourceCodePro-Regular.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'SourceCodePro-SemiBold';
-  src: local('SourceCodePro-SemiBold'), url(../../assets/fonts/SourceCodePro/SourceCodePro-SemiBold.ttf) format('truetype');
+  font-display: swap;
+  src: local('SourceCodePro-SemiBold'), url(/src/assets/fonts/SourceCodePro/SourceCodePro-SemiBold.ttf) format('truetype');
 }
