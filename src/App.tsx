@@ -1,10 +1,10 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Header from './components/Header';
-import GradientGenerator from './components/GradientGenerator';
-import MessageContainer from './components/MessageContainer';
-import { GeneralMessage } from './shared/types/interfaces';
-import { ThemeMode, themeModeLocalStorageKey } from './shared/constants';
+import Header from '@components/Header';
+import GradientGenerator from '@components/GradientGenerator';
+import MessageContainer from '@components/MessageContainer';
+import { GeneralMessage } from '@shared/types/interfaces';
+import { ThemeMode, themeModeLocalStorageKey } from '@shared/constants';
 
 const App: React.FC = () => {
   const [messages, setMessages] = useState<GeneralMessage[]>([]);

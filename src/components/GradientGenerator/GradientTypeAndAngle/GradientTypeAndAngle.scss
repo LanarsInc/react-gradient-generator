@@ -1,4 +1,4 @@
-@use './../../../styles/abstracts' as *;
+@use '@styles/abstracts' as *;
 
 .gradient-type-and-angle {
   @include theme-transition;

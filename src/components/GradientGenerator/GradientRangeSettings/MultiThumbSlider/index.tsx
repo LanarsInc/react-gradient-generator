@@ -1,12 +1,9 @@
 import React, { useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
-import {
-  hexToRgbaObject,
-  removeAlphaFromRgbaColor,
-} from '../../../../shared/utils';
-import { defaultHexColor, maxColorsCount } from '../../../../shared/constants';
-import { Palette } from '../../../../shared/types/interfaces';
+import { hexToRgbaObject, removeAlphaFromRgbaColor } from '@shared/utils';
+import { defaultHexColor, maxColorsCount } from '@shared/constants';
+import { Palette } from '@shared/types/interfaces';
 
 import './MultiThumbSlider.scss';
 
