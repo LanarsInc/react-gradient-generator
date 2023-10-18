@@ -1,11 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
 import { motion as m } from 'framer-motion';
-import { Palette } from '../../../shared/types/interfaces';
-import { SectionAppearAnimation } from '../../../shared/animation';
-import { removeAlphaFromRgbaColor } from '../../../shared/utils';
+import { Palette } from '@shared/types/interfaces';
+import { SectionAppearAnimation } from '@shared/animation';
+import { removeAlphaFromRgbaColor } from '@shared/utils';
 
-import CloseIcon from '../../../assets/svg/close.svg?react';
+import CloseIcon from '@assets/svg/close.svg?react';
 
 import './GradientPreview.scss';
 

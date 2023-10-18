@@ -1,9 +1,9 @@
 import React from 'react';
+import { Palette } from '@shared/types/interfaces';
+
+import SwapIcon from '@assets/svg/swap.svg?react';
+
 import MultiThumbSlider from './MultiThumbSlider';
-import { Palette } from '../../../shared/types/interfaces';
-
-import SwapIcon from '../../../assets/svg/swap.svg?react';
-
 import './GradientSlider.scss';
 
 interface GradientRangeSettingsProps {
