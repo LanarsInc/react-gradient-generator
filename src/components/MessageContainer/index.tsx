@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import MessageBox from '../MessageBox';
-import { GeneralMessage } from '../../shared/types/interfaces';
+import MessageBox from '@components/MessageBox';
+import { GeneralMessage } from '@shared/types/interfaces';
 
 import './MessageContainer.scss';
 

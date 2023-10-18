@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { motion as m } from 'framer-motion';
+import { hexToRgbaObject, splitGradientString } from '@shared/utils';
+import { defaultGradient, GradientTypes } from '@shared/constants';
+import { GeneralMessage, Palette } from '@shared/types/interfaces';
+import { SectionAppearAnimation } from '@shared/animation';
 import GradientPreview from './GradientPreview';
 import GradientActivePalette from './GradientActivePalette';
 import GradientTypeAndAngle from './GradientTypeAndAngle';
 import GradientRangeSettings from './GradientRangeSettings';
 import GradientCode from './GradientCode';
-import { hexToRgbaObject, splitGradientString } from '../../shared/utils';
-import { defaultGradient, GradientTypes } from '../../shared/constants';
-import { GeneralMessage, Palette } from '../../shared/types/interfaces';
-import { SectionAppearAnimation } from '../../shared/animation';
 
 import './GradientGenerator.scss';
 

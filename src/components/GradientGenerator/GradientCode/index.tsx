@@ -1,11 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion as m } from 'framer-motion';
-import { GeneralMessage } from '../../../shared/types/interfaces';
-import {
-  gradientCodeLineHeight,
-  messageLifeTime,
-} from '../../../shared/constants';
-import { SectionAppearAnimation } from '../../../shared/animation';
+import { GeneralMessage } from '@shared/types/interfaces';
+import { gradientCodeLineHeight, messageLifeTime } from '@shared/constants';
+import { SectionAppearAnimation } from '@shared/animation';
 
 import './GradientCode.scss';
 

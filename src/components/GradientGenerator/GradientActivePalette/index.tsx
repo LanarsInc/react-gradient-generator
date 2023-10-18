@@ -1,22 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion as m, AnimatePresence } from 'framer-motion';
 import { HexColorPicker as Picker } from 'react-colorful';
-import {
-  allowOnlyNumbers,
-  hexToRgbaObject,
-  rgbaToHex,
-} from '../../../shared/utils';
-import { KeyNumberValue } from '../../../shared/types/general';
-import useOutsideClick from '../../../shared/hooks/useOutsideClick';
-import { Palette } from '../../../shared/types/interfaces';
-import useWindowSize from '../../../shared/hooks/useWindowSize';
+import { allowOnlyNumbers, hexToRgbaObject, rgbaToHex } from '@shared/utils';
+import { KeyNumberValue } from '@shared/types/general';
+import useOutsideClick from '@shared/hooks/useOutsideClick';
+import { Palette } from '@shared/types/interfaces';
+import useWindowSize from '@shared/hooks/useWindowSize';
 import {
   defaultHexColor,
   hexColorRegExp,
   smallBreakPoint,
-} from '../../../shared/constants';
+} from '@shared/constants';
 
-import TrashIcon from '../../../assets/svg/trash.svg?react';
+import TrashIcon from '@assets/svg/trash.svg?react';
 
 import './GradientActivePalette.scss';
 

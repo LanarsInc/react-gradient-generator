@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion as m } from 'framer-motion';
 import classnames from 'classnames';
-import { allowOnlyNumbers } from '../../../shared/utils';
-import { GradientTypes } from '../../../shared/constants';
-import { SectionAppearAnimation } from '../../../shared/animation';
+import { allowOnlyNumbers } from '@shared/utils';
+import { GradientTypes } from '@shared/constants';
+import { SectionAppearAnimation } from '@shared/animation';
 
-import AngleCircleIcon from '../../../assets/svg/angle-circle.svg?react';
+import AngleCircleIcon from '@assets/svg/angle-circle.svg?react';
 
 import './GradientTypeAndAngle.scss';
 
