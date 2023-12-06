@@ -7,7 +7,7 @@
 https://github.com/LanarsInc/react-gradient-generator/assets/112958445/eb3f6c3b-43e7-445e-ac15-a62422660b52
 
 ### Main preview - light theme
-<img width="701" alt="Main preview - light theme" src="https://github.com/LanarsInc/react-gradient-generator/assets/40457361/a89a5b17-e980-4734-a547-f6b5cb217c09">
+<img width="700" alt="Main preview - light theme" src="https://github.com/LanarsInc/react-gradient-generator/assets/112958445/8f13adab-c1ea-4f0e-a37e-76542b7c2b74">
 
 ### Main preview - dark theme
 <img width="703" alt="Main preview - dark theme" src="https://github.com/LanarsInc/react-gradient-generator/assets/40457361/cb587e49-3144-4822-a01e-7d8bd4136ef7">
