@@ -23,7 +23,7 @@ https://github.com/LanarsInc/react-gradient-generator/assets/40457361/03673524-7
 
 # Overview and Motivation
 This repo provides implementation of static site using React with:
-* [Create React App](https://create-react-app.dev/)
+* [Vite](https://vitejs.dev/)
 * Typescript
 * SCSS
 * [Framer Motion](https://www.framer.com/motion/)
