@@ -28,7 +28,7 @@ RUN --mount=type=secret,id=login \
         npm run build:prod; \
     fi
 FROM nginx:mainline-alpine
-COPY --from=BUILDER /opt/frontend/build /usr/share/nginx/html
+COPY --from=BUILDER /opt/frontend/dist /usr/share/nginx/html
 COPY ./docker/default.conf /etc/nginx/conf.d/default.conf
 RUN set -xe && \
     apk add --no-cache --update mc htop sudo bash tini
